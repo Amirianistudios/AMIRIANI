@@ -45,7 +45,13 @@ export function FeaturedCollection({
             </div>
           )}
 
-          <div className="slider-mobile-gutter page-width page-width-desktop scroll-trigger animate--slide-in">
+          {/*
+            A real <slider-component>, not a div: Dawn's
+            `slider-component.page-width{padding:0 1.5rem}` is element-qualified
+            and beats `.page-width-desktop{padding:0}`, so a div would lose the
+            mobile side gutter and the grid would sit flush to the screen edge.
+          */}
+          <slider-component className="slider-mobile-gutter page-width page-width-desktop scroll-trigger animate--slide-in">
             <ul
               className="grid product-grid contains-card contains-card--product contains-card--standard grid--4-col-desktop grid--2-col-tablet-down"
               role="list"
@@ -61,7 +67,7 @@ export function FeaturedCollection({
                 </li>
               ))}
             </ul>
-          </div>
+          </slider-component>
 
           {viewAllHref && (
             <div className="center collection__view-all scroll-trigger animate--slide-in">

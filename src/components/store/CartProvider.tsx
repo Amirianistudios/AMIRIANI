@@ -4,7 +4,9 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
+  useRef,
   useState,
   useTransition,
 } from 'react'
@@ -43,7 +45,14 @@ export function CartProvider({
   initialCart,
   children,
 }: {
-  initialCart: Cart
+  /**
+   * Optional. Pages that are already per-visitor (the cart, checkout) pass the
+   * server-loaded cart so it paints immediately. Catalogue pages pass nothing,
+   * which is what lets them stay statically prerendered — reading the cart
+   * cookie in the shared layout would make every product and collection page
+   * render on demand.
+   */
+  initialCart?: Cart
   children: React.ReactNode
 }) {
   const [cart, setCart] = useState<Cart>(initialCart ?? EMPTY)
@@ -51,6 +60,33 @@ export function CartProvider({
   const [lastAdded, setLastAdded] = useState<CartContextValue['lastAdded']>(null)
   const [pending, startTransition] = useTransition()
   const [busy, setBusy] = useState(false)
+  const hydrated = useRef(initialCart !== undefined)
+
+  /*
+   * When the page did not ship a cart (every cached catalogue page), fetch it
+   * once after hydration so the header count is correct. The request is cheap
+   * and keeps those pages static.
+   */
+  useEffect(() => {
+    if (hydrated.current) return
+    hydrated.current = true
+
+    let cancelled = false
+    void (async () => {
+      try {
+        const res = await fetch('/api/cart')
+        if (!res.ok) return
+        const payload = (await res.json()) as { cart?: Cart }
+        if (!cancelled && payload.cart) setCart(payload.cart)
+      } catch {
+        // An empty cart is a safe default; the next mutation will resync.
+      }
+    })()
+
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   const request = useCallback(
     async (method: string, body: unknown): Promise<boolean> => {

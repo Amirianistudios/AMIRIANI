@@ -53,6 +53,31 @@ const nextConfig: NextConfig = {
   // Surfaces accidental client-side use of server-only modules at build time.
   serverExternalPackages: [],
 
+  /**
+   * URL preservation.
+   *
+   * A handful of Shopify URLs change shape on the new site. These are kept as
+   * permanent redirects so existing links and search results keep working —
+   * the same set the importer seeds into the `redirects` table for reference.
+   */
+  async redirects() {
+    return [
+      // The reference store served its About page from the blog.
+      { source: '/blogs/news', destination: '/about', permanent: true },
+      { source: '/blogs/news/:slug', destination: '/about', permanent: true },
+      { source: '/pages/about', destination: '/about', permanent: true },
+      { source: '/pages/contact', destination: '/contact', permanent: true },
+      // Shopify's default catch-all collection.
+      { source: '/collections/frontpage', destination: '/collections/all', permanent: true },
+      // Shopify nests product URLs under a collection; ours are flat.
+      {
+        source: '/collections/:collection/products/:slug',
+        destination: '/products/:slug',
+        permanent: true,
+      },
+    ]
+  },
+
   async headers() {
     return [
       {

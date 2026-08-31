@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useMemo, useState } from 'react'
 
 import { PriceBlock } from '@/components/store/PriceBlock'
@@ -68,8 +69,8 @@ export function ProductForm({ product }: { product: Product }) {
       </div>
 
       <div className="product__tax caption rte">
-        Taxes included. <a href="/policies/shipping-policy">Shipping</a> calculated at
-        checkout.
+        Taxes included. <Link href="/policies/shipping-policy">Shipping</Link> calculated
+        at checkout.
       </div>
 
       {product.variants.length > 1 && (

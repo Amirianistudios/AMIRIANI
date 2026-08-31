@@ -3,7 +3,6 @@ import { CartProvider } from '@/components/store/CartProvider'
 import { Footer } from '@/components/store/Footer'
 import { HeaderShell } from '@/components/store/HeaderShell'
 import { ScrollAnimations } from '@/components/store/ScrollAnimations'
-import { getCart } from '@/lib/cart/server'
 import { getFooterPolicies, getMainNavigation, getSiteConfig } from '@/lib/site'
 
 /**
@@ -12,17 +11,21 @@ import { getFooterPolicies, getMainNavigation, getSiteConfig } from '@/lib/site'
  * The reference layout is a CSS grid on <body> with four rows — header group,
  * announcement bar, main, footer group. That grid lives in theme.css, so the
  * children here map onto those rows in order.
+ *
+ * The cart is deliberately *not* read here. Doing so would touch cookies and
+ * force every page in this group — homepage, collections, products — to render
+ * on demand. CartProvider fetches it client-side instead, so those pages stay
+ * prerendered and the header count fills in on hydration.
  */
 export default async function StoreLayout({ children }: { children: React.ReactNode }) {
-  const [site, navigation, policies, cart] = await Promise.all([
+  const [site, navigation, policies] = await Promise.all([
     getSiteConfig(),
     getMainNavigation(),
     getFooterPolicies(),
-    getCart(),
   ])
 
   return (
-    <CartProvider initialCart={cart}>
+    <CartProvider>
       <a className="skip-to-content-link button visually-hidden" href="#MainContent">
         Skip to content
       </a>

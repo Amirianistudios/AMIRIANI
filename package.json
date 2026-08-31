@@ -6,7 +6,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "db:verify": "./scripts/verify-db.sh",
+    "data:extract": "tsx scripts/extract-shopify.ts",
+    "data:import": "tsx scripts/import-to-supabase.ts",
+    "admin:grant": "tsx scripts/grant-admin.ts",
+    "dev:supabase": "node scripts/local-supabase.mjs",
+    "compare": "node scripts/compare-visual.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.5",

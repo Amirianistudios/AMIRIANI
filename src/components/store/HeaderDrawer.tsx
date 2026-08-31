@@ -22,9 +22,13 @@ export function HeaderDrawer({
   currentPath: string
 }) {
   const [open, setOpen] = useState(false)
+  // Deriving "closed on a new route" during render avoids a setState-in-effect
+  // cascade: the drawer simply never renders open for a path it did not open on.
+  const [openedOnPath, setOpenedOnPath] = useState(currentPath)
+  const isOpen = open && openedOnPath === currentPath
 
   useEffect(() => {
-    if (!open) return
+    if (!isOpen) return
 
     const onKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape') setOpen(false)
@@ -36,31 +40,27 @@ export function HeaderDrawer({
       document.removeEventListener('keydown', onKey)
       document.body.classList.remove('overflow-hidden-tablet')
     }
-  }, [open])
-
-  // Close when the route changes.
-  useEffect(() => {
-    setOpen(false)
-  }, [currentPath])
+  }, [isOpen])
 
   return (
     <header-drawer data-breakpoint="tablet">
       <details
-        className={`menu-drawer-container${open ? ' menu-opening' : ''}`}
-        open={open}
+        className={`menu-drawer-container${isOpen ? ' menu-opening' : ''}`}
+        open={isOpen}
       >
         <summary
           className="header__icon header__icon--menu header__icon--summary link focus-inset"
-          aria-label={open ? 'Close menu' : 'Menu'}
-          aria-expanded={open}
+          aria-label={isOpen ? 'Close menu' : 'Menu'}
+          aria-expanded={isOpen}
           onClick={(event) => {
             // The drawer is React-controlled, so stop the native toggle.
             event.preventDefault()
-            setOpen((value) => !value)
+            setOpenedOnPath(currentPath)
+            setOpen(!isOpen)
           }}
         >
           <span>
-            {open ? (
+            {isOpen ? (
               <IconClose className="icon icon-close" />
             ) : (
               <IconHamburger className="icon icon-hamburger" />

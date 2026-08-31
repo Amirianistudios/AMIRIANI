@@ -39,6 +39,13 @@ export function Header({
         <header className="header header--top-center header--mobile-center page-width header--has-menu header--has-social header--has-account header--has-localizations">
           <HeaderDrawer navigation={navigation} currentPath={currentPath} />
 
+          {/*
+            Dawn emits the search twice and lets CSS pick one per breakpoint:
+            this direct child of <header> takes the `left-icons` grid area on
+            desktop, while the copy inside .header__icons below is the one shown
+            on mobile. Only ever one is visible, so rendering both is what makes
+            the icon appear in the right place at each size.
+          */}
           <HeaderSearch />
 
           <h1 className="header__heading">
@@ -109,6 +116,9 @@ export function Header({
                 </div>
               </div>
             </div>
+
+            {/* The mobile instance; see the note on the desktop copy above. */}
+            <HeaderSearch />
 
             <Link
               href="/account"
