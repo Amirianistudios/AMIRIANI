@@ -1,0 +1,107 @@
+/*
+ * Global stylesheet.
+ *
+ * Import order mirrors the reference storefront exactly: the theme token block
+ * is emitted before the Dawn stylesheets there, and the ported CSS depends on
+ * that cascade, so keep theme.css first.
+ *
+ * Tailwind is loaded last and is used only by /admin. The storefront is styled
+ * entirely by the ported Dawn CSS so it can match the reference pixel for
+ * pixel; mixing utility classes into storefront markup would drift from it.
+ */
+
+@import '../styles/theme.css';
+
+@import '../styles/dawn/base.css';
+@import '../styles/dawn/component-accordion.css';
+@import '../styles/dawn/component-article-card.css';
+@import '../styles/dawn/component-card.css';
+@import '../styles/dawn/component-cart-drawer.css';
+@import '../styles/dawn/component-cart-items.css';
+@import '../styles/dawn/component-cart-notification.css';
+@import '../styles/dawn/component-cart.css';
+@import '../styles/dawn/component-deferred-media.css';
+@import '../styles/dawn/component-discounts.css';
+@import '../styles/dawn/component-facets.css';
+@import '../styles/dawn/component-list-menu.css';
+@import '../styles/dawn/component-list-payment.css';
+@import '../styles/dawn/component-list-social.css';
+@import '../styles/dawn/component-localization-form.css';
+@import '../styles/dawn/component-menu-drawer.css';
+@import '../styles/dawn/component-newsletter.css';
+@import '../styles/dawn/component-pagination.css';
+@import '../styles/dawn/component-pickup-availability.css';
+@import '../styles/dawn/component-predictive-search.css';
+@import '../styles/dawn/component-price.css';
+@import '../styles/dawn/component-product-variant-picker.css';
+@import '../styles/dawn/component-rating.css';
+@import '../styles/dawn/component-search.css';
+@import '../styles/dawn/component-slider.css';
+@import '../styles/dawn/component-slideshow.css';
+@import '../styles/dawn/component-swatch-input.css';
+@import '../styles/dawn/component-swatch.css';
+@import '../styles/dawn/component-totals.css';
+@import '../styles/dawn/component-volume-pricing.css';
+@import '../styles/dawn/quantity-popover.css';
+@import '../styles/dawn/quick-order-list.css';
+@import '../styles/dawn/section-collection-list.css';
+@import '../styles/dawn/section-contact-form.css';
+@import '../styles/dawn/section-footer.css';
+@import '../styles/dawn/section-image-banner.css';
+@import '../styles/dawn/section-main-blog.css';
+@import '../styles/dawn/section-main-product.css';
+@import '../styles/dawn/section-related-products.css';
+@import '../styles/dawn/section-rich-text.css';
+@import '../styles/dawn/template-collection.css';
+
+@import '../styles/sections.css';
+
+@layer theme, dawn, components, utilities;
+@import 'tailwindcss/theme.css' layer(theme) prefix(tw);
+@import 'tailwindcss/utilities.css' layer(utilities) prefix(tw);
+
+/* --------------------------------------------------------------------------
+ * Font wiring
+ *
+ * next/font self-hosts Inter and Libre Baskerville and exposes them as CSS
+ * variables on <html>. Point the Dawn tokens at those variables so every
+ * ported rule picks the right face up without touching the Shopify CDN.
+ * ------------------------------------------------------------------------ */
+
+:root {
+  --font-body-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-heading-family: var(--font-libre-baskerville), ui-serif, Georgia, serif;
+}
+
+/* --------------------------------------------------------------------------
+ * Small additions the ported theme needs
+ * ------------------------------------------------------------------------ */
+
+/* Next renders anchors without Dawn's reset in a few places. */
+a {
+  color: rgb(var(--color-link));
+}
+
+/*
+ * Scroll reveal
+ *
+ * Dawn already ships the animation CSS in base.css, with inverted semantics:
+ * `.scroll-trigger.animate--fade-in` starts at opacity .01, and the rule
+ * `.scroll-trigger:not(.scroll-trigger--offscreen)` reveals it. Dawn's JS adds
+ * `scroll-trigger--offscreen` to what is below the fold and removes it on
+ * entry, so anything untouched is visible. ScrollAnimations.tsx reproduces
+ * exactly that, which is why there is no custom reveal CSS here — adding any
+ * would fight base.css and leave whole sections invisible.
+ *
+ * Without JS nothing gets the offscreen class, so the entire page renders.
+ */
+
+/* The admin area opts out of the storefront's grid body layout. */
+body.admin-body {
+  display: block;
+  background: #f7f7f8;
+  color: #18181b;
+  font-family: var(--font-body-family);
+  font-size: 14px;
+  letter-spacing: normal;
+}

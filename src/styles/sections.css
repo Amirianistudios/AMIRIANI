@@ -1,0 +1,461 @@
+/*
+ * Section styles.
+ *
+ * Dawn does not ship all of its CSS in the linked stylesheets: snippets and
+ * sections emit `<style>` blocks inline, and the theme editor appends the
+ * store's own per-section custom CSS scoped to `#shopify-section-<id>`. None of
+ * that appears in base.css, so it has to be ported here or the rebuild silently
+ * differs — this file is where the reference storefront's real typography and
+ * spacing actually live.
+ *
+ * Everything below is transcribed from the reference pages' inline blocks. The
+ * only change is the scoping: `#shopify-section-<generated id>` becomes a
+ * stable `.section-*` class that the matching component sets, so the rules
+ * survive a rebuild.
+ *
+ * A few of the store's rules target class names that Dawn's markup never
+ * produces (`.image-banner__heading`, `.product__price`, `.footer__social`,
+ * `.footer__policy`, `.featured-collection .title`). They have no effect on the
+ * reference site either. They are kept, verbatim and scoped the same way, so
+ * this file stays a faithful record of the source; because our markup mirrors
+ * Dawn's class names, they stay inert here exactly as they are there.
+ */
+
+/* --------------------------------------------------------------------------
+ * Shared snippet CSS (Dawn emits these inline from snippets/*.liquid)
+ * ------------------------------------------------------------------------ */
+
+header-drawer {
+  justify-self: start;
+  margin-left: -1.2rem;
+}
+
+@media screen and (min-width: 990px) {
+  header-drawer {
+    display: none;
+  }
+}
+
+.menu-drawer-container {
+  display: flex;
+}
+
+.list-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list-menu--inline {
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+summary.list-menu__item {
+  padding-right: 2.7rem;
+}
+
+.list-menu__item {
+  display: flex;
+  align-items: center;
+  line-height: calc(1 + 0.3 / var(--font-body-scale));
+}
+
+.list-menu__item--link {
+  text-decoration: none;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  line-height: calc(1 + 0.8 / var(--font-body-scale));
+}
+
+@media screen and (min-width: 750px) {
+  .list-menu__item--link {
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+ * Header
+ * ------------------------------------------------------------------------ */
+
+.header {
+  padding: 10px 3rem 12px 3rem;
+}
+
+.section-header {
+  /* Dawn keeps this for a Safari z-index fix, not for stickiness. */
+  position: sticky;
+  margin-bottom: 3px;
+}
+
+@media screen and (min-width: 750px) {
+  .section-header {
+    margin-bottom: 4px;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .header {
+    padding-top: 20px;
+    padding-bottom: 24px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+ * Homepage — image banner
+ * ------------------------------------------------------------------------ */
+
+/* The store darkens the hero image by 20%; Dawn's default overlay is 0. */
+.section-image-banner .banner::after {
+  opacity: 0.2;
+}
+
+.section-image-banner .image-banner__heading {
+  letter-spacing: -0.25px;
+  font-weight: 500;
+  font-size: 2.6rem;
+  text-transform: none;
+  text-align: center;
+}
+
+.section-image-banner .image-banner__text {
+  font-size: 1rem;
+  opacity: 0.7;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+ * Homepage — featured collection
+ * ------------------------------------------------------------------------ */
+
+.section-featured-collection-padding {
+  padding-top: 36px;
+  padding-bottom: 48px;
+}
+
+@media screen and (min-width: 750px) {
+  .section-featured-collection-padding {
+    padding-top: 48px;
+    padding-bottom: 64px;
+  }
+}
+
+.section-featured-collection .card__heading {
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: -0.4px;
+  text-transform: none;
+}
+
+.section-featured-collection .price {
+  font-size: 0.95rem;
+  font-weight: 300;
+  font-style: italic;
+  opacity: 0.75;
+}
+
+.section-featured-collection .featured-collection .title {
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+/* --------------------------------------------------------------------------
+ * Collection page — product grid
+ * ------------------------------------------------------------------------ */
+
+.section-product-grid-padding {
+  padding-top: 24px;
+  padding-bottom: 27px;
+}
+
+@media screen and (min-width: 750px) {
+  .section-product-grid-padding {
+    padding-top: 32px;
+    padding-bottom: 36px;
+  }
+}
+
+.section-product-grid .card__heading {
+  font-size: 1.1rem;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: -0.3px;
+}
+
+.section-product-grid .price {
+  font-size: 1rem;
+  font-weight: 300;
+  opacity: 0.8;
+}
+
+.section-product-grid .grid__item {
+  padding-bottom: 40px;
+}
+
+.section-product-grid .collection {
+  padding-top: 40px;
+  padding-bottom: 60px;
+}
+
+.section-product-grid .card-wrapper {
+  transition: all 0.3s ease;
+}
+
+.section-product-grid .card-wrapper:hover {
+  opacity: 0.9;
+}
+
+/* --------------------------------------------------------------------------
+ * Product page
+ * ------------------------------------------------------------------------ */
+
+.section-main-product-padding {
+  padding-top: 30px;
+  padding-bottom: 21px;
+}
+
+@media screen and (min-width: 750px) {
+  .section-main-product-padding {
+    padding-top: 40px;
+    padding-bottom: 28px;
+  }
+}
+
+.section-main-product .product__title {
+  font-size: 2.2rem;
+  letter-spacing: -0.5px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.section-main-product .product__price {
+  font-size: 1.2rem;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+.section-main-product .product__description {
+  font-size: 1rem;
+  line-height: 1.6;
+  opacity: 0.75;
+  letter-spacing: 0.1px;
+}
+
+.section-main-product .product__info-wrapper {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.section-main-product .product__media img {
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+ * Cart
+ * ------------------------------------------------------------------------ */
+
+.section-cart-items-padding {
+  padding-top: 9px;
+  padding-bottom: 18px;
+}
+
+@media screen and (min-width: 750px) {
+  .section-cart-items-padding {
+    padding-top: 12px;
+    padding-bottom: 24px;
+  }
+}
+
+.section-cart-items .cart__empty-button {
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border: 1px solid black;
+  padding: 12px 24px;
+  background: transparent;
+  color: black;
+  transition: all 0.3s ease;
+}
+
+.section-cart-items .cart__empty-button:hover {
+  background-color: black;
+  color: white;
+}
+
+.section-cart-footer-padding {
+  padding-top: 30px;
+  padding-bottom: 45px;
+}
+
+@media screen and (min-width: 750px) {
+  .section-cart-footer-padding {
+    padding-top: 40px;
+    padding-bottom: 60px;
+  }
+}
+
+.section-cart-footer .cart__footer {
+  padding-top: 40px;
+  padding-bottom: 60px;
+  text-align: right;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+ * Contact page
+ * ------------------------------------------------------------------------ */
+
+.section-contact-form-padding {
+  padding-top: 45px;
+  padding-bottom: 30px;
+}
+
+@media screen and (min-width: 750px) {
+  .section-contact-form-padding {
+    padding-top: 60px;
+    padding-bottom: 40px;
+  }
+}
+
+.section-contact-form .contact-form h2 {
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-align: center;
+  padding-top: 60px;
+  padding-bottom: 40px;
+  color: #000000;
+}
+
+/* --------------------------------------------------------------------------
+ * About page (the reference serves this from /blogs/news)
+ * ------------------------------------------------------------------------ */
+
+.section-main-blog-padding {
+  padding-top: 27px;
+  padding-bottom: 0;
+}
+
+@media screen and (min-width: 750px) {
+  .section-main-blog-padding {
+    padding-top: 36px;
+    padding-bottom: 0;
+  }
+}
+
+.section-main-blog h1 {
+  font-size: 38px;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+  line-height: 1.25;
+  text-align: center;
+  margin-bottom: 24px;
+  color: #111111;
+}
+
+@media screen and (max-width: 768px) {
+  .section-main-blog h1 {
+    font-size: 28px;
+    line-height: 1.3;
+  }
+}
+
+.section-rich-text-padding {
+  padding-top: 30px;
+  padding-bottom: 39px;
+}
+
+@media screen and (min-width: 750px) {
+  .section-rich-text-padding {
+    padding-top: 40px;
+    padding-bottom: 52px;
+  }
+}
+
+.section-rich-text h2 {
+  font-size: 42px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.4px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.section-rich-text p {
+  font-size: 16px;
+  line-height: 1.65;
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+  color: #1a1a1a;
+}
+
+@media screen and (max-width: 768px) {
+  .section-rich-text h2 {
+    font-size: 30px;
+    line-height: 1.35;
+  }
+
+  .section-rich-text p {
+    font-size: 15px;
+    padding: 0 14px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+ * Footer
+ * ------------------------------------------------------------------------ */
+
+.footer {
+  margin-top: 0;
+}
+
+.section-footer-padding {
+  padding-top: 30px;
+  padding-bottom: 21px;
+}
+
+@media screen and (min-width: 750px) {
+  .section-footer-padding {
+    padding-top: 40px;
+    padding-bottom: 28px;
+  }
+}
+
+.section-footer .footer-block__heading {
+  text-align: center;
+  font-weight: 400;
+  font-size: 1.05rem;
+  font-style: italic;
+  opacity: 0.8;
+  letter-spacing: -0.3px;
+  margin-bottom: 14px;
+}
+
+.section-footer .footer__content-top {
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.section-footer .footer__social {
+  justify-content: center;
+  gap: 18px;
+}
+
+.section-footer .footer__payment {
+  opacity: 0.75;
+  margin-top: 12px;
+}
+
+.section-footer .footer__policy {
+  text-align: center;
+  font-size: 0.82rem;
+  opacity: 0.65;
+  margin-top: 8px;
+}

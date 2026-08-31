@@ -1,0 +1,316 @@
+/*
+ * AMIRIANI theme tokens.
+ *
+ * These values are lifted verbatim from the reference storefront's rendered
+ * `:root` block (Dawn 15.3.0, "Whisper"). They are the visual contract: the
+ * ported Dawn stylesheets in ./dawn read every one of them, so changing a
+ * value here changes the whole storefront consistently. Do not "tidy" the
+ * numbers — they are what makes the rebuild match.
+ */
+
+/* --------------------------------------------------------------------------
+ * Colour schemes
+ * ------------------------------------------------------------------------ */
+
+:root,
+.color-background-1 {
+  --color-background: 251, 247, 239;
+  --gradient-background: #fbf7ef;
+  --color-foreground: 18, 18, 18;
+  --color-background-contrast: 225, 196, 137;
+  --color-shadow: 18, 18, 18;
+  --color-button: 18, 18, 18;
+  --color-button-text: 251, 247, 239;
+  --color-secondary-button: 251, 247, 239;
+  --color-secondary-button-text: 18, 18, 18;
+  --color-link: 18, 18, 18;
+  --color-badge-foreground: 18, 18, 18;
+  --color-badge-background: 251, 247, 239;
+  --color-badge-border: 18, 18, 18;
+  --payment-terms-background-color: rgb(251 247 239);
+}
+
+.color-background-2,
+.color-inverse {
+  --color-background: 255, 255, 255;
+  --gradient-background: #ffffff;
+  --color-foreground: 56, 55, 58;
+  --color-background-contrast: 191, 191, 191;
+  --color-shadow: 18, 18, 18;
+  --color-button: 56, 55, 58;
+  --color-button-text: 255, 255, 255;
+  --color-secondary-button: 255, 255, 255;
+  --color-secondary-button-text: 56, 55, 58;
+  --color-link: 56, 55, 58;
+  --color-badge-foreground: 56, 55, 58;
+  --color-badge-background: 255, 255, 255;
+  --color-badge-border: 56, 55, 58;
+  --payment-terms-background-color: rgb(255 255 255);
+}
+
+.color-accent-1 {
+  --color-background: 48, 48, 48;
+  --gradient-background: #303030;
+  --color-foreground: 255, 255, 255;
+  --color-background-contrast: 61, 61, 61;
+  --color-shadow: 18, 18, 18;
+  --color-button: 255, 255, 255;
+  --color-button-text: 18, 18, 18;
+  --color-secondary-button: 48, 48, 48;
+  --color-secondary-button-text: 255, 255, 255;
+  --color-link: 255, 255, 255;
+  --color-badge-foreground: 255, 255, 255;
+  --color-badge-background: 48, 48, 48;
+  --color-badge-border: 255, 255, 255;
+  --payment-terms-background-color: rgb(48 48 48);
+}
+
+/* The header uses this scheme: near-black with white text. */
+.color-accent-2 {
+  --color-background: 8, 8, 8;
+  --gradient-background: #080808;
+  --color-foreground: 255, 255, 255;
+  --color-background-contrast: 136, 136, 136;
+  --color-shadow: 18, 18, 18;
+  --color-button: 255, 255, 255;
+  --color-button-text: 48, 48, 48;
+  --color-secondary-button: 8, 8, 8;
+  --color-secondary-button-text: 255, 255, 255;
+  --color-link: 255, 255, 255;
+  --color-badge-foreground: 255, 255, 255;
+  --color-badge-background: 8, 8, 8;
+  --color-badge-border: 255, 255, 255;
+  --payment-terms-background-color: rgb(8 8 8);
+}
+
+/*
+ * The reference theme's custom scheme (id c815deb1-… on the live site), used by
+ * the hero text box, the featured collection, the product page and the footer.
+ * White ground, mid-grey body text, black buttons.
+ */
+.color-scheme-custom,
+.color-accent-3 {
+  --color-background: 255, 255, 255;
+  --gradient-background: #ffffff;
+  --color-foreground: 136, 136, 136;
+  --color-background-contrast: 191, 191, 191;
+  --color-shadow: 237, 237, 237;
+  --color-button: 0, 0, 0;
+  --color-button-text: 255, 255, 255;
+  --color-secondary-button: 255, 255, 255;
+  --color-secondary-button-text: 17, 17, 17;
+  --color-link: 17, 17, 17;
+  --color-badge-foreground: 136, 136, 136;
+  --color-badge-background: 255, 255, 255;
+  --color-badge-border: 136, 136, 136;
+  --payment-terms-background-color: rgb(255 255 255);
+}
+
+.color-accent-3,
+.color-scheme-custom {
+  color: rgba(var(--color-foreground), 0.75);
+  background-color: rgb(var(--color-background));
+}
+
+body,
+.color-background-1,
+.color-background-2,
+.color-inverse,
+.color-accent-1,
+.color-accent-2 {
+  color: rgba(var(--color-foreground), 0.75);
+  background-color: rgb(var(--color-background));
+}
+
+.gradient {
+  background: var(--gradient-background);
+  background-attachment: fixed;
+}
+
+/* --------------------------------------------------------------------------
+ * Typography, layout and component tokens
+ * ------------------------------------------------------------------------ */
+
+:root {
+  --font-body-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-body-style: normal;
+  --font-body-weight: 300;
+  --font-body-weight-bold: 600;
+
+  --font-heading-family: 'Libre Baskerville', ui-serif, Georgia, serif;
+  --font-heading-style: normal;
+  --font-heading-weight: 400;
+
+  --font-body-scale: 1.05;
+  --font-heading-scale: 1.1428571428571428;
+
+  --media-padding: 0px;
+  --media-border-opacity: 0;
+  --media-border-width: 0px;
+  --media-radius: 0px;
+  --media-shadow-opacity: 0.05;
+  --media-shadow-horizontal-offset: 0px;
+  --media-shadow-vertical-offset: 4px;
+  --media-shadow-blur-radius: 10px;
+  --media-shadow-visible: 1;
+
+  --page-width: 140rem;
+  --page-width-margin: 0rem;
+
+  --product-card-image-padding: 0.4rem;
+  --product-card-corner-radius: 0.4rem;
+  --product-card-text-alignment: left;
+  --product-card-border-width: 0rem;
+  --product-card-border-opacity: 0;
+  --product-card-shadow-opacity: 0.05;
+  --product-card-shadow-visible: 1;
+  --product-card-shadow-horizontal-offset: 0rem;
+  --product-card-shadow-vertical-offset: 0.2rem;
+  --product-card-shadow-blur-radius: 1rem;
+
+  --collection-card-image-padding: 0.4rem;
+  --collection-card-corner-radius: 0.4rem;
+  --collection-card-text-alignment: left;
+  --collection-card-border-width: 0rem;
+  --collection-card-border-opacity: 0;
+  --collection-card-shadow-opacity: 0.05;
+  --collection-card-shadow-visible: 1;
+  --collection-card-shadow-horizontal-offset: 0rem;
+  --collection-card-shadow-vertical-offset: 0.2rem;
+  --collection-card-shadow-blur-radius: 1rem;
+
+  --blog-card-image-padding: 0.4rem;
+  --blog-card-corner-radius: 0.4rem;
+  --blog-card-text-alignment: left;
+  --blog-card-border-width: 0rem;
+  --blog-card-border-opacity: 0;
+  --blog-card-shadow-opacity: 0.05;
+  --blog-card-shadow-visible: 1;
+  --blog-card-shadow-horizontal-offset: 0rem;
+  --blog-card-shadow-vertical-offset: 0.2rem;
+  --blog-card-shadow-blur-radius: 1rem;
+
+  --badge-corner-radius: 0.4rem;
+
+  --popup-border-width: 0px;
+  --popup-border-opacity: 0;
+  --popup-corner-radius: 4px;
+  --popup-shadow-opacity: 0.05;
+  --popup-shadow-horizontal-offset: 0px;
+  --popup-shadow-vertical-offset: 4px;
+  --popup-shadow-blur-radius: 10px;
+
+  --drawer-border-width: 0px;
+  --drawer-border-opacity: 0;
+  --drawer-shadow-opacity: 0.05;
+  --drawer-shadow-horizontal-offset: -2px;
+  --drawer-shadow-vertical-offset: 0px;
+  --drawer-shadow-blur-radius: 10px;
+
+  --spacing-sections-desktop: 56px;
+  --spacing-sections-mobile: 39px;
+
+  --grid-desktop-vertical-spacing: 24px;
+  --grid-desktop-horizontal-spacing: 32px;
+  --grid-mobile-vertical-spacing: 12px;
+  --grid-mobile-horizontal-spacing: 16px;
+
+  --text-boxes-border-opacity: 0;
+  --text-boxes-border-width: 12px;
+  --text-boxes-radius: 0px;
+  --text-boxes-shadow-opacity: 0.1;
+  --text-boxes-shadow-visible: 1;
+  --text-boxes-shadow-horizontal-offset: 0px;
+  --text-boxes-shadow-vertical-offset: 2px;
+  --text-boxes-shadow-blur-radius: 10px;
+
+  --buttons-radius: 6px;
+  --buttons-radius-outset: 7px;
+  --buttons-border-width: 1px;
+  --buttons-border-opacity: 1;
+  --buttons-shadow-opacity: 0.05;
+  --buttons-shadow-visible: 1;
+  --buttons-shadow-horizontal-offset: 0px;
+  --buttons-shadow-vertical-offset: 2px;
+  --buttons-shadow-blur-radius: 10px;
+  --buttons-border-offset: 0.3px;
+
+  --inputs-radius: 4px;
+  --inputs-border-width: 1px;
+  --inputs-border-opacity: 1;
+  --inputs-shadow-opacity: 0.05;
+  --inputs-shadow-horizontal-offset: 0px;
+  --inputs-margin-offset: 0px;
+  --inputs-shadow-vertical-offset: 0px;
+  --inputs-shadow-blur-radius: 5px;
+  --inputs-radius-outset: 5px;
+
+  --variant-pills-radius: 4px;
+  --variant-pills-border-width: 1px;
+  --variant-pills-border-opacity: 1;
+  --variant-pills-shadow-opacity: 0.05;
+  --variant-pills-shadow-horizontal-offset: 0px;
+  --variant-pills-shadow-vertical-offset: 2px;
+  --variant-pills-shadow-blur-radius: 5px;
+}
+
+/* --------------------------------------------------------------------------
+ * Document base — matches Dawn's theme.liquid inline block exactly.
+ * ------------------------------------------------------------------------ */
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: calc(var(--font-body-scale) * 62.5%);
+  height: 100%;
+}
+
+body {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  grid-template-columns: 100%;
+  min-height: 100%;
+  margin: 0;
+  font-size: 1.5rem;
+  letter-spacing: 0.06rem;
+  line-height: calc(1 + 0.8 / var(--font-body-scale));
+  font-family: var(--font-body-family);
+  font-style: var(--font-body-style);
+  font-weight: var(--font-body-weight);
+}
+
+@media screen and (min-width: 750px) {
+  body {
+    font-size: 1.6rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+ * Section padding
+ *
+ * Dawn emits a per-section padding class from the theme editor. The reference
+ * store leaves every homepage section on the default 36px/52px pair, scaled
+ * by 0.75 below 750px, so we express that once here.
+ * ------------------------------------------------------------------------ */
+
+.section-padding-default {
+  padding-top: 27px;
+  padding-bottom: 27px;
+}
+
+@media screen and (min-width: 750px) {
+  .section-padding-default {
+    padding-top: 36px;
+    padding-bottom: 36px;
+  }
+}
+
+.section-padding-none {
+  padding-top: 0;
+  padding-bottom: 0;
+}

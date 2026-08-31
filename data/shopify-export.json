@@ -1,0 +1,1437 @@
+{
+  "source": "https://7t6swe-yh.myshopify.com",
+  "extracted_at": "2026-08-31T22:50:38.135Z",
+  "products": [
+    {
+      "external_id": "10755768090955",
+      "handle": "unisex-organic-oversized-high-neck-t-shirt-2",
+      "title": "The Oversized Tee – Sandstone",
+      "body_html": "<p>This oversized t-shirt features a high neckline and dropped shoulders, crafted from heavyweight organic cotton for a structured yet fluid silhouette. Designed for unisex wear and timeless layering, it carries the essence of quiet luxury.<br><br>• 100% organic combed ring-spun cotton<br>• Heavyweight feel (200 g/m²)<br>• Oversized fit with dropped shoulders<br>• High neckline with 1×1 ribbed collar<br>• Self-fabric neck tape (back interior)<br>• GOTS and OCS certified fabric<br>• Blank product sourced from Bangladesh<br><br>This piece is crafted exclusively upon order to reduce excess and uphold intention. Our made-to-order model ensures thoughtful production with minimal waste. Quality takes time. Thank you for choosing timeless over instant.<br><br>Age restrictions: For adults<br>EU Warranty: 2 years<br><br>In compliance with the General Product Safety Regulation (GPSR), <b>AMIRIANI</b> ensures that all consumer products offered are safe and meet EU standards. For any product safety related inquiries or concerns, please contact us at <meta charset=\"utf-8\"><b>amiriani.studio@gmail.com. </b></p>\n<p><strong class=\"size-guide-title\">Size guide</strong></p>\n<div data-unit-system=\"imperial\" class=\"table-responsive dynamic\">\n<table cellpadding=\"5\">\n<tbody>\n<tr>\n<td> </td>\n<td><strong>BODY LENGTH (cm)</strong></td>\n<td><strong>SLEEVE LENGTH (cm)</strong></td>\n<td><strong>CHEST (inches)</strong></td>\n</tr>\n<tr>\n<td><strong>S</strong></td>\n<td>73</td>\n<td>24</td>\n<td>39</td>\n</tr>\n<tr>\n<td><strong>M</strong></td>\n<td>75</td>\n<td>24.5</td>\n<td>43</td>\n</tr>\n<tr>\n<td><strong>L</strong></td>\n<td>77</td>\n<td>25</td>\n<td>47</td>\n</tr>\n<tr>\n<td><strong>XL</strong></td>\n<td>80</td>\n<td>25.5</td>\n<td>51</td>\n</tr>\n</tbody>\n</table>\n</div>",
+      "vendor": "AMIRIANI",
+      "product_type": null,
+      "tags": [],
+      "published_at": "2026-02-17T17:46:20+01:00",
+      "created_at": "2025-07-15T01:08:44+02:00",
+      "options": [
+        {
+          "name": "Size",
+          "position": 1,
+          "values": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "external_id": "52904789508427",
+          "title": "S",
+          "sku": "9556661_21004",
+          "price": "99.95",
+          "compare_at_price": null,
+          "option1": "S",
+          "option2": null,
+          "option3": null,
+          "grams": 243,
+          "available": true,
+          "position": 1,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-stone-front-68758df09fe6b.jpg?v=1752534765"
+        },
+        {
+          "external_id": "52904789541195",
+          "title": "M",
+          "sku": "9556661_21010",
+          "price": "99.95",
+          "compare_at_price": null,
+          "option1": "M",
+          "option2": null,
+          "option3": null,
+          "grams": 268,
+          "available": true,
+          "position": 2,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-stone-front-68758df09fe6b.jpg?v=1752534765"
+        },
+        {
+          "external_id": "52904789573963",
+          "title": "L",
+          "sku": "9556661_21016",
+          "price": "99.95",
+          "compare_at_price": null,
+          "option1": "L",
+          "option2": null,
+          "option3": null,
+          "grams": 283,
+          "available": true,
+          "position": 3,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-stone-front-68758df09fe6b.jpg?v=1752534765"
+        },
+        {
+          "external_id": "52904789606731",
+          "title": "XL",
+          "sku": "9556661_21022",
+          "price": "99.95",
+          "compare_at_price": null,
+          "option1": "XL",
+          "option2": null,
+          "option3": null,
+          "grams": 312,
+          "available": true,
+          "position": 4,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-stone-front-68758df09fe6b.jpg?v=1752534765"
+        }
+      ],
+      "images": [
+        {
+          "external_id": "61965606060363",
+          "src": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-stone-front-68758df09fe6b.jpg?v=1752534765",
+          "alt": null,
+          "width": 2000,
+          "height": 2000,
+          "position": 1,
+          "variant_ids": [
+            "52904789508427",
+            "52904789541195",
+            "52904789573963",
+            "52904789606731"
+          ]
+        },
+        {
+          "external_id": "61965606191435",
+          "src": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-stone-back-68758df09e710.jpg?v=1752534765",
+          "alt": null,
+          "width": 2000,
+          "height": 2000,
+          "position": 2,
+          "variant_ids": []
+        },
+        {
+          "external_id": "61965606125899",
+          "src": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-stone-front-68758df09f529.jpg?v=1753885092",
+          "alt": null,
+          "width": 2000,
+          "height": 2000,
+          "position": 3,
+          "variant_ids": []
+        },
+        {
+          "external_id": "61965606093131",
+          "src": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-stone-back-68758df09f9bb.jpg?v=1753885092",
+          "alt": null,
+          "width": 2000,
+          "height": 2000,
+          "position": 4,
+          "variant_ids": []
+        },
+        {
+          "external_id": "61965606158667",
+          "src": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-stone-front-68758df09f048.jpg?v=1753885092",
+          "alt": null,
+          "width": 2000,
+          "height": 2000,
+          "position": 5,
+          "variant_ids": []
+        }
+      ],
+      "inventory_quantities": null,
+      "cost_per_item": null,
+      "barcode": null,
+      "seo_title": null,
+      "seo_description": null
+    },
+    {
+      "external_id": "10755747676491",
+      "handle": "unisex-organic-oversized-high-neck-t-shirt",
+      "title": "The Oversized Tee – Cloud",
+      "body_html": "<p>This oversized t-shirt features a high neckline and dropped shoulders, crafted from heavyweight organic cotton for a structured yet fluid silhouette. Designed for unisex wear and timeless layering, it carries the essence of quiet luxury.<br><br>• 100% organic combed ring-spun cotton<br>• Heavyweight feel (200 g/m²)<br>• Oversized fit with dropped shoulders<br>• High neckline with 1×1 ribbed collar<br>• Self-fabric neck tape (back interior)<br>• GOTS and OCS certified fabric<br>• Blank product sourced from Bangladesh<br><br><br>This piece is crafted exclusively upon order to reduce excess and uphold intention. Our made-to-order model ensures thoughtful production with minimal waste. Quality takes time. Thank you for choosing timeless over instant.<br><br>Age restrictions: For adults<br>EU Warranty: 2 years<br><br>In compliance with the General Product Safety Regulation (GPSR), <b>AMIRIANI</b> ensures that all consumer products offered are safe and meet EU standards. For any product safety related inquiries or concerns, please contact us at <meta charset=\"utf-8\"><b>amiriani.studio@gmail.com</b></p>\n<p><strong class=\"size-guide-title\">Size guide</strong></p>\n<div data-unit-system=\"imperial\" class=\"table-responsive dynamic\">\n<table cellpadding=\"5\">\n<tbody>\n<tr>\n<td> </td>\n<td><strong>BODY LENGTH (cm)</strong></td>\n<td><strong>SLEEVE LENGTH (cm)</strong></td>\n<td><strong>CHEST (inches)</strong></td>\n</tr>\n<tr>\n<td><strong>S</strong></td>\n<td>73</td>\n<td>24</td>\n<td>39</td>\n</tr>\n<tr>\n<td><strong>M</strong></td>\n<td>75</td>\n<td>24.5</td>\n<td>43</td>\n</tr>\n<tr>\n<td><strong>L</strong></td>\n<td>77</td>\n<td>25</td>\n<td>47</td>\n</tr>\n<tr>\n<td><strong>XL</strong></td>\n<td>80</td>\n<td>25.5</td>\n<td>51</td>\n</tr>\n<tr>\n<td><strong>2XL</strong></td>\n<td>82.5</td>\n<td>26</td>\n<td>55</td>\n</tr>\n</tbody>\n</table>\n</div>",
+      "vendor": "AMIRIANI",
+      "product_type": null,
+      "tags": [
+        "T-shirt"
+      ],
+      "published_at": "2026-02-17T17:46:20+01:00",
+      "created_at": "2025-07-15T01:02:33+02:00",
+      "options": [
+        {
+          "name": "Size",
+          "position": 1,
+          "values": [
+            "S",
+            "M",
+            "L",
+            "XL",
+            "2XL"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "external_id": "52904757428555",
+          "title": "S",
+          "sku": "7471417_21005",
+          "price": "99.95",
+          "compare_at_price": null,
+          "option1": "S",
+          "option2": null,
+          "option3": null,
+          "grams": 243,
+          "available": true,
+          "position": 1,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-white-front-68758c7f6cf41.jpg?v=1752534157"
+        },
+        {
+          "external_id": "52904757461323",
+          "title": "M",
+          "sku": "7471417_21011",
+          "price": "99.95",
+          "compare_at_price": null,
+          "option1": "M",
+          "option2": null,
+          "option3": null,
+          "grams": 268,
+          "available": true,
+          "position": 2,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-white-front-68758c7f6cf41.jpg?v=1752534157"
+        },
+        {
+          "external_id": "52904757494091",
+          "title": "L",
+          "sku": "7471417_21017",
+          "price": "99.95",
+          "compare_at_price": null,
+          "option1": "L",
+          "option2": null,
+          "option3": null,
+          "grams": 283,
+          "available": true,
+          "position": 3,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-white-front-68758c7f6cf41.jpg?v=1752534157"
+        },
+        {
+          "external_id": "52904757526859",
+          "title": "XL",
+          "sku": "7471417_21023",
+          "price": "99.95",
+          "compare_at_price": null,
+          "option1": "XL",
+          "option2": null,
+          "option3": null,
+          "grams": 312,
+          "available": true,
+          "position": 4,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-white-front-68758c7f6cf41.jpg?v=1752534157"
+        },
+        {
+          "external_id": "52904757559627",
+          "title": "2XL",
+          "sku": "7471417_21029",
+          "price": "99.95",
+          "compare_at_price": null,
+          "option1": "2XL",
+          "option2": null,
+          "option3": null,
+          "grams": 315,
+          "available": true,
+          "position": 5,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-white-front-68758c7f6cf41.jpg?v=1752534157"
+        }
+      ],
+      "images": [
+        {
+          "external_id": "61965557170507",
+          "src": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-white-front-68758c7f6cf41.jpg?v=1752534157",
+          "alt": null,
+          "width": 2000,
+          "height": 2000,
+          "position": 1,
+          "variant_ids": [
+            "52904757428555",
+            "52904757461323",
+            "52904757494091",
+            "52904757526859",
+            "52904757559627"
+          ]
+        },
+        {
+          "external_id": "61965557236043",
+          "src": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-white-back-68758c7f6defd.jpg?v=1752534157",
+          "alt": null,
+          "width": 2000,
+          "height": 2000,
+          "position": 2,
+          "variant_ids": []
+        }
+      ],
+      "inventory_quantities": null,
+      "cost_per_item": null,
+      "barcode": null,
+      "seo_title": null,
+      "seo_description": null
+    },
+    {
+      "external_id": "10755829793099",
+      "handle": "unisex-oversized-hoodie-1",
+      "title": "The Oversized Hoodie – Deep Blue",
+      "body_html": "<p>This unisex oversized hoodie is more than comfort; it’s a reflection of intention.<br>Designed with minimalism and presence in mind, it layers effortlessly with any fit. Crafted from ultra-soft, premium fleece for daily wear and elevated moments alike.<br><br>• 80% cotton, 20% recycled polyester fleece<br>• Relaxed oversized fit<br>• Dropped shoulders for a modern silhouette<br>• Lined pullover hood (no drawcord)<br>• Spacious kangaroo pocket<br>• Ribbed cuffs for structure<br>• Responsibly sourced from Vietnam<br><br>Note: The brushed interior is intentionally soft, which may shed slightly at first. To maintain your garments, avoid wearing light colours under dark clothes and vice versa.<br><br>This piece is crafted exclusively upon order to reduce excess and uphold intention. Our made-to-order model ensures thoughtful production with minimal waste. Quality takes time. Thank you for choosing timeless over instant.<br><br>Age restrictions: For adults<br>EU Warranty: 2 years<br>Other compliance information: Meets the formaldehyde, lead, cadmium, bisphenols, phthalates level requirements.<br><br>In compliance with the General Product Safety Regulation (GPSR), <b>AMIRIANI</b> ensures that all consumer products offered are safe and meet EU standards. For any product safety related inquiries or concerns, please contact us at <meta charset=\"utf-8\"><b>amiriani.studio@gmail.com. </b></p>\n<p><strong class=\"size-guide-title\">Size guide</strong></p>\n<div data-unit-system=\"imperial\" class=\"table-responsive dynamic\">\n<table cellpadding=\"5\">\n<tbody>\n<tr>\n<td> </td>\n<td><strong>LENGTH (inches)</strong></td>\n<td><strong>WIDTH (inches)</strong></td>\n<td><strong>SLEEVE LENGTH (inches)</strong></td>\n</tr>\n<tr>\n<td><strong>S</strong></td>\n<td>27 ¾</td>\n<td>38-41</td>\n<td>22 ½</td>\n</tr>\n<tr>\n<td><strong>M</strong></td>\n<td>28 ¾</td>\n<td>42-45</td>\n<td>22 ½</td>\n</tr>\n<tr>\n<td><strong>L</strong></td>\n<td>29 ¾</td>\n<td>46-49</td>\n<td>24 ¼</td>\n</tr>\n<tr>\n<td><strong>XL</strong></td>\n<td>30 ¾</td>\n<td>50-53</td>\n<td>24 ¼</td>\n</tr>\n<tr>\n<td><strong>2XL</strong></td>\n<td>31 ¾</td>\n<td>54-57</td>\n<td>25 ½</td>\n</tr>\n<tr>\n<td><strong>3XL</strong></td>\n<td>32 ¾</td>\n<td>58-62</td>\n<td>27</td>\n</tr>\n</tbody>\n</table>\n</div>\n<div data-unit-system=\"metric\" class=\"table-responsive dynamic\">\n<table cellpadding=\"5\">\n<tbody>\n<tr>\n<td> </td>\n<td><strong>LENGTH (cm)</strong></td>\n<td><strong>WIDTH (cm)</strong></td>\n<td><strong>SLEEVE LENGTH (cm)</strong></td>\n</tr>\n<tr>\n<td><strong>S</strong></td>\n<td>70.5</td>\n<td>96.5-104.1</td>\n<td>57.2</td>\n</tr>\n<tr>\n<td><strong>M</strong></td>\n<td>73</td>\n<td>106.7-114.3</td>\n<td>57.2</td>\n</tr>\n<tr>\n<td><strong>L</strong></td>\n<td>75.6</td>\n<td>116.8-124.5</td>\n<td>61.6</td>\n</tr>\n<tr>\n<td><strong>XL</strong></td>\n<td>78.1</td>\n<td>127-134.6</td>\n<td>61.6</td>\n</tr>\n<tr>\n<td><strong>2XL</strong></td>\n<td>80.7</td>\n<td>137.2-144.8</td>\n<td>64.8</td>\n</tr>\n<tr>\n<td><strong>3XL</strong></td>\n<td>83.2</td>\n<td>147.3-157.5</td>\n<td>68.6</td>\n</tr>\n</tbody>\n</table>\n</div>",
+      "vendor": "AMIRIANI",
+      "product_type": null,
+      "tags": [
+        "Hoodie"
+      ],
+      "published_at": "2025-12-01T22:54:04+01:00",
+      "created_at": "2025-07-15T01:31:33+02:00",
+      "options": [
+        {
+          "name": "Size",
+          "position": 1,
+          "values": [
+            "S",
+            "M",
+            "L",
+            "XL",
+            "2XL",
+            "3XL"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "external_id": "52904872313163",
+          "title": "S",
+          "sku": "1075893_19199",
+          "price": "149.95",
+          "compare_at_price": null,
+          "option1": "S",
+          "option2": null,
+          "option3": null,
+          "grams": 601,
+          "available": true,
+          "position": 1,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-oversized-hoodie-cobalt-front-6875934d1a302.jpg?v=1752535896"
+        },
+        {
+          "external_id": "52904872345931",
+          "title": "M",
+          "sku": "1075893_19200",
+          "price": "149.95",
+          "compare_at_price": null,
+          "option1": "M",
+          "option2": null,
+          "option3": null,
+          "grams": 632,
+          "available": true,
+          "position": 2,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-oversized-hoodie-cobalt-front-6875934d1a302.jpg?v=1752535896"
+        },
+        {
+          "external_id": "52904872378699",
+          "title": "L",
+          "sku": "1075893_19201",
+          "price": "149.95",
+          "compare_at_price": null,
+          "option1": "L",
+          "option2": null,
+          "option3": null,
+          "grams": 686,
+          "available": true,
+          "position": 3,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-oversized-hoodie-cobalt-front-6875934d1a302.jpg?v=1752535896"
+        },
+        {
+          "external_id": "52904872411467",
+          "title": "XL",
+          "sku": "1075893_19202",
+          "price": "149.95",
+          "compare_at_price": null,
+          "option1": "XL",
+          "option2": null,
+          "option3": null,
+          "grams": 635,
+          "available": true,
+          "position": 4,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-oversized-hoodie-cobalt-front-6875934d1a302.jpg?v=1752535896"
+        },
+        {
+          "external_id": "52904872444235",
+          "title": "2XL",
+          "sku": "1075893_19203",
+          "price": "149.95",
+          "compare_at_price": null,
+          "option1": "2XL",
+          "option2": null,
+          "option3": null,
+          "grams": 743,
+          "available": true,
+          "position": 5,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-oversized-hoodie-cobalt-front-6875934d1a302.jpg?v=1752535896"
+        },
+        {
+          "external_id": "52904872477003",
+          "title": "3XL",
+          "sku": "1075893_19204",
+          "price": "149.95",
+          "compare_at_price": null,
+          "option1": "3XL",
+          "option2": null,
+          "option3": null,
+          "grams": 799,
+          "available": true,
+          "position": 6,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-oversized-hoodie-cobalt-front-6875934d1a302.jpg?v=1752535896"
+        }
+      ],
+      "images": [
+        {
+          "external_id": "61965748535627",
+          "src": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-oversized-hoodie-cobalt-front-6875934d1a302.jpg?v=1752535896",
+          "alt": null,
+          "width": 2000,
+          "height": 2000,
+          "position": 1,
+          "variant_ids": [
+            "52904872313163",
+            "52904872345931",
+            "52904872378699",
+            "52904872411467",
+            "52904872444235",
+            "52904872477003"
+          ]
+        },
+        {
+          "external_id": "61965748633931",
+          "src": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-oversized-hoodie-cobalt-back-6875934d1b76f.jpg?v=1752535926",
+          "alt": null,
+          "width": 2000,
+          "height": 2000,
+          "position": 2,
+          "variant_ids": []
+        },
+        {
+          "external_id": "61965748601163",
+          "src": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-oversized-hoodie-cobalt-front-6875934d1b3d8.jpg?v=1752535926",
+          "alt": null,
+          "width": 2000,
+          "height": 2000,
+          "position": 3,
+          "variant_ids": []
+        }
+      ],
+      "inventory_quantities": null,
+      "cost_per_item": null,
+      "barcode": null,
+      "seo_title": null,
+      "seo_description": null
+    },
+    {
+      "external_id": "10755809476939",
+      "handle": "unisex-oversized-hoodie",
+      "title": "The Oversized Hoodie – Evergreen",
+      "body_html": "<p><meta charset=\"utf-8\">This unisex oversized hoodie is more than comfort, it’s a reflection of intention.<br>Designed with minimalism and presence in mind, it layers effortlessly with any fit. Crafted from ultra-soft, premium fleece for daily wear and elevated moments alike.<br><br>• 80% cotton, 20% recycled polyester fleece<br>• Relaxed oversized fit<br>• Dropped shoulders for a modern silhouette<br>• Lined pullover hood (no drawcord)<br>• Spacious kangaroo pocket<br>• Ribbed cuffs for structure<br>• Responsibly sourced from Vietnam<br><br>Note: The brushed interior is intentionally soft, which may shed slightly at first. To maintain your garments, avoid wearing light colours under dark clothes and vice versa.<br><br>This product is made especially for you as soon as you place an order, which is why it takes us a bit longer to deliver it to you. Making products on demand instead of in bulk helps reduce overproduction, so thank you for making thoughtful purchasing decisions!<br><br>Age restrictions: For adults<br>EU Warranty: 2 years<br>Other compliance information: Meets the formaldehyde, lead, cadmium, bisphenols, phthalates level requirements.<br><br>In compliance with the General Product Safety Regulation (GPSR), <b>AMIRIANI</b> ensures that all consumer products offered are safe and meet EU standards. For any product safety related inquiries or concerns, please contact us at <strong>amiriani.studio@gmail.com. </strong></p>\n<p><strong class=\"size-guide-title\">Size guide</strong></p>\n<div data-unit-system=\"imperial\" class=\"table-responsive dynamic\">\n<table cellpadding=\"5\">\n<tbody>\n<tr>\n<td> </td>\n<td><strong>LENGTH (inches)</strong></td>\n<td><strong>WIDTH (inches)</strong></td>\n<td><strong>SLEEVE LENGTH (inches)</strong></td>\n</tr>\n<tr>\n<td><strong>S</strong></td>\n<td>27 ¾</td>\n<td>38-41</td>\n<td>22 ½</td>\n</tr>\n<tr>\n<td><strong>M</strong></td>\n<td>28 ¾</td>\n<td>42-45</td>\n<td>22 ½</td>\n</tr>\n<tr>\n<td><strong>L</strong></td>\n<td>29 ¾</td>\n<td>46-49</td>\n<td>24 ¼</td>\n</tr>\n<tr>\n<td><strong>XL</strong></td>\n<td>30 ¾</td>\n<td>50-53</td>\n<td>24 ¼</td>\n</tr>\n<tr>\n<td><strong>2XL</strong></td>\n<td>31 ¾</td>\n<td>54-57</td>\n<td>25 ½</td>\n</tr>\n<tr>\n<td><strong>3XL</strong></td>\n<td>32 ¾</td>\n<td>58-62</td>\n<td>27</td>\n</tr>\n</tbody>\n</table>\n</div>\n<div data-unit-system=\"metric\" class=\"table-responsive dynamic\">\n<table cellpadding=\"5\">\n<tbody>\n<tr>\n<td> </td>\n<td><strong>LENGTH (cm)</strong></td>\n<td><strong>WIDTH (cm)</strong></td>\n<td><strong>SLEEVE LENGTH (cm)</strong></td>\n</tr>\n<tr>\n<td><strong>S</strong></td>\n<td>70.5</td>\n<td>96.5-104.1</td>\n<td>57.2</td>\n</tr>\n<tr>\n<td><strong>M</strong></td>\n<td>73</td>\n<td>106.7-114.3</td>\n<td>57.2</td>\n</tr>\n<tr>\n<td><strong>L</strong></td>\n<td>75.6</td>\n<td>116.8-124.5</td>\n<td>61.6</td>\n</tr>\n<tr>\n<td><strong>XL</strong></td>\n<td>78.1</td>\n<td>127-134.6</td>\n<td>61.6</td>\n</tr>\n<tr>\n<td><strong>2XL</strong></td>\n<td>80.7</td>\n<td>137.2-144.8</td>\n<td>64.8</td>\n</tr>\n<tr>\n<td><strong>3XL</strong></td>\n<td>83.2</td>\n<td>147.3-157.5</td>\n<td>68.6</td>\n</tr>\n</tbody>\n</table>\n</div>",
+      "vendor": "AMIRIANI",
+      "product_type": null,
+      "tags": [
+        "Hoodie"
+      ],
+      "published_at": "2025-12-01T22:54:03+01:00",
+      "created_at": "2025-07-15T01:23:55+02:00",
+      "options": [
+        {
+          "name": "Size",
+          "position": 1,
+          "values": [
+            "S",
+            "M",
+            "L",
+            "XL",
+            "2XL",
+            "3XL"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "external_id": "52904846557515",
+          "title": "S",
+          "sku": "4775421_19205",
+          "price": "149.95",
+          "compare_at_price": null,
+          "option1": "S",
+          "option2": null,
+          "option3": null,
+          "grams": 601,
+          "available": true,
+          "position": 1,
+          "featured_image": null
+        },
+        {
+          "external_id": "52904846590283",
+          "title": "M",
+          "sku": "4775421_19206",
+          "price": "149.95",
+          "compare_at_price": null,
+          "option1": "M",
+          "option2": null,
+          "option3": null,
+          "grams": 632,
+          "available": true,
+          "position": 2,
+          "featured_image": null
+        },
+        {
+          "external_id": "52904846623051",
+          "title": "L",
+          "sku": "4775421_19207",
+          "price": "149.95",
+          "compare_at_price": null,
+          "option1": "L",
+          "option2": null,
+          "option3": null,
+          "grams": 686,
+          "available": true,
+          "position": 3,
+          "featured_image": null
+        },
+        {
+          "external_id": "52904846655819",
+          "title": "XL",
+          "sku": "4775421_19208",
+          "price": "149.95",
+          "compare_at_price": null,
+          "option1": "XL",
+          "option2": null,
+          "option3": null,
+          "grams": 635,
+          "available": true,
+          "position": 4,
+          "featured_image": null
+        },
+        {
+          "external_id": "52904846688587",
+          "title": "2XL",
+          "sku": "4775421_19209",
+          "price": "149.95",
+          "compare_at_price": null,
+          "option1": "2XL",
+          "option2": null,
+          "option3": null,
+          "grams": 743,
+          "available": true,
+          "position": 5,
+          "featured_image": null
+        },
+        {
+          "external_id": "52904846721355",
+          "title": "3XL",
+          "sku": "4775421_19210",
+          "price": "149.95",
+          "compare_at_price": null,
+          "option1": "3XL",
+          "option2": null,
+          "option3": null,
+          "grams": 799,
+          "available": true,
+          "position": 6,
+          "featured_image": null
+        }
+      ],
+      "images": [
+        {
+          "external_id": "61965697614155",
+          "src": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-oversized-hoodie-pine-green-front-6875918488840.jpg?v=1752535439",
+          "alt": null,
+          "width": 2000,
+          "height": 2000,
+          "position": 1,
+          "variant_ids": []
+        },
+        {
+          "external_id": "61965697548619",
+          "src": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-oversized-hoodie-pine-green-back-6875918489528.jpg?v=1752535467",
+          "alt": null,
+          "width": 2000,
+          "height": 2000,
+          "position": 2,
+          "variant_ids": []
+        },
+        {
+          "external_id": "61965697679691",
+          "src": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-oversized-hoodie-pine-green-front-687591848933c.jpg?v=1752535467",
+          "alt": null,
+          "width": 2000,
+          "height": 2000,
+          "position": 3,
+          "variant_ids": []
+        }
+      ],
+      "inventory_quantities": null,
+      "cost_per_item": null,
+      "barcode": null,
+      "seo_title": null,
+      "seo_description": null
+    },
+    {
+      "external_id": "10755777888587",
+      "handle": "unisex-organic-oversized-high-neck-t-shirt-3",
+      "title": "The Oversized Tee – Midnight",
+      "body_html": "<p>This oversized t-shirt features a high neckline and dropped shoulders, crafted from heavyweight organic cotton for a structured yet fluid silhouette. Designed for unisex wear and timeless layering, it carries the essence of quiet luxury.<br><br>• 100% organic combed ring-spun cotton<br>• Heavyweight feel (200 g/m²)<br>• Oversized fit with dropped shoulders<br>• High neckline with 1×1 ribbed collar<br>• Self-fabric neck tape (back interior)<br>• GOTS and OCS certified fabric<br>• Blank product sourced from Bangladesh<br><br>This piece is crafted exclusively upon order to reduce excess and uphold intention. Our made-to-order model ensures thoughtful production with minimal waste. Quality takes time. Thank you for choosing timeless over instant.<br><br>Age restrictions: For adults<br>EU Warranty: 2 years<br><br>In compliance with the General Product Safety Regulation (GPSR), <b>AMIRIANI</b> ensures that all consumer products offered are safe and meet EU standards. For any product safety related inquiries or concerns, please contact us at <meta charset=\"utf-8\"><b>amiriani.studio@gmail.com. </b></p>\n<p><strong class=\"size-guide-title\">Size guide</strong></p>\n<div data-unit-system=\"imperial\" class=\"table-responsive dynamic\">\n<table cellpadding=\"5\">\n<tbody>\n<tr>\n<td> </td>\n<td><strong>BODY LENGTH (cm)</strong></td>\n<td><strong>SLEEVE LENGTH (cm)</strong></td>\n<td><strong>CHEST (inches)</strong></td>\n</tr>\n<tr>\n<td><strong>S</strong></td>\n<td>73</td>\n<td>24</td>\n<td>39</td>\n</tr>\n<tr>\n<td><strong>M</strong></td>\n<td>75</td>\n<td>24.5</td>\n<td>43</td>\n</tr>\n<tr>\n<td><strong>L</strong></td>\n<td>77</td>\n<td>25</td>\n<td>47</td>\n</tr>\n<tr>\n<td><strong>XL</strong></td>\n<td>80</td>\n<td>25.5</td>\n<td>51</td>\n</tr>\n<tr>\n<td><strong>2XL</strong></td>\n<td>82.5</td>\n<td>26</td>\n<td>55</td>\n</tr>\n</tbody>\n</table>\n</div>",
+      "vendor": "AMIRIANI",
+      "product_type": null,
+      "tags": [
+        "T-shirt"
+      ],
+      "published_at": "2025-12-01T22:54:03+01:00",
+      "created_at": "2025-07-15T01:12:26+02:00",
+      "options": [
+        {
+          "name": "Size",
+          "position": 1,
+          "values": [
+            "S",
+            "M",
+            "L",
+            "XL",
+            "2XL"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "external_id": "52904803729739",
+          "title": "S",
+          "sku": "6240471_21001",
+          "price": "99.95",
+          "compare_at_price": null,
+          "option1": "S",
+          "option2": null,
+          "option3": null,
+          "grams": 243,
+          "available": true,
+          "position": 1,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-french-navy-front-68758ecf55805.jpg?v=1752534751"
+        },
+        {
+          "external_id": "52904803762507",
+          "title": "M",
+          "sku": "6240471_21007",
+          "price": "99.95",
+          "compare_at_price": null,
+          "option1": "M",
+          "option2": null,
+          "option3": null,
+          "grams": 268,
+          "available": true,
+          "position": 2,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-french-navy-front-68758ecf55805.jpg?v=1752534751"
+        },
+        {
+          "external_id": "52904803795275",
+          "title": "L",
+          "sku": "6240471_21013",
+          "price": "99.95",
+          "compare_at_price": null,
+          "option1": "L",
+          "option2": null,
+          "option3": null,
+          "grams": 283,
+          "available": true,
+          "position": 3,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-french-navy-front-68758ecf55805.jpg?v=1752534751"
+        },
+        {
+          "external_id": "52904803828043",
+          "title": "XL",
+          "sku": "6240471_21019",
+          "price": "99.95",
+          "compare_at_price": null,
+          "option1": "XL",
+          "option2": null,
+          "option3": null,
+          "grams": 312,
+          "available": true,
+          "position": 4,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-french-navy-front-68758ecf55805.jpg?v=1752534751"
+        },
+        {
+          "external_id": "52904803860811",
+          "title": "2XL",
+          "sku": "6240471_21025",
+          "price": "99.95",
+          "compare_at_price": null,
+          "option1": "2XL",
+          "option2": null,
+          "option3": null,
+          "grams": 315,
+          "available": false,
+          "position": 5,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-french-navy-front-68758ecf55805.jpg?v=1752534751"
+        }
+      ],
+      "images": [
+        {
+          "external_id": "61965629423947",
+          "src": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-french-navy-front-68758ecf55805.jpg?v=1752534751",
+          "alt": null,
+          "width": 2000,
+          "height": 2000,
+          "position": 1,
+          "variant_ids": [
+            "52904803729739",
+            "52904803762507",
+            "52904803795275",
+            "52904803828043",
+            "52904803860811"
+          ]
+        },
+        {
+          "external_id": "61965629489483",
+          "src": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-french-navy-back-68758ecf58b79.jpg?v=1752534824",
+          "alt": null,
+          "width": 2000,
+          "height": 2000,
+          "position": 2,
+          "variant_ids": []
+        },
+        {
+          "external_id": "61965629227339",
+          "src": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-french-navy-front-68758ecf57b0d.jpg?v=1753885027",
+          "alt": null,
+          "width": 2000,
+          "height": 2000,
+          "position": 3,
+          "variant_ids": []
+        },
+        {
+          "external_id": "61965629325643",
+          "src": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-french-navy-back-68758ecf57392.jpg?v=1753885027",
+          "alt": null,
+          "width": 2000,
+          "height": 2000,
+          "position": 4,
+          "variant_ids": []
+        },
+        {
+          "external_id": "61965629456715",
+          "src": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-french-navy-front-68758ecf58468.jpg?v=1753885027",
+          "alt": null,
+          "width": 2000,
+          "height": 2000,
+          "position": 5,
+          "variant_ids": []
+        }
+      ],
+      "inventory_quantities": null,
+      "cost_per_item": null,
+      "barcode": null,
+      "seo_title": null,
+      "seo_description": null
+    },
+    {
+      "external_id": "10755835232587",
+      "handle": "unisex-oversized-hoodie-2",
+      "title": "The Oversized Hoodie – Fog",
+      "body_html": "<p>This unisex oversized hoodie is more than comfort; it’s a reflection of intention.<br>Designed with minimalism and presence in mind, it layers effortlessly with any fit. Crafted from ultra-soft, premium fleece for daily wear and elevated moments alike.<br><br>• 80% cotton, 20% recycled polyester fleece<br>• Relaxed oversized fit<br>• Dropped shoulders for a modern silhouette<br>• Lined pullover hood (no drawcord)<br>• Spacious kangaroo pocket<br>• Ribbed cuffs for structure<br>• Responsibly sourced from Vietnam<br><br>Disclaimer: The brushed interior of this hoodie tends to shed. To reduce visible traces of lint on clothes, avoid wearing dark colours under light-coloured clothes and vice versa.<br><br>This piece is crafted exclusively upon order to reduce excess and uphold intention. Our made-to-order model ensures thoughtful production with minimal waste. Quality takes time. Thank you for choosing timeless over instant.<br><br>Age restrictions: For adults<br>EU Warranty: 2 years<br>Other compliance information: Meets the formaldehyde, lead, cadmium, bisphenol, phthalates level requirements.<br><br>In compliance with the General Product Safety Regulation (GPSR), <b>AMIRIANI</b> ensures that all consumer products offered are safe and meet EU standards. For any product safety related inquiries or concerns, please contact us at <b>amiriani.studio@gmail.com.</b></p>\n<p><strong class=\"size-guide-title\">Size guide</strong></p>\n<div class=\"table-responsive dynamic\" data-unit-system=\"imperial\">\n<table cellpadding=\"5\">\n<tbody>\n<tr>\n<td> </td>\n<td><strong>LENGTH (inches)</strong></td>\n<td><strong>WIDTH (inches)</strong></td>\n<td><strong>SLEEVE LENGTH (inches)</strong></td>\n</tr>\n<tr>\n<td><strong>S</strong></td>\n<td>27 ¾</td>\n<td>38-41</td>\n<td>22 ½</td>\n</tr>\n<tr>\n<td><strong>M</strong></td>\n<td>28 ¾</td>\n<td>42-45</td>\n<td>22 ½</td>\n</tr>\n<tr>\n<td><strong>L</strong></td>\n<td>29 ¾</td>\n<td>46-49</td>\n<td>24 ¼</td>\n</tr>\n<tr>\n<td><strong>XL</strong></td>\n<td>30 ¾</td>\n<td>50-53</td>\n<td>24 ¼</td>\n</tr>\n<tr>\n<td><strong>2XL</strong></td>\n<td>31 ¾</td>\n<td>54-57</td>\n<td>25 ½</td>\n</tr>\n<tr>\n<td><strong>3XL</strong></td>\n<td>32 ¾</td>\n<td>58-62</td>\n<td>27</td>\n</tr>\n</tbody>\n</table>\n</div>\n<div class=\"table-responsive dynamic\" data-unit-system=\"metric\">\n<table cellpadding=\"5\">\n<tbody>\n<tr>\n<td> </td>\n<td><strong>LENGTH (cm)</strong></td>\n<td><strong>WIDTH (cm)</strong></td>\n<td><strong>SLEEVE LENGTH (cm)</strong></td>\n</tr>\n<tr>\n<td><strong>S</strong></td>\n<td>70.5</td>\n<td>96.5-104.1</td>\n<td>57.2</td>\n</tr>\n<tr>\n<td><strong>M</strong></td>\n<td>73</td>\n<td>106.7-114.3</td>\n<td>57.2</td>\n</tr>\n<tr>\n<td><strong>L</strong></td>\n<td>75.6</td>\n<td>116.8-124.5</td>\n<td>61.6</td>\n</tr>\n<tr>\n<td><strong>XL</strong></td>\n<td>78.1</td>\n<td>127-134.6</td>\n<td>61.6</td>\n</tr>\n<tr>\n<td><strong>2XL</strong></td>\n<td>80.7</td>\n<td>137.2-144.8</td>\n<td>64.8</td>\n</tr>\n<tr>\n<td><strong>3XL</strong></td>\n<td>83.2</td>\n<td>147.3-157.5</td>\n<td>68.6</td>\n</tr>\n</tbody>\n</table>\n</div>",
+      "vendor": "AMIRIANI",
+      "product_type": null,
+      "tags": [
+        "Hoodie"
+      ],
+      "published_at": "2025-07-15T01:47:21+02:00",
+      "created_at": "2025-07-15T01:47:15+02:00",
+      "options": [
+        {
+          "name": "Size",
+          "position": 1,
+          "values": [
+            "S",
+            "M",
+            "L",
+            "XL",
+            "2XL",
+            "3XL"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "external_id": "52904887386443",
+          "title": "S",
+          "sku": "4017396_18812",
+          "price": "149.95",
+          "compare_at_price": null,
+          "option1": "S",
+          "option2": null,
+          "option3": null,
+          "grams": 601,
+          "available": true,
+          "position": 1,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-oversized-hoodie-athletic-heather-front-687596f9e2b8b.jpg?v=1752536839"
+        },
+        {
+          "external_id": "52904887419211",
+          "title": "M",
+          "sku": "4017396_18813",
+          "price": "149.95",
+          "compare_at_price": null,
+          "option1": "M",
+          "option2": null,
+          "option3": null,
+          "grams": 632,
+          "available": true,
+          "position": 2,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-oversized-hoodie-athletic-heather-front-687596f9e2b8b.jpg?v=1752536839"
+        },
+        {
+          "external_id": "52904887451979",
+          "title": "L",
+          "sku": "4017396_18814",
+          "price": "149.95",
+          "compare_at_price": null,
+          "option1": "L",
+          "option2": null,
+          "option3": null,
+          "grams": 686,
+          "available": true,
+          "position": 3,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-oversized-hoodie-athletic-heather-front-687596f9e2b8b.jpg?v=1752536839"
+        },
+        {
+          "external_id": "52904887484747",
+          "title": "XL",
+          "sku": "4017396_18815",
+          "price": "149.95",
+          "compare_at_price": null,
+          "option1": "XL",
+          "option2": null,
+          "option3": null,
+          "grams": 635,
+          "available": true,
+          "position": 4,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-oversized-hoodie-athletic-heather-front-687596f9e2b8b.jpg?v=1752536839"
+        },
+        {
+          "external_id": "52904887517515",
+          "title": "2XL",
+          "sku": "4017396_18816",
+          "price": "149.95",
+          "compare_at_price": null,
+          "option1": "2XL",
+          "option2": null,
+          "option3": null,
+          "grams": 743,
+          "available": true,
+          "position": 5,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-oversized-hoodie-athletic-heather-front-687596f9e2b8b.jpg?v=1752536839"
+        },
+        {
+          "external_id": "52904887550283",
+          "title": "3XL",
+          "sku": "4017396_18817",
+          "price": "149.95",
+          "compare_at_price": null,
+          "option1": "3XL",
+          "option2": null,
+          "option3": null,
+          "grams": 799,
+          "available": true,
+          "position": 6,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-oversized-hoodie-athletic-heather-front-687596f9e2b8b.jpg?v=1752536839"
+        }
+      ],
+      "images": [
+        {
+          "external_id": "61965808337227",
+          "src": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-oversized-hoodie-athletic-heather-front-687596f9e2b8b.jpg?v=1752536839",
+          "alt": null,
+          "width": 2000,
+          "height": 2000,
+          "position": 1,
+          "variant_ids": [
+            "52904887386443",
+            "52904887419211",
+            "52904887451979",
+            "52904887484747",
+            "52904887517515",
+            "52904887550283"
+          ]
+        },
+        {
+          "external_id": "61965808271691",
+          "src": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-oversized-hoodie-athletic-heather-back-687596f9e3bdc.jpg?v=1752537188",
+          "alt": null,
+          "width": 2000,
+          "height": 2000,
+          "position": 2,
+          "variant_ids": []
+        },
+        {
+          "external_id": "61965808238923",
+          "src": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-oversized-hoodie-athletic-heather-front-687596f9e37d8.jpg?v=1752537188",
+          "alt": null,
+          "width": 2000,
+          "height": 2000,
+          "position": 3,
+          "variant_ids": []
+        }
+      ],
+      "inventory_quantities": null,
+      "cost_per_item": null,
+      "barcode": null,
+      "seo_title": null,
+      "seo_description": null
+    },
+    {
+      "external_id": "10755788439883",
+      "handle": "unisex-organic-oversized-high-neck-t-shirt-4",
+      "title": "The Oversized Tee – Stone",
+      "body_html": "<p>This oversized t-shirt features a high neckline and dropped shoulders, crafted from heavyweight organic cotton for a structured yet fluid silhouette. Designed for unisex wear and timeless layering, it carries the essence of quiet luxury.<br><br>• 100% organic combed ring-spun cotton<br>• Heavyweight feel (200 g/m²)<br>• Oversized fit with dropped shoulders<br>• High neckline with 1×1 ribbed collar<br>• Self-fabric neck tape (back interior)<br>• GOTS and OCS certified fabric<br>• Blank product sourced from Bangladesh<br><br>This piece is crafted exclusively upon order to reduce excess and uphold intention. Our made-to-order model ensures thoughtful production with minimal waste. Quality takes time. Thank you for choosing timeless over instant.<br><br>Age restrictions: For adults<br>EU Warranty: 2 years<br><br>In compliance with the General Product Safety Regulation (GPSR), <b>AMIRIANI</b> ensures that all consumer products offered are safe and meet EU standards. For any product safety related inquiries or concerns, please contact us at <meta charset=\"utf-8\"><b>amiriani.studio@gmail.com.</b></p>\n<p><strong class=\"size-guide-title\">Size guide</strong></p>\n<div data-unit-system=\"imperial\" class=\"table-responsive dynamic\">\n<table cellpadding=\"5\">\n<tbody>\n<tr>\n<td> </td>\n<td><strong>BODY LENGTH (cm)</strong></td>\n<td><strong>SLEEVE LENGTH (cm)</strong></td>\n<td><strong>CHEST (inches)</strong></td>\n</tr>\n<tr>\n<td><strong>S</strong></td>\n<td>73</td>\n<td>24</td>\n<td>39</td>\n</tr>\n<tr>\n<td><strong>M</strong></td>\n<td>75</td>\n<td>24.5</td>\n<td>43</td>\n</tr>\n<tr>\n<td><strong>L</strong></td>\n<td>77</td>\n<td>25</td>\n<td>47</td>\n</tr>\n<tr>\n<td><strong>XL</strong></td>\n<td>80</td>\n<td>25.5</td>\n<td>51</td>\n</tr>\n<tr>\n<td><strong>2XL</strong></td>\n<td>82.5</td>\n<td>26</td>\n<td>55</td>\n</tr>\n</tbody>\n</table>\n</div>",
+      "vendor": "AMIRIANI",
+      "product_type": null,
+      "tags": [
+        "T-shirt"
+      ],
+      "published_at": "2025-07-15T01:16:32+02:00",
+      "created_at": "2025-07-15T01:16:26+02:00",
+      "options": [
+        {
+          "name": "Size",
+          "position": 1,
+          "values": [
+            "S",
+            "M",
+            "L",
+            "XL",
+            "2XL"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "external_id": "52904817918283",
+          "title": "S",
+          "sku": "5796524_21002",
+          "price": "99.95",
+          "compare_at_price": null,
+          "option1": "S",
+          "option2": null,
+          "option3": null,
+          "grams": 243,
+          "available": true,
+          "position": 1,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-heather-grey-front-68758fc388510.jpg?v=1752534991"
+        },
+        {
+          "external_id": "52904817951051",
+          "title": "M",
+          "sku": "5796524_21008",
+          "price": "99.95",
+          "compare_at_price": null,
+          "option1": "M",
+          "option2": null,
+          "option3": null,
+          "grams": 268,
+          "available": true,
+          "position": 2,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-heather-grey-front-68758fc388510.jpg?v=1752534991"
+        },
+        {
+          "external_id": "52904817983819",
+          "title": "L",
+          "sku": "5796524_21014",
+          "price": "99.95",
+          "compare_at_price": null,
+          "option1": "L",
+          "option2": null,
+          "option3": null,
+          "grams": 283,
+          "available": true,
+          "position": 3,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-heather-grey-front-68758fc388510.jpg?v=1752534991"
+        },
+        {
+          "external_id": "52904818016587",
+          "title": "XL",
+          "sku": "5796524_21020",
+          "price": "99.95",
+          "compare_at_price": null,
+          "option1": "XL",
+          "option2": null,
+          "option3": null,
+          "grams": 312,
+          "available": true,
+          "position": 4,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-heather-grey-front-68758fc388510.jpg?v=1752534991"
+        },
+        {
+          "external_id": "52904818049355",
+          "title": "2XL",
+          "sku": "5796524_21026",
+          "price": "99.95",
+          "compare_at_price": null,
+          "option1": "2XL",
+          "option2": null,
+          "option3": null,
+          "grams": 315,
+          "available": true,
+          "position": 5,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-heather-grey-front-68758fc388510.jpg?v=1752534991"
+        }
+      ],
+      "images": [
+        {
+          "external_id": "61965652623691",
+          "src": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-heather-grey-front-68758fc388510.jpg?v=1752534991",
+          "alt": null,
+          "width": 2000,
+          "height": 2000,
+          "position": 1,
+          "variant_ids": [
+            "52904817918283",
+            "52904817951051",
+            "52904817983819",
+            "52904818016587",
+            "52904818049355"
+          ]
+        },
+        {
+          "external_id": "61965652492619",
+          "src": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-heather-grey-back-68758fc38a507.jpg?v=1752535041",
+          "alt": null,
+          "width": 2000,
+          "height": 2000,
+          "position": 2,
+          "variant_ids": []
+        },
+        {
+          "external_id": "61965652525387",
+          "src": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-heather-grey-front-68758fc389c77.jpg?v=1753884970",
+          "alt": null,
+          "width": 2000,
+          "height": 2000,
+          "position": 3,
+          "variant_ids": []
+        },
+        {
+          "external_id": "61965652590923",
+          "src": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-heather-grey-back-68758fc38a0aa.jpg?v=1753884970",
+          "alt": null,
+          "width": 2000,
+          "height": 2000,
+          "position": 4,
+          "variant_ids": []
+        },
+        {
+          "external_id": "61965652558155",
+          "src": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-heather-grey-front-68758fc3897b9.jpg?v=1753884970",
+          "alt": null,
+          "width": 2000,
+          "height": 2000,
+          "position": 5,
+          "variant_ids": []
+        }
+      ],
+      "inventory_quantities": null,
+      "cost_per_item": null,
+      "barcode": null,
+      "seo_title": null,
+      "seo_description": null
+    },
+    {
+      "external_id": "10749615997259",
+      "handle": "oversized-high-neck-t-shirt-unisex-fit",
+      "title": "The Oversized Tee – Onyx",
+      "body_html": "<p>This oversized t-shirt features a high neckline and dropped shoulders, crafted from heavyweight organic cotton for a structured yet fluid silhouette. Designed for unisex wear and timeless layering, it carries the essence of quiet luxury.<br>• 100% organic combed ring-spun cotton<br>• Heavyweight feel (200 g/m²)<br>• Oversized fit with dropped shoulders<br>• High neckline with 1×1 ribbed collar<br>• Self-fabric neck tape (back interior)<br>• GOTS and OCS certified fabric<br>• Blank product sourced from Bangladesh<br><br><br>This product is made especially for you as soon as you place an order, which is why it takes us a bit longer to deliver it to you. Making products on demand instead of in bulk helps reduce overproduction, so thank you for making thoughtful purchasing decisions!<br><br>Age restrictions: For adults<br>EU Warranty: 2 years<br><br>In compliance with the General Product Safety Regulation (GPSR), <b>AMIRIANI</b> ensures that all consumer products offered are safe and meet EU standards. For any product safety related inquiries or concerns, please contact us at <meta charset=\"utf-8\"><b>amiriani.studio@gmail.com. </b></p>\n<p><strong class=\"size-guide-title\">Size guide</strong></p>\n<div data-unit-system=\"imperial\" class=\"table-responsive dynamic\">\n<table cellpadding=\"5\">\n<tbody>\n<tr>\n<td> </td>\n<td><strong>BODY LENGTH (cm)</strong></td>\n<td><strong>SLEEVE LENGTH (cm)</strong></td>\n<td><strong>CHEST (inches)</strong></td>\n</tr>\n<tr>\n<td><strong>S</strong></td>\n<td>73</td>\n<td>24</td>\n<td>39</td>\n</tr>\n<tr>\n<td><strong>M</strong></td>\n<td>75</td>\n<td>24.5</td>\n<td>43</td>\n</tr>\n<tr>\n<td><strong>L</strong></td>\n<td>77</td>\n<td>25</td>\n<td>47</td>\n</tr>\n<tr>\n<td><strong>XL</strong></td>\n<td>80</td>\n<td>25.5</td>\n<td>51</td>\n</tr>\n<tr>\n<td><strong>2XL</strong></td>\n<td>82.5</td>\n<td>26</td>\n<td>55</td>\n</tr>\n</tbody>\n</table>\n</div>",
+      "vendor": "AMIRIANI",
+      "product_type": null,
+      "tags": [],
+      "published_at": "2025-07-11T01:51:07+02:00",
+      "created_at": "2025-07-11T01:51:00+02:00",
+      "options": [
+        {
+          "name": "Size",
+          "position": 1,
+          "values": [
+            "S",
+            "M",
+            "L",
+            "XL",
+            "2XL"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "external_id": "52866226127179",
+          "title": "S",
+          "sku": "1369136_21000",
+          "price": "99.95",
+          "compare_at_price": null,
+          "option1": "S",
+          "option2": null,
+          "option3": null,
+          "grams": 243,
+          "available": true,
+          "position": 1,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-black-front-687051d922b74.jpg?v=1752191464"
+        },
+        {
+          "external_id": "52866226159947",
+          "title": "M",
+          "sku": "1369136_21006",
+          "price": "99.95",
+          "compare_at_price": null,
+          "option1": "M",
+          "option2": null,
+          "option3": null,
+          "grams": 268,
+          "available": true,
+          "position": 2,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-black-front-687051d922b74.jpg?v=1752191464"
+        },
+        {
+          "external_id": "52866226192715",
+          "title": "L",
+          "sku": "1369136_21012",
+          "price": "99.95",
+          "compare_at_price": null,
+          "option1": "L",
+          "option2": null,
+          "option3": null,
+          "grams": 283,
+          "available": true,
+          "position": 3,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-black-front-687051d922b74.jpg?v=1752191464"
+        },
+        {
+          "external_id": "52866226225483",
+          "title": "XL",
+          "sku": "1369136_21018",
+          "price": "99.95",
+          "compare_at_price": null,
+          "option1": "XL",
+          "option2": null,
+          "option3": null,
+          "grams": 312,
+          "available": true,
+          "position": 4,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-black-front-687051d922b74.jpg?v=1752191464"
+        },
+        {
+          "external_id": "52866226258251",
+          "title": "2XL",
+          "sku": "1369136_21024",
+          "price": "99.95",
+          "compare_at_price": null,
+          "option1": "2XL",
+          "option2": null,
+          "option3": null,
+          "grams": 315,
+          "available": true,
+          "position": 5,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-black-front-687051d922b74.jpg?v=1752191464"
+        }
+      ],
+      "images": [
+        {
+          "external_id": "61895394918731",
+          "src": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-black-front-687051d922b74.jpg?v=1752191464",
+          "alt": null,
+          "width": 2000,
+          "height": 2000,
+          "position": 1,
+          "variant_ids": [
+            "52866226127179",
+            "52866226159947",
+            "52866226192715",
+            "52866226225483",
+            "52866226258251"
+          ]
+        },
+        {
+          "external_id": "61895395279179",
+          "src": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-organic-oversized-high-neck-t-shirt-black-back-687051d923b83.jpg?v=1752191465",
+          "alt": null,
+          "width": 2000,
+          "height": 2000,
+          "position": 2,
+          "variant_ids": []
+        }
+      ],
+      "inventory_quantities": null,
+      "cost_per_item": null,
+      "barcode": null,
+      "seo_title": null,
+      "seo_description": null
+    },
+    {
+      "external_id": "10748735816011",
+      "handle": "oversized-hoodie-unisex-fit",
+      "title": "The Oversized Hoodie – Onyx",
+      "body_html": "<p>This unisex oversized hoodie is more than comfort, it’s a reflection of intention.<br>Designed with minimalism and presence in mind, it layers effortlessly with any fit. Crafted from ultra-soft, premium fleece for daily wear and elevated moments alike.<br><br>• 80% cotton, 20% recycled polyester fleece<br>• Relaxed oversized fit<br>• Dropped shoulders for a modern silhouette<br>• Lined pullover hood (no drawcord)<br>• Spacious kangaroo pocket<br>• Ribbed cuffs for structure<br>• Responsibly sourced from Vietnam<br><br>Note: The brushed interior is intentionally soft, which may shed slightly at first. To maintain your garments, avoid wearing light colours under dark clothes and vice versa.<br><br>This product is made especially for you as soon as you place an order, which is why it takes us a bit longer to deliver it to you. Making products on demand instead of in bulk helps reduce overproduction, so thank you for making thoughtful purchasing decisions!<br><br>Age restrictions: For adults<br>EU Warranty: 2 years<br>Other compliance information: Meets the formaldehyde, lead, cadmium, bisphenols, phthalates level requirements.<br><br>In compliance with the General Product Safety Regulation (GPSR), <b>AMIRIANI</b> ensures that all consumer products offered are safe and meet EU standards. For any product safety related inquiries or concerns, please contact us at <strong>amiriani.studio@gmail.com. </strong></p>\n<p><strong class=\"size-guide-title\">Size guide</strong></p>\n<div data-unit-system=\"imperial\" class=\"table-responsive dynamic\">\n<table cellpadding=\"5\">\n<tbody>\n<tr>\n<td> </td>\n<td><strong>LENGTH (inches)</strong></td>\n<td><strong>WIDTH (inches)</strong></td>\n<td><strong>SLEEVE LENGTH (inches)</strong></td>\n</tr>\n<tr>\n<td><strong>S</strong></td>\n<td>27 ¾</td>\n<td>38-41</td>\n<td>22 ½</td>\n</tr>\n<tr>\n<td><strong>M</strong></td>\n<td>28 ¾</td>\n<td>42-45</td>\n<td>22 ½</td>\n</tr>\n<tr>\n<td><strong>L</strong></td>\n<td>29 ¾</td>\n<td>46-49</td>\n<td>24 ¼</td>\n</tr>\n<tr>\n<td><strong>XL</strong></td>\n<td>30 ¾</td>\n<td>50-53</td>\n<td>24 ¼</td>\n</tr>\n<tr>\n<td><strong>2XL</strong></td>\n<td>31 ¾</td>\n<td>54-57</td>\n<td>25 ½</td>\n</tr>\n<tr>\n<td><strong>3XL</strong></td>\n<td>32 ¾</td>\n<td>58-62</td>\n<td>27</td>\n</tr>\n</tbody>\n</table>\n</div>\n<div data-unit-system=\"metric\" class=\"table-responsive dynamic\">\n<table cellpadding=\"5\">\n<tbody>\n<tr>\n<td> </td>\n<td><strong>LENGTH (cm)</strong></td>\n<td><strong>WIDTH (cm)</strong></td>\n<td><strong>SLEEVE LENGTH (cm)</strong></td>\n</tr>\n<tr>\n<td><strong>S</strong></td>\n<td>70.5</td>\n<td>96.5-104.1</td>\n<td>57.2</td>\n</tr>\n<tr>\n<td><strong>M</strong></td>\n<td>73</td>\n<td>106.7-114.3</td>\n<td>57.2</td>\n</tr>\n<tr>\n<td><strong>L</strong></td>\n<td>75.6</td>\n<td>116.8-124.5</td>\n<td>61.6</td>\n</tr>\n<tr>\n<td><strong>XL</strong></td>\n<td>78.1</td>\n<td>127-134.6</td>\n<td>61.6</td>\n</tr>\n<tr>\n<td><strong>2XL</strong></td>\n<td>80.7</td>\n<td>137.2-144.8</td>\n<td>64.8</td>\n</tr>\n<tr>\n<td><strong>3XL</strong></td>\n<td>83.2</td>\n<td>147.3-157.5</td>\n<td>68.6</td>\n</tr>\n</tbody>\n</table>\n</div>",
+      "vendor": "AMIRIANI",
+      "product_type": null,
+      "tags": [
+        "AMIRIANI",
+        "casual",
+        "cozy",
+        "hoodie",
+        "minimal",
+        "oversized hoodie",
+        "streetwear",
+        "unisex hoodie"
+      ],
+      "published_at": "2025-07-10T21:39:25+02:00",
+      "created_at": "2025-07-10T21:39:19+02:00",
+      "options": [
+        {
+          "name": "Size",
+          "position": 1,
+          "values": [
+            "S",
+            "M",
+            "L",
+            "XL",
+            "2XL",
+            "3XL"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "external_id": "52853861155147",
+          "title": "S",
+          "sku": "6133971_19193",
+          "price": "149.95",
+          "compare_at_price": null,
+          "option1": "S",
+          "option2": null,
+          "option3": null,
+          "grams": 601,
+          "available": true,
+          "position": 1,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-oversized-hoodie-black-front-687016df3a1b6.jpg?v=1752176364"
+        },
+        {
+          "external_id": "52853861187915",
+          "title": "M",
+          "sku": "6133971_19194",
+          "price": "149.95",
+          "compare_at_price": null,
+          "option1": "M",
+          "option2": null,
+          "option3": null,
+          "grams": 632,
+          "available": true,
+          "position": 2,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-oversized-hoodie-black-front-687016df3a1b6.jpg?v=1752176364"
+        },
+        {
+          "external_id": "52853861220683",
+          "title": "L",
+          "sku": "6133971_19195",
+          "price": "149.95",
+          "compare_at_price": null,
+          "option1": "L",
+          "option2": null,
+          "option3": null,
+          "grams": 686,
+          "available": true,
+          "position": 3,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-oversized-hoodie-black-front-687016df3a1b6.jpg?v=1752176364"
+        },
+        {
+          "external_id": "52853861253451",
+          "title": "XL",
+          "sku": "6133971_19196",
+          "price": "149.95",
+          "compare_at_price": null,
+          "option1": "XL",
+          "option2": null,
+          "option3": null,
+          "grams": 635,
+          "available": true,
+          "position": 4,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-oversized-hoodie-black-front-687016df3a1b6.jpg?v=1752176364"
+        },
+        {
+          "external_id": "52853861286219",
+          "title": "2XL",
+          "sku": "6133971_19197",
+          "price": "149.95",
+          "compare_at_price": null,
+          "option1": "2XL",
+          "option2": null,
+          "option3": null,
+          "grams": 743,
+          "available": true,
+          "position": 5,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-oversized-hoodie-black-front-687016df3a1b6.jpg?v=1752176364"
+        },
+        {
+          "external_id": "52853861318987",
+          "title": "3XL",
+          "sku": "6133971_19198",
+          "price": "149.95",
+          "compare_at_price": null,
+          "option1": "3XL",
+          "option2": null,
+          "option3": null,
+          "grams": 799,
+          "available": true,
+          "position": 6,
+          "featured_image": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-oversized-hoodie-black-front-687016df3a1b6.jpg?v=1752176364"
+        }
+      ],
+      "images": [
+        {
+          "external_id": "61887440847179",
+          "src": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-oversized-hoodie-black-front-687016df3a1b6.jpg?v=1752176364",
+          "alt": null,
+          "width": 2000,
+          "height": 2000,
+          "position": 1,
+          "variant_ids": [
+            "52853861155147",
+            "52853861187915",
+            "52853861220683",
+            "52853861253451",
+            "52853861286219",
+            "52853861318987"
+          ]
+        },
+        {
+          "external_id": "61887440781643",
+          "src": "https://cdn.shopify.com/s/files/1/0950/0645/8187/files/unisex-oversized-hoodie-black-back-687016df3ad04.jpg?v=1752176363",
+          "alt": null,
+          "width": 2000,
+          "height": 2000,
+          "position": 2,
+          "variant_ids": []
+        }
+      ],
+      "inventory_quantities": null,
+      "cost_per_item": null,
+      "barcode": null,
+      "seo_title": null,
+      "seo_description": null
+    }
+  ],
+  "collections": [
+    {
+      "external_id": "657176068427",
+      "handle": "frontpage",
+      "title": "Home page",
+      "body_html": null,
+      "image": null,
+      "published_at": "2025-07-07T22:33:38+02:00",
+      "product_handles": [
+        "oversized-high-neck-t-shirt-unisex-fit",
+        "unisex-organic-oversized-high-neck-t-shirt-2",
+        "oversized-hoodie-unisex-fit",
+        "unisex-organic-oversized-high-neck-t-shirt-3",
+        "unisex-organic-oversized-high-neck-t-shirt-4",
+        "unisex-oversized-hoodie",
+        "unisex-oversized-hoodie-1",
+        "unisex-organic-oversized-high-neck-t-shirt",
+        "unisex-oversized-hoodie-2"
+      ]
+    }
+  ],
+  "policies": [
+    {
+      "slug": "privacy-policy",
+      "title": "Privacy policy",
+      "body_html": "<p>Last updated: July 17, 2025</p>\n<p>AMIRIANI operates this store and website, including all related information, content, features, tools, products and services, in order to provide you, the customer, with a curated shopping experience (the \"Services\"). AMIRIANI is powered by Shopify, which enables us to provide the Services to you. This Privacy Policy describes how we collect, use, and disclose your personal information when you visit, use, or make a purchase or other transaction using the Services or otherwise communicate with us. If there is a conflict between our Terms of Service and this Privacy Policy, this Privacy Policy controls with respect to the collection, processing, and disclosure of your personal information.</p>\n<p>Please read this Privacy Policy carefully. By using and accessing any of the Services, you acknowledge that you have read this Privacy Policy and understand the collection, use, and disclosure of your information as described in this Privacy Policy.</p>\n<h2>Personal Information We Collect or Process</h2>\n<p>When we use the term \"personal information,\" we are referring to information that identifies or can reasonably be linked to you or another person. Personal information does not include information that is collected anonymously or that has been de-identified, so that it cannot identify or be reasonably linked to you. We may collect or process the following categories of personal information, including inferences drawn from this personal information, depending on how you interact with the Services, where you live, and as permitted or required by applicable law:</p>\n<ul>\n<li>\n<strong>Contact details</strong> including your name, address, billing address, shipping address, phone number, and email address.</li>\n<li>\n<strong>Financial information</strong> including credit card, debit card, and financial account numbers, payment card information, financial account information, transaction details, form of payment, payment confirmation and other payment details.</li>\n<li>\n<strong>Account information</strong> including your username, password, security questions, preferences and settings.</li>\n<li>\n<strong>Transaction information</strong> including the items you view, put in your cart, add to your wishlist, or purchase, return, exchange or cancel and your past transactions.</li>\n<li>\n<strong>Communications with us</strong> including the information you include in communications with us, for example, when sending a customer support inquiry.</li>\n<li>\n<strong>Device information</strong> including information about your device, browser, or network connection, your IP address, and other unique identifiers.</li>\n<li>\n<strong>Usage information</strong> including information regarding your interaction with the Services, including how and when you interact with or navigate the Services.</li>\n</ul>\n<h2>Personal Information Sources</h2>\n<p>We may collect personal information from the following sources:</p>\n<ul>\n<li>\n<strong>Directly from you</strong> including when you create an account, visit or use the Services, communicate with us, or otherwise provide us with your personal information;</li>\n<li>\n<strong>Automatically through the Services</strong> including from your device when you use our products or services or visit our websites, and through the use of cookies and similar technologies;</li>\n<li>\n<strong>From our service providers</strong> including when we engage them to enable certain technology and when they collect or process your personal information on our behalf;</li>\n<li><strong>From our partners or other third parties.</strong></li>\n</ul>\n<h2>How We Use Your Personal Information</h2>\n<p>Depending on how you interact with us or which of the Services you use, we may use personal information for the following purposes:</p>\n<ul>\n<li>\n<strong>Provide, Tailor, and Improve the Services.</strong> We use your personal information to provide you with the Services, including to perform our contract with you, to process your payments, to fulfil your orders, to remember your preferences and items you are interested in, to send notifications to you related to your account, to process purchases, returns, exchanges or other transactions, to create, maintain and otherwise manage your account, to arrange for shipping, to facilitate any returns and exchanges, to enable you to post reviews, and to create a customized shopping experience for you, such as recommending products related to your purchases. This may include using your personal information to better tailor and improve the Services.</li>\n<li>\n<strong>Marketing and Advertising.</strong> We use your personal information for marketing and promotional purposes, such as to send marketing, advertising and promotional communications by email, text message or postal mail, and to show you online advertisements for products or services on the Services or other websites, including based on items you previously have purchased or added to your cart and other activity on the Services.</li>\n<li>\n<strong>Security and Fraud Prevention.</strong> We use your personal information to authenticate your account, to provide a secure payment and shopping experience, detect, investigate or take action regarding possible fraudulent, illegal, unsafe, or malicious activity, protect public safety, and to secure our services. If you choose to use the Services and register an account, you are responsible for keeping your account credentials safe. We highly recommend that you do not share your username, password or other access details with anyone else.</li>\n<li>\n<strong>Communicating with You.</strong> We use your personal information to provide you with customer support, to be responsive to you, to provide effective services to you and to maintain our business relationship with you.</li>\n<li>\n<strong>Legal Reasons.</strong> We use your personal information to comply with applicable law or respond to valid legal process, including requests from law enforcement or government agencies, to investigate or participate in civil discovery, potential or actual litigation, or other adversarial legal proceedings, and to enforce or investigate potential violations of our terms or policies.</li>\n</ul>\n<h2>How We Disclose Personal Information</h2>\n<p>In certain circumstances, we may disclose your personal information to third parties for legitimate purposes subject to this Privacy Policy. Such circumstances may include:</p>\n<ul>\n<li>With Shopify, vendors and other third parties who perform services on our behalf (e.g. IT management, payment processing, data analytics, customer support, cloud storage, fulfilment and shipping).</li>\n<li>With business and marketing partners to provide marketing services and advertise to you. For example, we use Shopify to support personalized advertising with third-party services based on your online activity with different merchants and websites. Our business and marketing partners will use your information in accordance with their own privacy notices. Depending on where you reside, you may have a right to direct us not to share information about you to show you targeted advertisements and marketing based on your online activity with different merchants and websites. You can exercise your rights to opt-out of those uses <a href=\"https://www.amiriani.com/pages/data-sharing-opt-out\"> here</a> .</li>\n<li>When you direct, request us or otherwise consent to our disclosure of certain information to third parties, such as to ship you products or through your use of social media widgets or login integrations.</li>\n<li>With our affiliates or otherwise within our corporate group.</li>\n<li>In connection with a business transaction such as a merger or bankruptcy, to comply with any applicable legal obligations (including to respond to subpoenas, search warrants and similar requests), to enforce any applicable terms of service or policies, and to protect or defend the Services, our rights, and the rights of our users or others.</li>\n</ul>\n<h2>Relationship with Shopify</h2>\n<p>The Services are hosted by Shopify, which collects and processes personal information about your access to and use of the Services in order to provide and improve the Services for you. Information you submit to the Services will be transmitted to and shared with Shopify as well as third parties that may be located in countries other than where you reside, in order to provide and improve the Services for you. In addition, to help protect, grow, and improve our business, we use certain Shopify enhanced features that incorporate data and information obtained from your interactions with our Store, along with other merchants and with Shopify. To provide these enhanced features, Shopify may make use of personal information collected about your interactions with our store, along with other merchants, and with Shopify. In these circumstances, Shopify is responsible for the processing of your personal information, including for responding to your requests to exercise your rights over use of your personal information for these purposes. To learn more about how Shopify uses your personal information and any rights you may have, you can visit the <a href=\"https://www.shopify.com/legal/privacy/app-users\">Shopify Consumer Privacy Policy</a> . Depending on where you live, you may exercise certain rights with respect to your personal information here <a href=\"https://privacy.shopify.com/en\">Shopify Privacy Portal Link</a>.</p>\n<h2>Third Party Websites and Links</h2>\n<p>The Services may provide links to websites or other online platforms operated by third parties. If you follow links to sites not affiliated or controlled by us, you should review their privacy and security policies and other terms and conditions. We do not guarantee and are not responsible for the privacy or security of such sites, including the accuracy, completeness, or reliability of information found on these sites. Information you provide on public or semi-public venues, including information you share on third-party social networking platforms may also be viewable by other users of the Services and/or users of those third-party platforms without limitation as to its use by us or by a third party. Our inclusion of such links does not, by itself, imply any endorsement of the content on such platforms or of their owners or operators, except as disclosed on the Services.</p>\n<h2>Children's Data</h2>\n<p>The Services are not intended to be used by children, and we do not knowingly collect any personal information about children under the age of majority in your jurisdiction. If you are the parent or guardian of a child who has provided us with their personal information, you may contact us using the contact details set out below to request that it be deleted.As of the Effective Date of this Privacy Policy, we do not have actual knowledge that we \"share\" or \"sell\" (as those terms are defined in applicable law) personal information of individuals under 16 years of age.</p>\n<h2>Security and Retention of Your Information</h2>\n<p>Please be aware that no security measures are perfect or impenetrable, and we cannot guarantee \"perfect security.\" In addition, any information you send to us may not be secure while in transit. We recommend that you do not use unsecure channels to communicate sensitive or confidential information to us.</p>\n<p>How long we retain your personal information depends on different factors, such as whether we need the information to maintain your account, to provide you with Services, comply with legal obligations, resolve disputes or enforce other applicable contracts and policies.</p>\n<h2>Your Rights and Choices</h2>\n<p>Depending on where you live, you may have some or all of the rights listed below in relation to your personal information. However, these rights are not absolute, may apply only in certain circumstances and, in certain cases, we may decline your request as permitted by law.</p>\n<ul>\n<li>\n<strong>Right to Access / Know.</strong> You may have a right to request access to personal information that we hold about you.</li>\n<li>\n<strong>Right to Delete.</strong> You may have a right to request that we delete personal information we maintain about you.</li>\n<li>\n<strong>Right to Correct.</strong> You may have a right to request that we correct inaccurate personal information we maintain about you.</li>\n<li>\n<strong>Right of Portability.</strong> You may have a right to receive a copy of the personal information we hold about you and to request that we transfer it to a third party, in certain circumstances and with certain exceptions.</li>\n<li>\n<strong>Right to Opt out of Sale or Sharing for Targeted Advertising.</strong> Depending on where you reside, you may have a right to opt out of the \"sale\" or \"share\" of your personal information or to opt out of the processing of your personal information for purposes considered to be \"targeted advertising\", as defined in applicable privacy laws. You can exercise your rights to opt-out of those uses <a href=\"https://www.amiriani.com/pages/data-sharing-opt-out\">here</a>. Please note that if you visit our website with the Global Privacy Control opt-out preference signal enabled, depending on where you are, we will automatically treat this as a request to opt-out for the device and browser that you use to visit the website. If we are able to associate the device sending the signal to a Shopify account, we will apply the opt out request to the account as well. To learn more about Global Privacy Control, you can visit https://globalprivacycontrol.org/. Other than the Global Privacy Control, we do not recognise other \"Do Not Track\" signals that may be sent from your web browser or device.</li>\n<li>\n<strong>Managing Communication Preferences.</strong> We may send you promotional emails, and you may opt out of receiving these at any time by using the unsubscribe option displayed in our emails to you. If you opt out, we may still send you non-promotional emails, such as those about your account or orders that you have made.</li>\n</ul>\n<div>\n<p><strong>If you reside in the UK or European Economic Area,</strong> and subject to exceptions and limitations provided by local law, you may exercise the following rights in addition to the rights outlined above:</p>\n<ul>\n<li>\n<strong>Objection to Processing and Restriction of Processing:</strong> You may have the right to ask us to stop or restrict our processing of personal information for certain purposes.</li>\n<li>\n<strong>Withdrawal of Consent:</strong> Where we rely on consent to process your personal information, you have the right to withdraw this consent. If you withdraw your consent, this will not affect the lawfulness of any processing based on your consent before its withdrawal.</li>\n</ul>\n</div>\n<p>You may exercise any of these rights where indicated on the Services or by contacting us using the contact details provided below. To learn more about how Shopify uses your personal information and any rights you may have, including rights related to data processed by Shopify, you can visit https://privacy.shopify.com/en.</p>\n<p>We will not discriminate against you for exercising any of these rights. We may need to verify your identity before we can process your requests, as permitted or required under applicable law. In accordance with applicable laws, you may designate an authorised agent to make requests on your behalf to exercise your rights. Before accepting such a request from an agent, we will require that the agent provide proof you have authorised them to act on your behalf, and we may need you to verify your identity directly with us. We will respond to your request in a timely manner as required under applicable law.</p>\n<h2>Complaints</h2>\n<p>If you have complaints about how we process your personal information, please contact us using the contact details provided below. Depending on where you live, you may have the right to appeal our decision by contacting us using the contact details set out below, or lodge your complaint with your local data protection authority. For the EEA, you can find a list of the responsible data protection supervisory authorities <a href=\"https://edpb.europa.eu/about-edpb/about-edpb/members\">here</a>.</p>\n<h2>International Transfers</h2>\n<p>Please note that we may transfer, store and process your personal information outside the country you live in.</p>\n<p>If we transfer your personal information out of the European Economic Area or the United Kingdom, we will rely on recognised transfer mechanisms like the European Commission's Standard Contractual Clauses, or any equivalent contracts issued by the relevant competent authority of the UK, as relevant, unless the data transfer is to a country that has been determined to provide an adequate level of protection.</p>\n<h2>Changes to This Privacy Policy</h2>\n<p>We may update this Privacy Policy from time to time, including to reflect changes to our practices or for other operational, legal, or regulatory reasons. We will post the revised Privacy Policy on this website, update the \"Last updated\" date and provide notice as required by applicable law.</p>\n<h2>Contact</h2>\n<p>Should you have any questions about our privacy practices or this Privacy Policy, or if you would like to exercise any of the rights available to you, please email us at <strong>am</strong><b>iriani.studio@gmail.com</b><span style=\"font-family:-apple-system, BlinkMacSystemFont, 'San Francisco', 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;font-size:0.875rem;\"> for the purpose of applicable data protection laws, we are the data controller of your personal information.</span></p>\n<p> </p>\n<p> </p>",
+      "position": 0
+    },
+    {
+      "slug": "refund-policy",
+      "title": "Refund policy",
+      "body_html": "<p class=\"p1\">At AMIRIANI, we stand by the quality of each piece. If something isn’t right, we accept returns within 30 days of delivery.</p>\n<p class=\"p1\"> </p>\n<p class=\"p3\"><b>Returns</b><b></b></p>\n<p class=\"p1\">You have 30 days after receiving your item to request a return.</p>\n<p class=\"p1\">To be eligible, the item must be:</p>\n<ul>\n<li>\n<p class=\"p1\">Unworn and unused</p>\n</li>\n<li>\n<p class=\"p1\">With original tags</p>\n</li>\n<li>\n<p class=\"p1\">In its original packaging</p>\n</li>\n<li>\n<p class=\"p1\">Accompanied by proof of purchase</p>\n</li>\n</ul>\n<p class=\"p1\">To begin a return, contact us at <strong>am</strong><b>iriani.studio@gmail.com</b></p>\n<p class=\"p1\">Returns must be approved before being sent. Items sent back without prior request will not be accepted.</p>\n<p class=\"p1\">Return shipping is <span class=\"s2\"><b>free</b></span>. Once your return is approved, we’ll provide a prepaid label and detailed instructions.</p>\n<p class=\"p1\"> </p>\n<p class=\"p3\"><b>Damaged or Incorrect Items</b><b></b></p>\n<p class=\"p1\">If your order arrives damaged or you receive the wrong item, email us immediately so we can make it right. Include clear photos and your order number.</p>\n<p class=\"p2\"><br></p>\n<p class=\"p3\"><b>Exceptions</b><b></b></p>\n<p class=\"p1\">We do <span class=\"s2\"><b>not</b></span> accept returns on:</p>\n<ul>\n<li>\n<p class=\"p1\">Sale items</p>\n</li>\n<li>\n<p class=\"p1\">Gift cards</p>\n</li>\n<li>\n<p class=\"p1\">Personalized or custom pieces</p>\n</li>\n<li>\n<p class=\"p1\">Used or worn items</p>\n</li>\n<li>\n<p class=\"p1\">Hazardous materials or flammable goods</p>\n</li>\n</ul>\n<p> </p>\n<p class=\"p1\">If unsure, contact us before placing your order.</p>\n<p class=\"p2\"><br></p>\n<p class=\"p3\"><b>Exchanges</b><b></b></p>\n<p class=\"p1\">To exchange an item, please return the original item using the process above. Once accepted, place a new order for the desired product.</p>\n<p class=\"p2\"><br></p>\n<p class=\"p3\"><b>EU Right of Withdrawal</b><b></b></p>\n<p class=\"p1\">If your order was delivered within the <span class=\"s2\"><b>European Union</b></span>, you are entitled to a 14-day cooling-off period to cancel or return your order for any reason.</p>\n<p style=\"text-align:left;\" class=\"p1\">Items must still meet the standard return conditions: unused, in original condition, with tags and packaging.</p>\n<p class=\"p2\"><br></p>\n<p class=\"p3\"><b>Refunds</b></p>\n<p class=\"p3\"><b></b>Once your return is received and inspected, we’ll notify you by email.</p>\n<p class=\"p1\">If approved, a refund will be issued to your original payment method within <span class=\"s2\"><b>10 business days</b></span>.</p>\n<p class=\"p1\">Please note that it may take additional time for your bank or credit card provider to post the refund.</p>\n<p class=\"p2\"><br></p>\n<p class=\"p1\">If more than <span class=\"s2\"><b>15 business days</b></span> have passed since your return was approved, please contact us at <strong>am</strong><b>iriani.studio@gmail.com</b></p>\n<p class=\"p1\"> </p>\n<p class=\"p1\"> </p>",
+      "position": 1
+    },
+    {
+      "slug": "terms-of-service",
+      "title": "Terms of service",
+      "body_html": "<p class=\"p1\"> </p>\n<h3><b>Privacy Policy – AMIRIANI</b></h3>\n<p class=\"p3\">At AMIRIANI, we value your privacy and are committed to protecting your personal data. This Privacy Policy outlines how we collect, use, and safeguard your information when you visit our website or make a purchase.</p>\n<h3><b>1. Personal Information We Collect</b></h3>\n<p class=\"p3\">When you interact with our site, we may collect the following information:</p>\n<ul>\n<li>\n<p class=\"p1\"><span class=\"s1\"><b>Identity &amp; Contact Info:</b></span> Name, email address, shipping address, phone number</p>\n</li>\n<li>\n<p class=\"p1\"><span class=\"s1\"><b>Order Details:</b></span> Items purchased, payment information (processed securely via Shopify/third-party providers)</p>\n</li>\n<li>\n<p class=\"p1\"><span class=\"s1\"><b>Technical Data:</b></span> Device type, browser, IP address, pages visited, cookies</p>\n</li>\n<li>\n<p class=\"p1\"><span class=\"s1\"><b>Marketing Preferences:</b></span> If you subscribe to our newsletter or interact with campaigns</p>\n</li>\n</ul>\n<p> </p>\n<h3><b>2. How We Use Your Information</b></h3>\n<p class=\"p3\">We use your data to:</p>\n<ul>\n<li>\n<p class=\"p1\">Process and deliver your orders</p>\n</li>\n<li>\n<p class=\"p1\">Communicate with you (order updates, support, offers if opted in)</p>\n</li>\n<li>\n<p class=\"p1\">Improve and secure our website</p>\n</li>\n<li>\n<p class=\"p1\">Comply with legal obligations (e.g., VAT or fraud prevention)</p>\n</li>\n</ul>\n<p class=\"p3\">We do <span class=\"s2\"><b>not</b></span> sell or rent your personal data.</p>\n<p class=\"p1\"> </p>\n<h3><b>3. Legal Basis (GDPR Compliance)</b></h3>\n<p class=\"p3\">We process your data based on:</p>\n<ul>\n<li>\n<p class=\"p1\"><span class=\"s1\"><b>Contractual necessity:</b></span> To fulfill your order</p>\n</li>\n<li>\n<p class=\"p1\"><span class=\"s1\"><b>Legal obligation:</b></span> To meet tax and record-keeping duties</p>\n</li>\n<li>\n<p class=\"p1\"><span class=\"s1\"><b>Consent:</b></span> For marketing emails or newsletter sign-up</p>\n</li>\n<li>\n<p class=\"p1\"><span class=\"s1\"><b>Legitimate interest:</b></span> To improve our services and prevent fraud</p>\n</li>\n</ul>\n<p class=\"p1\"> </p>\n<h3><b>4. Cookies</b></h3>\n<p class=\"p3\">We use cookies to enhance your browsing experience and understand traffic. You can manage cookie settings via your browser.</p>\n<p class=\"p3\">For more, see our [Cookie Policy].</p>\n<p class=\"p1\"> </p>\n<h3><b>5. Sharing Your Information</b></h3>\n<p class=\"p3\">We share your data only when necessary:</p>\n<ul>\n<li>\n<p class=\"p1\"><span class=\"s1\"><b>With trusted third parties</b></span> like Shopify, payment processors, or delivery providers</p>\n</li>\n<li>\n<p class=\"p1\"><span class=\"s1\"><b>With authorities</b></span> if required by law (e.g., for fraud investigation)</p>\n</li>\n</ul>\n<p class=\"p3\">These parties are GDPR-compliant and only use your data as instructed.</p>\n<p class=\"p1\"> </p>\n<h3><b>6. Data Retention</b></h3>\n<p class=\"p3\">We retain your personal data for as long as needed to fulfill orders and meet legal requirements (typically 7 years for accounting). After that, it is securely deleted or anonymised.</p>\n<p class=\"p1\"> </p>\n<h3><b>7. Your Rights (EU Residents)</b></h3>\n<p class=\"p3\">Under the GDPR, you have the right to:</p>\n<ul>\n<li>\n<p class=\"p1\">Access your personal data</p>\n</li>\n<li>\n<p class=\"p1\">Request correction or deletion</p>\n</li>\n<li>\n<p class=\"p1\">Object to processing</p>\n</li>\n<li>\n<p class=\"p1\">Request data portability</p>\n</li>\n<li>\n<p class=\"p1\">Withdraw consent (where applicable)</p>\n</li>\n</ul>\n<p class=\"p3\">To exercise your rights, email us at <strong>am</strong><b>iriani.studio@gmail.com. </b></p>\n<p class=\"p1\"> </p>\n<h3><b>8. Data Security</b></h3>\n<p class=\"p3\">We use encryption (SSL), secure servers, and access controls to protect your data. While no method is 100% secure, we work to safeguard your information with industry best practices.</p>\n<p class=\"p1\"> </p>\n<h3><b>9. Shopify</b></h3>\n<p class=\"p3\">Our store is hosted on Shopify Inc. Your data is stored through Shopify’s secure platform. For more, review Shopify’s privacy policy:</p>\n<p class=\"p3\"><a href=\"https://www.shopify.com/legal/privacy\">https://www.shopify.com/legal/privacy</a></p>\n<p class=\"p1\"> </p>\n<h3><b>10. Changes to This Policy</b></h3>\n<p class=\"p3\">We may update this Privacy Policy from time to time. The latest version will always be available on our website.</p>\n<p class=\"p3\"> </p>\n<h3><b>11. Contact Us</b></h3>\n<p class=\"p4\"><b>AMIRIANI</b><b></b></p>\n<p class=\"p3\">Email: <strong>am</strong><b>iriani.studio@gmail.com</b></p>\n<p class=\"p1\">Instagram: <strong>amiriani.studio</strong></p>\n<p class=\"p3\"> </p>\n<p class=\"p3\"> </p>",
+      "position": 3
+    },
+    {
+      "slug": "shipping-policy",
+      "title": "Shipping policy",
+      "body_html": "<p class=\"p1\"> </p>\n<h2><strong>Shipping Policy – AMIRIANI</strong></h2>\n<p>Thank you for shopping with AMIRIANI. Every order is crafted with care and fulfilled upon request to minimise waste. Below you’ll find details on processing, shipping times, and what to expect.</p>\n<hr>\n<h3><strong>1. Fulfillment Time</strong></h3>\n<p>Each item is made-to-order and typically fulfilled within 2–7 business days (excluding weekends and holidays). Once fulfilled, the item is shipped out.</p>\n<hr>\n<h3><strong>2. Shipping Time &amp; Costs</strong></h3>\n<p>All AMIRIANI pieces are made to order. This means production begins only after your order is placed — a process that allows us to avoid overproduction and stay true to our values of intentional creation.</p>\n<p>Shipping times and fees vary depending on the product, your location, and the fulfilment center handling your order. All applicable shipping costs are automatically calculated at checkout.</p>\n<p><strong>Complimentary shipping is available on all orders above €199.95.</strong><br>At checkout, you’ll see two delivery options — please select the <em>Free Shipping</em> option to apply this benefit.</p>\n<p>Because fulfilment and delivery are managed by our global production partners, we cannot guarantee exact delivery dates. Depending on the item and region, orders may take several weeks to arrive.</p>\n<p>Once your order has been fulfilled and shipped, you will receive a tracking number via email.<br>If you have any concerns about your order status, feel free to reach out to us at <strong><a class=\"decorated-link cursor-pointer\" rel=\"noopener\">amiriani.studio@gmail.com<span class=\"ms-0.5 inline-block align-middle leading-none\"></span></a></strong>.</p>\n<hr>\n<h3><strong>3. Order Tracking</strong></h3>\n<p>You will receive an email with a tracking number once your order has shipped. Please allow 24–72 hours (excluding weekends and public holidays) for the tracking link to become active.</p>\n<hr>\n<h3><strong>4. Customs, Duties &amp; Taxes</strong></h3>\n<p>International orders may be subject to customs duties or import taxes, depending on your country’s regulations. These fees are not included in our prices or shipping charges and are the responsibility of the buyer.</p>\n<hr>\n<h3><strong>5. Delivery Issues</strong></h3>\n<p>If your package arrives damaged, is delayed, or doesn’t arrive:</p>\n<ul>\n<li>\n<p>Contact us at <strong><a class=\"decorated-link cursor-pointer\" rel=\"noopener\">amiriani.studio@gmail.com<span class=\"ms-0.5 inline-block align-middle leading-none\"></span></a></strong></p>\n</li>\n<li>\n<p>Include your order number and (if applicable) photos of any damage</p>\n</li>\n</ul>\n<p>We will work with our fulfillment partner to resolve the issue.</p>\n<p>We are not responsible for delivery failures due to incorrect addresses submitted during checkout.</p>\n<hr>\n<h3><strong>6. Pre-Orders &amp; Limited Releases</strong></h3>\n<p>If a product is marked as pre-order, the estimated shipping window will be stated on the product page. In mixed orders, we may ship ready items separately at no additional charge.</p>\n<hr>\n<h3><strong>7. Contact</strong></h3>\n<p>For any questions about shipping, you can reach us at:</p>\n<p><strong>AMIRIANI</strong><br>Email: <strong><a class=\"decorated-link cursor-pointer\" rel=\"noopener\">amiriani.studio@gmail.com</a></strong></p>",
+      "position": 4
+    },
+    {
+      "slug": "legal-notice",
+      "title": "Legal notice",
+      "body_html": "<p class=\"p1\"><b>Legal Entity:</b><b></b></p>\n<p class=\"p2\">AMIRIANI (sole proprietorship)</p>\n<p class=\"p2\">Owner: Antoni Amirian</p>\n<p class=\"p2\">Registered in Belgium</p>\n<p class=\"p1\"><b>Contact Information:</b><b></b></p>\n<p class=\"p2\">Email: <strong>am</strong><b>iriani.studio@gmail.com</b></p>\n<p class=\"p2\">Instagram: <strong>amiriani.studio</strong></p>\n<p class=\"p3\"><br></p>\n<p class=\"p1\"><b>Hosting Provider:</b><b></b></p>\n<p class=\"p2\">This website is hosted by Shopify Inc.</p>\n<p class=\"p2\">151 O’Connor Street, Ground Floor</p>\n<p class=\"p2\">Ottawa, ON K2P 2L8</p>\n<p class=\"p2\">Canada</p>\n<p class=\"p2\"><a href=\"https://www.shopify.com\">www.shopify.com</a></p>\n<p class=\"p2\"> </p>\n<p class=\"p1\"><b>Intellectual Property:</b><b></b></p>\n<p class=\"p2\">All content on this site, including designs, logos, images, and text, is the intellectual property of AMIRIANI and may not be reproduced, distributed, or used without explicit permission.</p>\n<p class=\"p1\"> </p>\n<p class=\"p1\"><b>Liability Disclaimer:</b><b></b></p>\n<p class=\"p2\">AMIRIANI cannot be held responsible for any damages resulting from the use of this website or from any purchasing decisions made based on the content herein. All product visuals are for illustrative purposes only. While we strive for accuracy, minor variations may occur due to screen settings or production constraints.</p>\n<p class=\"p2\"> </p>\n<p class=\"p1\"><b>Applicable Law:</b><b></b></p>\n<p class=\"p2\">This site and all associated transactions are governed by Belgian law. Any disputes shall be submitted to the competent courts of Belgium.</p>\n<p class=\"p2\"> </p>\n<p class=\"p2\"> </p>",
+      "position": 5
+    },
+    {
+      "slug": "contact-information",
+      "title": "Contact information",
+      "body_html": "<p><br></p>\n<h3><b>Contact Information</b></h3>\n<p class=\"p2\"> </p>\n<p class=\"p3\">For any questions, inquiries, or support requests, please feel free to contact us via the channels below:</p>\n<p class=\"p3\"><span class=\"s2\"><b>Email:</b></span> <strong>am</strong><b>iriani.studio@gmail.com</b></p>\n<p class=\"p3\"><span class=\"s2\"><b>Instagram: amiriani.studio</b></span></p>\n<p class=\"p3\">We aim to respond to all messages within 1–2 business days.</p>\n<p class=\"p3\"> </p>",
+      "position": 2
+    }
+  ],
+  "pages": [
+    {
+      "slug": "about",
+      "title": "About AMIRIANI",
+      "heading": "Born in silence. Built with intent.",
+      "body_html": "<p>AMIRIANI is not just a clothing brand, it’s a mindset.<br/>Rooted in Georgia and shaped by global influence, AMIRIANI creates essentials for those who move in silence. Designed for the quietly ambitious, each piece reflects presence without performance. We believe absence has shape. We believe silence can be a style.<br/><br/><br/></p>"
+    },
+    {
+      "slug": "contact",
+      "title": "whisper something.",
+      "heading": null,
+      "body_html": null
+    }
+  ],
+  "site": {
+    "name": "AMIRIANI",
+    "currency": "EUR",
+    "locale": "nl-BE",
+    "country": "BE",
+    "logo_url": "https://7t6swe-yh.myshopify.com/cdn/shop/files/1_373f3824-cd4e-47a0-a261-81259090c019.png?v=1753007137&width=600",
+    "instagram": "http://instagram.com/amiriani.studio/",
+    "contact_email": "amiriani.studio@gmail.com",
+    "navigation": [
+      {
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "label": "Essentials",
+        "href": "/collections/all"
+      },
+      {
+        "label": "About",
+        "href": "/about"
+      },
+      {
+        "label": "Contact",
+        "href": "/contact"
+      }
+    ],
+    "newsletter_heading": "Stay in the quiet.",
+    "homepage": {
+      "banner": {
+        "image": "https://7t6swe-yh.myshopify.com/cdn/shop/files/HEATHER_GREY2.png?v=1760632303&width=3840",
+        "heading": "Quiet ambition meets form. Built in silence.",
+        "cta_href": "/collections/all",
+        "cta_label": "Explore the Collection"
+      },
+      "featured_collection": {
+        "title": "The Essentials",
+        "description": "Quiet forms. Essential cuts. Designed to be worn with intention.",
+        "limit": 3
+      }
+    }
+  },
+  "known_gaps": [
+    "Per-variant inventory counts (public JSON only exposes an `available` boolean).",
+    "Cost per item, barcodes, and per-product SEO title/description."
+  ]
+}
