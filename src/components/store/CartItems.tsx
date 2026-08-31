@@ -60,16 +60,26 @@ export function CartItems() {
             <table className="cart-items">
               <thead>
                 <tr>
-                  <th className="caption-with-letter-spacing" scope="col">
+                  {/*
+                    "Product" spans two columns — the image and the details —
+                    which is what keeps the four body cells aligned under the
+                    four headings. Without the colspan the table distributes
+                    widths across five slots and the row layout breaks.
+                  */}
+                  <th className="caption-with-letter-spacing" colSpan={2} scope="col">
                     Product
                   </th>
-                  <th className="medium-hide large-up-hide right" scope="col">
+                  <th className="medium-hide large-up-hide right" colSpan={1} scope="col">
                     Total
                   </th>
-                  <th className="cart-items__heading--wide caption-with-letter-spacing small-hide" scope="col">
+                  <th
+                    className="cart-items__heading--wide caption-with-letter-spacing small-hide"
+                    colSpan={1}
+                    scope="col"
+                  >
                     Quantity
                   </th>
-                  <th className="small-hide right caption-with-letter-spacing" scope="col">
+                  <th className="small-hide right caption-with-letter-spacing" colSpan={1} scope="col">
                     Total
                   </th>
                 </tr>
@@ -163,15 +173,23 @@ export function CartItems() {
                           </button>
                         </quantity-input>
 
-                        <button
-                          type="button"
-                          className="button button--tertiary cart-remove-button"
-                          aria-label={`Remove ${line.productTitle}`}
-                          disabled={pending}
-                          onClick={() => removeLine(line.id)}
-                        >
-                          <IconRemove className="icon icon-remove" />
-                        </button>
+                        {/*
+                          Dawn sizes this with the element selector
+                          `.cart-item cart-remove-button{width:4.5rem;height:4.5rem}`,
+                          so the custom element has to be the wrapper — a class
+                          alone leaves the icon unconstrained and oversized.
+                        */}
+                        <cart-remove-button>
+                          <button
+                            type="button"
+                            className="button button--tertiary"
+                            aria-label={`Remove ${line.productTitle}`}
+                            disabled={pending}
+                            onClick={() => removeLine(line.id)}
+                          >
+                            <IconRemove className="icon icon-remove" />
+                          </button>
+                        </cart-remove-button>
                       </div>
                     </td>
 

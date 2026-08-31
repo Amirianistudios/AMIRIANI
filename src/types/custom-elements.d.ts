@@ -20,6 +20,7 @@ declare global {
         'variant-selects': CustomElement & { 'data-section'?: string }
         'product-form': CustomElement & { 'data-section-id'?: string }
         'cart-items': CustomElement
+        'cart-remove-button': CustomElement
         'cart-notification': CustomElement
         'quantity-input': CustomElement
         'predictive-search': CustomElement
