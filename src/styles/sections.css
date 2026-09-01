@@ -225,6 +225,20 @@ summary.list-menu__item {
   }
 }
 
+/* "You may also like". The reference emits these as a per-section rule with a
+   generated class name; the values are copied from it unchanged. */
+.section-related-products-padding {
+  padding-top: 27px;
+  padding-bottom: 21px;
+}
+
+@media screen and (min-width: 750px) {
+  .section-related-products-padding {
+    padding-top: 36px;
+    padding-bottom: 28px;
+  }
+}
+
 .section-main-product .product__title {
   font-size: 2.2rem;
   letter-spacing: -0.5px;

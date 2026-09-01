@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useMemo, useState } from 'react'
+import { Fragment, useMemo, useState } from 'react'
 
 import { PriceBlock } from '@/components/store/PriceBlock'
 import { useCart } from '@/components/store/CartProvider'
@@ -77,8 +77,16 @@ export function ProductForm({ product }: { product: Product }) {
         <variant-selects data-section="product">
           <fieldset className="js product-form__input product-form__input--pill">
             <legend className="form__label">Size</legend>
+            {/*
+              A Fragment, not a wrapper element. Dawn emits the radio and its
+              label as direct children of the fieldset, and they lay out
+              inline — so an extra <span> around each pair changes the widths
+              the browser wraps on. With one, five size pills squeezed onto a
+              row where the reference store wraps the last one to a second
+              row, which is a visible difference on a 375px screen.
+            */}
             {product.variants.map((variant) => (
-              <span key={variant.id}>
+              <Fragment key={variant.id}>
                 <input
                   type="radio"
                   id={`variant-${variant.id}`}
@@ -99,7 +107,14 @@ export function ProductForm({ product }: { product: Product }) {
                     </span>
                   )}
                 </label>
-              </span>
+                {/*
+                  A literal space, because Dawn's markup has a newline between
+                  each pill and inline layout renders that as one space. Without
+                  it every gap is ~5px narrower, which is enough for a fifth
+                  pill to squeeze onto a row the reference wraps.
+                */}
+                {' '}
+              </Fragment>
             ))}
           </fieldset>
         </variant-selects>

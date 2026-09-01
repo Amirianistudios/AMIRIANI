@@ -189,6 +189,55 @@ export async function getAllProducts(): Promise<Product[]> {
   return ((data ?? []) as unknown as RawProduct[]).map(shapeProduct)
 }
 
+/**
+ * Products to show under "You may also like".
+ *
+ * The reference store fills this from Shopify's recommendation engine, which
+ * has behavioural data we do not and cannot get. The nearest honest equivalent
+ * is "other things from the same collections", falling back to the rest of the
+ * catalogue for a product that is in none — which on a store this size is what
+ * the recommendations amount to anyway.
+ */
+export async function getRelatedProducts(
+  product: Pick<Product, 'id' | 'slug'>,
+  limit = 4,
+): Promise<Product[]> {
+  const supabase = createSupabasePublicClient()
+
+  const { data: memberships } = await supabase
+    .from('collection_products')
+    .select('collection_id')
+    .eq('product_id', product.id)
+
+  const collectionIds = (memberships ?? []).map((row) => row.collection_id)
+
+  let siblingIds: string[] = []
+  if (collectionIds.length > 0) {
+    const { data: siblings } = await supabase
+      .from('collection_products')
+      .select('product_id')
+      .in('collection_id', collectionIds)
+    siblingIds = [...new Set((siblings ?? []).map((row) => row.product_id))].filter(
+      (id) => id !== product.id,
+    )
+  }
+
+  const query = supabase
+    .from('products')
+    .select(PRODUCT_SELECT)
+    .eq('status', 'active')
+    .neq('id', product.id)
+    .order('title', { ascending: true })
+    .limit(limit)
+
+  const { data, error } = await (siblingIds.length > 0
+    ? query.in('id', siblingIds)
+    : query)
+
+  if (error) throw new Error(`getRelatedProducts: ${error.message}`)
+  return ((data ?? []) as unknown as RawProduct[]).map(shapeProduct)
+}
+
 export async function getProductBySlug(slug: string): Promise<Product | null> {
   const supabase = createSupabasePublicClient()
   const { data, error } = await supabase

@@ -3,7 +3,8 @@ import { notFound } from 'next/navigation'
 
 import { ProductForm } from '@/components/store/ProductForm'
 import { ProductGallery } from '@/components/store/ProductGallery'
-import { getProductBySlug, getProductSlugs } from '@/lib/catalog'
+import { RelatedProducts } from '@/components/store/RelatedProducts'
+import { getProductBySlug, getProductSlugs, getRelatedProducts } from '@/lib/catalog'
 import { SITE_URL } from '@/lib/env'
 
 export const revalidate = 3600
@@ -49,6 +50,8 @@ export default async function ProductPage({
   const product = await getProductBySlug(slug)
   if (!product) notFound()
 
+  const related = await getRelatedProducts(product)
+
   // Product structured data, so rich results survive the migration off Shopify.
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -72,7 +75,8 @@ export default async function ProductPage({
   }
 
   return (
-    <section className="shopify-section section section-main-product section-main-product-padding">
+    <>
+      <section className="shopify-section section section-main-product section-main-product-padding">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -117,6 +121,9 @@ export default async function ProductPage({
           </div>
         </div>
       </div>
-    </section>
+      </section>
+
+      <RelatedProducts products={related} />
+    </>
   )
 }
