@@ -52,6 +52,10 @@ npm run db:verify        # applies them to a local Postgres and asserts behaviou
 ```bash
 npm run data:extract     # public Shopify storefront -> data/shopify-export.json
 npm run data:import      # that file -> Supabase, including images into Storage
+
+# Real inventory, SKUs, barcodes, costs, weights and SEO fields are not public.
+# Export your products from Shopify admin and re-run:
+SHOPIFY_CSV=./products_export.csv npm run data:import
 ```
 
 Both are idempotent — re-running updates in place rather than duplicating, so
@@ -180,29 +184,112 @@ element styles the ported CSS depends on. It is prefixed `tw:` and used only by
 
 ## Verification
 
+Static checks:
+
 ```bash
 npm run typecheck
 npm run lint
 npm run build
-npm run db:verify
 ```
 
-`db:verify` applies the migrations to a throwaway database and asserts that RLS
-is enabled everywhere, the inventory guard rejects overselling, checkout prices
-server-side and de-duplicates on its idempotency key, restocking is idempotent,
-and the money constraints reject inconsistent totals.
+Behavioural checks, in rough order of how much they cost to run:
+
+```bash
+npm run db:verify         # schema and database-level guarantees
+npm run commerce:verify   # inventory under real concurrency
+npm run stripe:verify     # webhook signatures, idempotency, restock
+npm run flow:verify       # the whole customer journey (needs the app running)
+npm run admin:verify      # the admin actually writes (drives a browser)
+npm run supabase:verify   # a hosted project, end to end
+```
+
+What each one is for:
+
+- **`db:verify`** applies the migrations to a throwaway database and asserts
+  that RLS is enabled everywhere, the inventory guard rejects overselling,
+  checkout prices server-side and de-duplicates on its idempotency key,
+  restocking is idempotent, and the money constraints reject inconsistent
+  totals.
+- **`commerce:verify`** fires fifteen simultaneous buyers at five units of stock
+  and requires exactly five orders, stock landing on zero, and five units in the
+  journal — then submits one idempotency key five times at once and requires one
+  order. Sequential tests cannot catch overselling; this can.
+- **`stripe:verify`** posts real Stripe-signed events at the running app: a
+  wrong secret, a malformed header and an hour-old timestamp must all be
+  refused, a valid one must mark the order paid, and delivering it twice must
+  not move stock twice.
+- **`flow:verify`** walks browse → cart → quantity → shipping → checkout →
+  webhook → confirmation → account → order history, asserting against Postgres
+  rather than against what the page rendered, and then the failure paths:
+  tampered prices, draft products, oversold quantities, unserved countries,
+  invented shipping rates.
+- **`admin:verify`** signs in as a real admin in a real browser and works a
+  product through its whole life — create, edit, add variant, reprice, restock,
+  upload an image, assign a collection, publish, archive — checking the database
+  after every step, and confirms a signed-in non-admin is refused by the server
+  rather than merely by a hidden link.
+- **`supabase:verify`** points at a hosted project and checks its structure,
+  that RLS is enforced through the anon key and not just declared, that checkout
+  is not callable by browser roles, and that anonymous storage uploads fail.
+
+### Visual regression
+
+```bash
+npm run compare:mirror &    # mirrors the reference store, serves it on :8899
+REF_BASE=http://127.0.0.1:8899 npm run compare
+```
+
+Screenshots both sites at 375, 430, 768, 1280, 1440 and 1920 and compares the
+geometry of key elements numerically. A page that fails to load counts as a
+difference, not a match — a comparison that silently passes because it compared
+nothing is worse than no comparison.
+
+The mirror exists because a browser cannot always reach the reference store
+directly (a proxy, an egress policy, a CI runner), while `fetch` usually can.
+Point `REF_BASE` straight at the live store where the browser can reach it.
+
+When running the app locally for a comparison, use `ALLOW_LOCAL_IMAGE_HOSTS=1
+npm run dev`: Next refuses to optimise images from a private IP, so against the
+local Supabase harness every image silently 500s and the measurements are
+meaningless.
+
+## Shipping
+
+Rates are **not** configurable and **not** guessed. They were read off the
+reference store's own checkout, one country at a time, and transcribed into
+`src/lib/shipping.ts`:
+
+| Zone | Countries | Standard | Above the threshold |
+| --- | --- | --- | --- |
+| EU | BE NL FR DE AT LU SE DK CZ | €8.56 | €4.12 |
+| UK | GB | €8.56 | €3.95 |
+| EFTA | CH | €11.15 | €8.60 |
+
+Anywhere else is refused at checkout rather than shipped at a made-up price.
+Only the threshold at which the cheaper option unlocks is configurable
+(`FREE_SHIPPING_THRESHOLD_CENTS`, default €199.90), because it is the one value
+the public API would not reveal exactly.
+
+The browser sends a rate *code*, never a price. `/api/checkout` re-derives the
+amount from that code against the server's own view of the cart, so a tampered
+response from `/api/shipping-rates` cannot change what is charged.
 
 ## Deployment
 
-1. Create the Supabase project and apply the migrations.
-2. Import the catalogue (`data:extract`, then `data:import`).
-3. Deploy to Vercel with the variables from `.env.example`.
-4. Add a Stripe webhook endpoint at `https://<domain>/api/webhooks/stripe` for
+1. Create the Supabase project and apply the migrations (`npm run supabase:apply`).
+2. Verify it (`npm run supabase:verify`) before putting data in it.
+3. Import the catalogue (`data:extract`, then `data:import` with your admin CSV
+   and `IMAGE_STRATEGY=storage`).
+4. Deploy to Vercel with the variables from `.env.example`.
+5. Add a Stripe webhook endpoint at `https://<domain>/api/webhooks/stripe` for
    `checkout.session.completed`, `checkout.session.expired`,
    `checkout.session.async_payment_failed` and `charge.refunded`, and put its
-   signing secret in `STRIPE_WEBHOOK_SECRET`.
-5. Grant yourself admin and confirm `/admin` loads.
-6. Place a test order end to end before pointing DNS at the new site.
+   signing secret in `STRIPE_WEBHOOK_SECRET`. Test mode and live mode have
+   separate endpoints and separate secrets.
+6. Grant yourself admin and confirm `/admin` loads.
+7. Place a test order end to end before pointing DNS at the new site.
 
-See `docs/MIGRATION.md` for the full cutover checklist and the list of data that
-still needs a Shopify admin export.
+See `docs/MIGRATION.md` for the full thirteen-step cutover checklist, the safest
+way to create the first admin, the list of data that still needs a Shopify admin
+export, and every remaining Shopify reference in the repository with a decision
+attached to it.

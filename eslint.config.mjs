@@ -12,6 +12,13 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Working directories, not source. `.reference-mirror` holds a copy of the
+    // reference storefront for the visual comparison — thousands of lines of
+    // someone else's minified theme JavaScript, which would otherwise drown
+    // this project's own findings in warnings.
+    ".reference-mirror/**",
+    ".local-storage/**",
+    "visual-comparison/**",
   ]),
 ]);
 

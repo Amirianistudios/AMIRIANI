@@ -1,5 +1,6 @@
 import Link from 'next/link'
 
+import { NewProductForm } from '@/components/admin/NewProductForm'
 import { Badge, PageHeader, Table, Td } from '@/components/admin/ui'
 import { createSupabaseAdminClient } from '@/lib/supabase/server'
 import { formatMoney } from '@/lib/money'
@@ -29,6 +30,8 @@ export default async function AdminProductsPage() {
   return (
     <>
       <PageHeader title="Products" description="Prices, inventory and visibility." />
+
+      <NewProductForm />
 
       <Table head={['Title', 'Status', 'From', 'Variants', 'In stock', '']} empty="No products yet.">
         {rows.map((product) => {

@@ -33,6 +33,8 @@ export function Header({
   currentPath = '/',
   localization,
 }: HeaderProps) {
+  const HeadingTag = currentPath === '/' ? 'h1' : 'div'
+
   return (
     <div className="shopify-section shopify-section-group-header-group section-header">
       <div className="header-wrapper color-accent-2 gradient">
@@ -48,7 +50,19 @@ export function Header({
           */}
           <HeaderSearch />
 
-          <h1 className="header__heading">
+          {/*
+            The shop name is the page's <h1> only on the homepage. Everywhere
+            else the <h1> belongs to that page's own subject — the product
+            title, the collection title — and emitting a second one here both
+            dilutes the page's primary heading for search engines and gives
+            screen-reader users two top-level headings for one page.
+
+            This is also what the reference theme does, and it is visible: the
+            header inherits font-weight 300, which an <h1> overrides to 400, so
+            the wrong element here renders the logo at the wrong weight on every
+            page but the homepage.
+          */}
+          <HeadingTag className="header__heading">
             <Link href="/" className="header__heading-link link link--text focus-inset">
               {logoUrl ? (
                 <div className="header__heading-logo-wrapper">
@@ -66,7 +80,7 @@ export function Header({
                 <span className="h2">{shopName}</span>
               )}
             </Link>
-          </h1>
+          </HeadingTag>
 
           <nav className="header__inline-menu">
             <ul className="list-menu list-menu--inline" role="list">

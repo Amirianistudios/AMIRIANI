@@ -18,6 +18,7 @@
     "compare": "node scripts/compare-visual.mjs",
     "compare:mirror": "node scripts/mirror-reference.mjs",
     "flow:verify": "node scripts/verify-flow.mjs",
+    "admin:verify": "node scripts/verify-admin.mjs",
     "commerce:verify": "./scripts/verify-commerce.sh",
     "stripe:verify": "node scripts/verify-stripe-webhook.mjs"
   },

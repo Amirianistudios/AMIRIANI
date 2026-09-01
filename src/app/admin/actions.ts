@@ -395,3 +395,301 @@ export async function updateHomepage(formData: FormData): Promise<ActionResult> 
   revalidatePath('/admin/content')
   return { ok: true }
 }
+
+// ---------------------------------------------------------------------------
+// Creating catalogue records
+//
+// Until these existed the admin could only edit what the Shopify import had
+// produced, which meant the store could not actually be run without Shopify —
+// no new product could be added, no photograph uploaded, nothing put into a
+// collection. Each of these writes through the service-role client after
+// assertAdmin(), the same way every other action here does.
+// ---------------------------------------------------------------------------
+
+/**
+ * Mirrors the database's `slugify()`, so a handle typed in the admin matches
+ * one the importer would have produced for the same title. Decomposing to NFD
+ * and dropping the combining marks is the JavaScript equivalent of `unaccent`.
+ */
+function slugify(value: string): string {
+  return value
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/-{2,}/g, '-')
+    .replace(/^-+|-+$/g, '')
+}
+
+const newProductSchema = z.object({
+  title: z.string().trim().min(1).max(300),
+  slug: z.string().trim().max(200).optional(),
+  descriptionHtml: z.string().max(50_000).optional(),
+  status: z.enum(['draft', 'active', 'archived']).default('draft'),
+})
+
+/**
+ * Creates a product, and with it one default variant.
+ *
+ * The variant is not optional: the storefront prices everything from
+ * product_variants, so a product without one renders with no price and cannot
+ * be added to a cart. Creating the pair together avoids leaving that trap for
+ * whoever adds the next product.
+ */
+export async function createProduct(formData: FormData): Promise<ActionResult> {
+  await assertAdmin()
+
+  const parsed = newProductSchema.safeParse({
+    title: formData.get('title'),
+    slug: formData.get('slug') || undefined,
+    descriptionHtml: formData.get('descriptionHtml') ?? undefined,
+    status: formData.get('status') || 'draft',
+  })
+  if (!parsed.success) return { ok: false, error: 'Please check the values.' }
+
+  const supabase = createSupabaseAdminClient()
+
+  const slug = (parsed.data.slug?.trim() || slugify(parsed.data.title)).slice(0, 200)
+  if (!slug) return { ok: false, error: 'Could not derive a URL handle from that title.' }
+
+  const { data: product, error } = await supabase
+    .from('products')
+    .insert({
+      slug,
+      title: parsed.data.title,
+      description_html: parsed.data.descriptionHtml || null,
+      status: parsed.data.status,
+    })
+    .select('id, slug')
+    .single()
+
+  if (error) {
+    return {
+      ok: false,
+      error: error.code === '23505' ? `The handle "${slug}" is already taken.` : error.message,
+    }
+  }
+
+  const { error: variantError } = await supabase.from('product_variants').insert({
+    product_id: product.id,
+    title: 'Default',
+    price_cents: 0,
+    inventory_quantity: 0,
+    position: 1,
+  })
+
+  if (variantError) return { ok: false, error: variantError.message }
+
+  revalidatePath('/admin/products')
+  return { ok: true }
+}
+
+const newVariantSchema = z.object({
+  productId: z.string().uuid(),
+  title: z.string().trim().min(1).max(200),
+  sku: z.string().trim().max(100).optional(),
+  priceCents: z.coerce.number().int().min(0).max(100_000_000),
+  quantity: z.coerce.number().int().min(0).max(1_000_000).default(0),
+})
+
+export async function createVariant(formData: FormData): Promise<ActionResult> {
+  await assertAdmin()
+
+  const parsed = newVariantSchema.safeParse({
+    productId: formData.get('productId'),
+    title: formData.get('title'),
+    sku: formData.get('sku') || undefined,
+    priceCents: formData.get('priceCents'),
+    quantity: formData.get('quantity') || 0,
+  })
+  if (!parsed.success) return { ok: false, error: 'Please check the values.' }
+
+  const supabase = createSupabaseAdminClient()
+
+  const { data: last } = await supabase
+    .from('product_variants')
+    .select('position')
+    .eq('product_id', parsed.data.productId)
+    .order('position', { ascending: false })
+    .limit(1)
+    .maybeSingle()
+
+  const { data: variant, error } = await supabase
+    .from('product_variants')
+    .insert({
+      product_id: parsed.data.productId,
+      title: parsed.data.title,
+      sku: parsed.data.sku || null,
+      price_cents: parsed.data.priceCents,
+      position: (last?.position ?? 0) + 1,
+      // Opening stock is journalled below rather than written here, so the
+      // movement history explains where every unit came from.
+      inventory_quantity: 0,
+    })
+    .select('id')
+    .single()
+
+  if (error) {
+    return {
+      ok: false,
+      error: error.code === '23505' ? 'That SKU is already in use.' : error.message,
+    }
+  }
+
+  if (parsed.data.quantity > 0) {
+    const { error: stockError } = await supabase.rpc('adjust_inventory', {
+      p_variant_id: variant.id,
+      p_delta: parsed.data.quantity,
+      p_reason: 'correction',
+      p_note: 'opening stock',
+    })
+    if (stockError) return { ok: false, error: stockError.message }
+  }
+
+  const { data: product } = await supabase
+    .from('products')
+    .select('slug')
+    .eq('id', parsed.data.productId)
+    .maybeSingle()
+
+  if (product) revalidatePath(`/products/${product.slug}`)
+  revalidatePath(`/admin/products/${parsed.data.productId}`)
+  return { ok: true }
+}
+
+/** What the storage buckets accept, mirrored from the migration. */
+const IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/avif', 'image/gif']
+const MAX_IMAGE_BYTES = 20 * 1024 * 1024
+
+export async function uploadProductImage(formData: FormData): Promise<ActionResult> {
+  await assertAdmin()
+
+  const productId = String(formData.get('productId') ?? '')
+  const file = formData.get('file')
+  const alt = String(formData.get('alt') ?? '').trim()
+
+  if (!/^[0-9a-f-]{36}$/i.test(productId)) return { ok: false, error: 'Unknown product.' }
+  if (!(file instanceof File) || file.size === 0) return { ok: false, error: 'Choose a file.' }
+
+  // Checked here as well as by the bucket: the bucket's rejection surfaces as
+  // an opaque storage error, and an admin deserves to know which rule they hit.
+  if (!IMAGE_TYPES.includes(file.type)) {
+    return { ok: false, error: `${file.type || 'That file'} is not an accepted image type.` }
+  }
+  if (file.size > MAX_IMAGE_BYTES) {
+    return { ok: false, error: 'That image is larger than 20 MB.' }
+  }
+
+  const supabase = createSupabaseAdminClient()
+
+  const { data: product } = await supabase
+    .from('products')
+    .select('id, slug')
+    .eq('id', productId)
+    .maybeSingle()
+  if (!product) return { ok: false, error: 'Product not found.' }
+
+  const { data: existing } = await supabase
+    .from('product_images')
+    .select('position')
+    .eq('product_id', productId)
+    .order('position', { ascending: false })
+    .limit(1)
+    .maybeSingle()
+
+  const position = (existing?.position ?? 0) + 1
+  const extension = (file.name.split('.').pop() ?? 'jpg').toLowerCase().replace(/[^a-z0-9]/g, '')
+  const path = `${productId}/${String(position).padStart(2, '0')}-${Date.now()}.${extension}`
+
+  const { error: uploadError } = await supabase.storage
+    .from('product-media')
+    .upload(path, file, { contentType: file.type, upsert: false })
+
+  if (uploadError) return { ok: false, error: uploadError.message }
+
+  const { error } = await supabase.from('product_images').insert({
+    product_id: productId,
+    storage_path: path,
+    alt: alt || null,
+    position,
+    // The first image a product gets is the one the grid shows.
+    is_primary: existing === null,
+  })
+
+  if (error) {
+    // Do not leave an orphan in the bucket if the row could not be written.
+    await supabase.storage.from('product-media').remove([path])
+    return { ok: false, error: error.message }
+  }
+
+  revalidatePath(`/products/${product.slug}`)
+  revalidatePath(`/admin/products/${productId}`)
+  revalidatePath('/collections/all')
+  revalidatePath('/')
+  return { ok: true }
+}
+
+/**
+ * Replaces a product's collection membership with exactly the boxes ticked.
+ *
+ * Sent as repeated `collectionId` fields, so unticking the last one clears the
+ * product out of every collection — which a "add these" action could not do.
+ */
+export async function setProductCollections(formData: FormData): Promise<ActionResult> {
+  await assertAdmin()
+
+  const productId = String(formData.get('productId') ?? '')
+  if (!/^[0-9a-f-]{36}$/i.test(productId)) return { ok: false, error: 'Unknown product.' }
+
+  const wanted = formData
+    .getAll('collectionId')
+    .map(String)
+    .filter((id) => /^[0-9a-f-]{36}$/i.test(id))
+
+  const supabase = createSupabaseAdminClient()
+
+  const { data: product } = await supabase
+    .from('products')
+    .select('slug')
+    .eq('id', productId)
+    .maybeSingle()
+  if (!product) return { ok: false, error: 'Product not found.' }
+
+  const { data: current } = await supabase
+    .from('collection_products')
+    .select('collection_id')
+    .eq('product_id', productId)
+
+  const held = new Set((current ?? []).map((row) => row.collection_id))
+  const target = new Set(wanted)
+
+  const toRemove = [...held].filter((id) => !target.has(id))
+  const toAdd = [...target].filter((id) => !held.has(id))
+
+  if (toRemove.length > 0) {
+    const { error } = await supabase
+      .from('collection_products')
+      .delete()
+      .eq('product_id', productId)
+      .in('collection_id', toRemove)
+    if (error) return { ok: false, error: error.message }
+  }
+
+  if (toAdd.length > 0) {
+    const { error } = await supabase
+      .from('collection_products')
+      .insert(toAdd.map((collectionId) => ({ product_id: productId, collection_id: collectionId })))
+    if (error) return { ok: false, error: error.message }
+  }
+
+  const { data: collections } = await supabase
+    .from('collections')
+    .select('slug')
+    .in('id', [...toRemove, ...toAdd])
+
+  for (const collection of collections ?? []) revalidatePath(`/collections/${collection.slug}`)
+  revalidatePath(`/products/${product.slug}`)
+  revalidatePath(`/admin/products/${productId}`)
+  revalidatePath('/collections/all')
+  return { ok: true }
+}
