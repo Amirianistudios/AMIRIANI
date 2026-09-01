@@ -22,6 +22,14 @@
  *
  * This is a comparison fixture, not a redistribution of the store: it is
  * written to a gitignored directory and served only on loopback.
+ *
+ * Known limitation: sections the reference fills over AJAX come out empty.
+ * The product page's `<product-recommendations>` element fetches
+ * /recommendations/products after load, so in the mirror the "You may also
+ * like" grid is absent and compare-visual reports its selectors as "missing on
+ * reference". On the live store that section does render — check it against
+ * the real origin before treating such a report as a difference in the
+ * rebuild.
  */
 
 import { createServer } from 'node:http'
