@@ -48,6 +48,15 @@ const nextConfig: NextConfig = {
     remotePatterns: remotePatterns(),
     formats: ['image/avif', 'image/webp'],
     dangerouslyAllowLocalIP: allowLocalImages,
+
+    /*
+     * Next 16 requires every quality an <Image> asks for to be listed here;
+     * anything else is silently coerced to the nearest allowed value. Without
+     * 90, the `quality={90}` on the hero and the product gallery — the two
+     * largest images on the site — was being served at 75, which shows as
+     * compression noise in flat areas like the sky and plain garment fabric.
+     */
+    qualities: [75, 90],
   },
 
   // Surfaces accidental client-side use of server-only modules at build time.

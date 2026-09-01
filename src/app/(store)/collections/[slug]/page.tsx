@@ -96,7 +96,13 @@ export default async function CollectionPage({
       */}
       <h1 className="visually-hidden">{data.title}</h1>
 
-      <div className="section-product-grid-padding">
+      {/*
+        `gradient color-scheme-custom` is what paints this section white. The
+        page body is cream, so without it the cream showed through behind the
+        grid and every product card read as a white tile floating on beige —
+        the reference has a white ground here and the cards blend into it.
+      */}
+      <div className="section-product-grid-padding gradient color-scheme-custom">
         <div className="collection page-width">
           {data.products.length === 0 ? (
             <div className="collection collection--empty page-width" id="product-grid">

@@ -86,9 +86,31 @@
 /*
  * The reference theme's custom scheme (id c815deb1-… on the live site), used by
  * the hero text box, the featured collection, the product page and the footer.
- * White ground, mid-grey body text, black buttons.
+ * White ground, near-black text, black buttons.
+ *
+ * This is NOT the same as color-accent-3, though the two are identical in every
+ * value but one. Accent 3 has a mid-grey foreground (136); this scheme has a
+ * near-black one (17). Aliasing them together washed out every heading and
+ * every line of body text on the pages that use it — the hero, the featured
+ * collection, the product page and the footer — which is most of the store.
  */
-.color-scheme-custom,
+.color-scheme-custom {
+  --color-background: 255, 255, 255;
+  --gradient-background: #ffffff;
+  --color-foreground: 17, 17, 17;
+  --color-background-contrast: 191, 191, 191;
+  --color-shadow: 237, 237, 237;
+  --color-button: 0, 0, 0;
+  --color-button-text: 255, 255, 255;
+  --color-secondary-button: 255, 255, 255;
+  --color-secondary-button-text: 17, 17, 17;
+  --color-link: 17, 17, 17;
+  --color-badge-foreground: 17, 17, 17;
+  --color-badge-background: 255, 255, 255;
+  --color-badge-border: 17, 17, 17;
+  --payment-terms-background-color: rgb(255 255 255);
+}
+
 .color-accent-3 {
   --color-background: 255, 255, 255;
   --gradient-background: #ffffff;

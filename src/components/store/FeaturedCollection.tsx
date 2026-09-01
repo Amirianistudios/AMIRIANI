@@ -71,8 +71,13 @@ export function FeaturedCollection({
 
           {viewAllHref && (
             <div className="center collection__view-all scroll-trigger animate--slide-in">
+              {/*
+                `button--secondary`, as the reference emits. Without it the
+                button takes the primary style — solid black with white text —
+                where the reference shows a white button with a dark outline.
+              */}
               <Link
-                className="button"
+                className="button button--secondary"
                 href={viewAllHref}
                 aria-label={`View all products in the ${title ?? 'collection'} collection`}
               >

@@ -23,13 +23,10 @@
  * This is a comparison fixture, not a redistribution of the store: it is
  * written to a gitignored directory and served only on loopback.
  *
- * Known limitation: sections the reference fills over AJAX come out empty.
- * The product page's `<product-recommendations>` element fetches
- * /recommendations/products after load, so in the mirror the "You may also
- * like" grid is absent and compare-visual reports its selectors as "missing on
- * reference". On the live store that section does render — check it against
- * the real origin before treating such a report as a difference in the
- * rebuild.
+ * Sections the reference fills over AJAX are spliced in rather than left empty
+ * — see inlineRecommendations. Without that the mirror shows a product page
+ * with no "You may also like" grid, which the comparison then reports as a
+ * difference in the rebuild when it is an artefact of how the mirror was made.
  */
 
 import { createServer } from 'node:http'
@@ -48,7 +45,25 @@ const SERVE_ONLY = process.argv.includes('--serve')
  * otherwise the reference shows different numbers than the rebuild and every
  * price element reads as a mismatch.
  */
-const PAGES = ['/', '/collections/all', '/products/oversized-high-neck-t-shirt-unisex-fit', '/cart']
+const PAGES = [
+  '/',
+  '/collections/all',
+  '/collections/frontpage',
+  '/products/oversized-high-neck-t-shirt-unisex-fit',
+  '/products/oversized-hoodie-unisex-fit',
+  '/cart',
+  '/search?q=tee',
+  '/pages/contact',
+  '/blogs/news',
+  '/policies/refund-policy',
+  '/policies/privacy-policy',
+  '/policies/terms-of-service',
+  '/policies/shipping-policy',
+  '/policies/legal-notice',
+  '/policies/contact-information',
+  '/account/login',
+  '/account/register',
+]
 const MARKET = process.env.SHOPIFY_MARKET_COUNTRY ?? 'BE'
 
 const MIME = {
@@ -123,6 +138,59 @@ async function get(url) {
   return Buffer.from(await res.arrayBuffer())
 }
 
+/**
+ * Fills in the product page's `<product-recommendations>` element.
+ *
+ * The reference loads that section over AJAX after first paint, so a plain
+ * fetch of the page captures an empty shell — and the comparison then reports
+ * "You may also like" as missing on the reference when the live store does
+ * render it. Fetching the same section URL the element would and splicing the
+ * result in makes the mirror show what a visitor actually sees.
+ */
+async function inlineRecommendations(html) {
+  const tag = html.match(
+    /<product-recommendations\b([^>]*)>([\s\S]*?)<\/product-recommendations>/,
+  )
+  if (!tag) return html
+
+  const attrs = tag[1]
+  const dataUrl = attrs.match(/data-url="([^"]+)"/)?.[1]
+  const sectionId = attrs.match(/data-section-id="([^"]+)"/)?.[1]
+  const productId = attrs.match(/data-product-id="([^"]+)"/)?.[1]
+  if (!dataUrl || !sectionId || !productId) return html
+
+  const url = new URL(dataUrl, STORE)
+  url.searchParams.set('product_id', productId)
+  url.searchParams.set('section_id', sectionId)
+
+  let section
+  try {
+    section = (await get(url.toString())).toString('utf8')
+  } catch {
+    return html
+  }
+
+  // The response is the whole section; take what belongs inside the element.
+  const inner = section.match(
+    /<product-recommendations\b[^>]*>([\s\S]*?)<\/product-recommendations>/,
+  )
+  if (!inner) return html
+
+  return html.replace(
+    tag[0],
+    `<product-recommendations${attrs}>${inner[1]}</product-recommendations>`,
+  )
+}
+
+/**
+ * Where a page is stored, and the path the server matches it back on.
+ * A query string cannot be a directory name, so it becomes part of one.
+ */
+function pageFile(path) {
+  if (path === '/') return '/index.html'
+  return `${path.replace(/\?/g, '__q__').replace(/[&=]/g, '_')}/index.html`
+}
+
 async function store(relPath, body) {
   const file = join(OUT, relPath)
   await mkdir(dirname(file), { recursive: true })
@@ -142,6 +210,8 @@ async function mirror() {
       console.log(`FAILED (${error.message})`)
       continue
     }
+
+    html = await inlineRecommendations(html)
 
     // Rewrite every reference to a local path, collecting what to fetch.
     const rewrite = (raw) => {
@@ -176,7 +246,7 @@ async function mirror() {
       return local ? `url(${quote}${local}${quote})` : match
     })
 
-    await store(path === '/' ? '/index.html' : `${path}/index.html`, html)
+    await store(pageFile(path), html)
     console.log('ok')
   }
 
@@ -229,9 +299,10 @@ async function mirror() {
 function serve() {
   createServer(async (req, res) => {
     const path = decodeURIComponent(new URL(req.url, 'http://localhost').pathname)
+    const search = new URL(req.url, 'http://localhost').search
     const candidates = path.startsWith('/_mirror/')
       ? [path]
-      : [path === '/' ? '/index.html' : `${path}/index.html`, path]
+      : [pageFile(path + search), pageFile(path), path]
 
     for (const candidate of candidates) {
       try {
