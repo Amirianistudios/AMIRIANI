@@ -61,11 +61,44 @@ export interface Collection {
   sortOrder: string
 }
 
+/**
+ * Public URL for a file in a Supabase Storage bucket.
+ *
+ * Against a hosted project this is the project's own origin. Against the local
+ * harness, which serves storage from 127.0.0.1, it is a same-origin path
+ * instead: Next refuses to optimise an image whose host resolves to a private
+ * IP — an SSRF guard that cannot be relaxed in a production build — so a
+ * loopback URL means every image on the page 400s. Routing through this app's
+ * own origin (see the rewrite in next.config.ts) sidesteps the question
+ * entirely, because the image is then not remote at all.
+ */
+export function storageUrl(bucket: string, path: string): string {
+  const base = SUPABASE_URL()
+  if (/^https?:\/\/(127\.0\.0\.1|localhost|\[::1\])(:|\/|$)/.test(base)) {
+    return `/_storage/${bucket}/${path}`
+  }
+  return `${base}/storage/v1/object/public/${bucket}/${path}`
+}
+
+/**
+ * Re-points an already-absolute Supabase Storage URL through `storageUrl`.
+ *
+ * The importer writes absolute URLs into `site_settings` and
+ * `homepage_sections` — the logo and the hero image — so those rows carry
+ * whichever origin was configured when the import ran. Normalising on read
+ * means moving the project (or running against the local harness) does not
+ * require re-importing to fix the two images that are not in `product_images`.
+ */
+export function resolveStorageUrl(url: string | null | undefined): string | null {
+  if (!url) return null
+  const match = url.match(/\/storage\/v1\/object\/public\/([^/]+)\/(.+)$/)
+  if (!match) return url
+  return storageUrl(match[1]!, match[2]!)
+}
+
 /** Resolves a stored image reference to a URL the browser can load. */
 export function imageUrl(row: Pick<ProductImageRow, 'storage_path' | 'external_url'>): string {
-  if (row.storage_path) {
-    return `${SUPABASE_URL()}/storage/v1/object/public/product-media/${row.storage_path}`
-  }
+  if (row.storage_path) return storageUrl('product-media', row.storage_path)
   return row.external_url ?? ''
 }
 
@@ -285,7 +318,7 @@ export async function getCollectionBySlug(slug: string): Promise<Collection | nu
     title: row.title,
     descriptionHtml: row.description_html,
     imageUrl: row.image_path
-      ? `${SUPABASE_URL()}/storage/v1/object/public/collection-media/${row.image_path}`
+      ? storageUrl('collection-media', row.image_path)
       : row.image_url,
     sortOrder: row.sort_order,
   }
@@ -306,7 +339,7 @@ export async function getCollections(): Promise<Collection[]> {
     title: row.title,
     descriptionHtml: row.description_html,
     imageUrl: row.image_path
-      ? `${SUPABASE_URL()}/storage/v1/object/public/collection-media/${row.image_path}`
+      ? storageUrl('collection-media', row.image_path)
       : row.image_url,
     sortOrder: row.sort_order,
   }))

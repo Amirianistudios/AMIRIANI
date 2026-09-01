@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 import { FeaturedCollection } from '@/components/store/FeaturedCollection'
 import { ImageBanner } from '@/components/store/ImageBanner'
-import { getCollectionProducts, getHomepageSections } from '@/lib/catalog'
+import { getCollectionProducts, getHomepageSections, resolveStorageUrl } from '@/lib/catalog'
 import { getSiteConfig } from '@/lib/site'
 import type { Product } from '@/lib/catalog'
 
@@ -70,7 +70,7 @@ export default async function HomePage() {
           return (
             <ImageBanner
               key={section.id}
-              imageUrl={settings.image ?? null}
+              imageUrl={resolveStorageUrl(settings.image)}
               heading={settings.heading ?? null}
               ctaLabel={settings.cta_label ?? null}
               ctaHref={settings.cta_href ?? null}

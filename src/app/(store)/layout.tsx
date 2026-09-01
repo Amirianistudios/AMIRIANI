@@ -3,6 +3,7 @@ import { CartProvider } from '@/components/store/CartProvider'
 import { Footer } from '@/components/store/Footer'
 import { HeaderShell } from '@/components/store/HeaderShell'
 import { ScrollAnimations } from '@/components/store/ScrollAnimations'
+import { resolveStorageUrl } from '@/lib/catalog'
 import { getFooterPolicies, getMainNavigation, getSiteConfig } from '@/lib/site'
 
 /**
@@ -32,7 +33,7 @@ export default async function StoreLayout({ children }: { children: React.ReactN
 
       <HeaderShell
         navigation={navigation}
-        logoUrl={site.logoUrl}
+        logoUrl={resolveStorageUrl(site.logoUrl)}
         shopName={site.name}
         localization={site.localization}
       />

@@ -63,6 +63,29 @@ const nextConfig: NextConfig = {
   serverExternalPackages: [],
 
   /**
+   * Serves Supabase Storage through this app's own origin.
+   *
+   * Only active when the Supabase URL is loopback, i.e. the local harness.
+   * Next refuses to optimise an image whose host resolves to a private IP —
+   * an SSRF guard that (correctly) cannot be switched off in a production
+   * build — so against the harness every image 400s and the pages render
+   * without them. Proxying makes the image same-origin, so the guard never
+   * applies and a local production build looks like the real thing.
+   */
+  async rewrites() {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? ''
+    if (!/^https?:\/\/(127\.0\.0\.1|localhost|\[::1\])(:|\/|$)/.test(supabaseUrl)) {
+      return []
+    }
+    return [
+      {
+        source: '/_storage/:bucket/:path*',
+        destination: `${supabaseUrl.replace(/\/$/, '')}/storage/v1/object/public/:bucket/:path*`,
+      },
+    ]
+  },
+
+  /**
    * URL preservation.
    *
    * A handful of Shopify URLs change shape on the new site. These are kept as
