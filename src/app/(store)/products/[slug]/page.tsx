@@ -76,51 +76,64 @@ export default async function ProductPage({
 
   return (
     <>
-      <section className="shopify-section section section-main-product section-main-product-padding">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <section className="shopify-section section section-main-product">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
 
-      {/*
-        The wrapper classes are Dawn's and are what create the two-column
-        layout: `grid grid--1-col grid--2-col-tablet` with each column a
-        `grid__item`. The reference store uses the `product--medium` width and
-        the thumbnail gallery layout.
-      */}
-      <div className="page-width">
-        <div className="product product--medium product--left product--thumbnail product--mobile-hide grid grid--1-col grid--2-col-tablet">
-          <div className="grid__item product__media-wrapper">
-            <ProductGallery images={product.images} title={product.title} />
-          </div>
+        {/*
+          A full-bleed white wrapper, edge to edge — not just behind the
+          content column. The page body is cream, and the reference paints this
+          whole section white (its <product-info> element carries the padding,
+          `gradient` and the colour scheme). Without it the product sat on
+          cream with a white rectangle around the photograph.
 
-          <div className="product__info-wrapper grid__item scroll-trigger animate--slide-in">
-            <section
-              id="ProductInfo"
-              className="product__info-container product__column-sticky"
-            >
-              {product.vendor && (
-                <p className="product__text inline-richtext caption-with-letter-spacing">
-                  {product.vendor}
-                </p>
-              )}
-
-              <div className="product__title">
-                <h1>{product.title}</h1>
+          The padding class moves here from the <section> for the same reason:
+          on the reference it belongs to the painted box, so the white extends
+          above and below the content rather than stopping at it.
+        */}
+        <div className="section-main-product-padding gradient color-scheme-custom">
+          {/*
+            The wrapper classes are Dawn's and are what create the two-column
+            layout: `grid grid--1-col grid--2-col-tablet` with each column a
+            `grid__item`. The reference store uses the `product--medium` width and
+            the thumbnail gallery layout.
+          */}
+          <div className="page-width">
+            <div className="product product--medium product--left product--thumbnail product--mobile-hide grid grid--1-col grid--2-col-tablet">
+              <div className="grid__item product__media-wrapper">
+                <ProductGallery images={product.images} title={product.title} />
               </div>
 
-              <ProductForm product={product} />
+              <div className="product__info-wrapper grid__item scroll-trigger animate--slide-in">
+                <section
+                  id="ProductInfo"
+                  className="product__info-container product__column-sticky"
+                >
+                  {product.vendor && (
+                    <p className="product__text inline-richtext caption-with-letter-spacing">
+                      {product.vendor}
+                    </p>
+                  )}
 
-              {product.descriptionHtml && (
-                <div
-                  className="product__description rte quick-add-hidden"
-                  dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
-                />
-              )}
-            </section>
+                  <div className="product__title">
+                    <h1>{product.title}</h1>
+                  </div>
+
+                  <ProductForm product={product} />
+
+                  {product.descriptionHtml && (
+                    <div
+                      className="product__description rte quick-add-hidden"
+                      dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
+                    />
+                  )}
+                </section>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
       </section>
 
       <RelatedProducts products={related} />

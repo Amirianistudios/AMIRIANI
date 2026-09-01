@@ -15,17 +15,38 @@ import { formatMoney } from '@/lib/money'
  * Dawn's cart table markup, so component-cart-items.css lays out the columns,
  * the quantity stepper and the totals block exactly as on the reference store.
  */
-export function CartItems() {
+export function CartItems({ signedIn = false }: { signedIn?: boolean }) {
   const { cart, updateLine, removeLine, pending, error } = useCart()
   const router = useRouter()
 
   if (cart.lines.length === 0) {
+    /*
+     * Dawn's own empty-cart markup, not an invented wrapper. `.cart__warnings`
+     * is what centres this and gives it its 7rem of breathing room, and it is
+     * `display: none` until an `.is-empty` ancestor turns it on — so both
+     * classes are load-bearing. With a custom class instead, the empty cart
+     * rendered flush left, tight under the header.
+     */
     return (
-      <div className="cart__empty-text-wrapper">
-        <h1 className="title title--primary">Your cart is empty</h1>
-        <Link href="/collections/all" className="button">
-          Continue shopping
-        </Link>
+      <div className="is-empty">
+        <div className="cart__warnings">
+          <h1 className="cart__empty-text">Your cart is empty</h1>
+          <Link href="/collections/all" className="button">
+            Continue shopping
+          </Link>
+
+          {!signedIn && (
+            <>
+              <h2 className="cart__login-title">Have an account?</h2>
+              <p className="cart__login-paragraph">
+                <Link href="/account/login" className="link underlined-link">
+                  Log in
+                </Link>{' '}
+                to check out faster.
+              </p>
+            </>
+          )}
+        </div>
       </div>
     )
   }
