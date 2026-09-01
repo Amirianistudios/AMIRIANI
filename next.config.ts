@@ -57,6 +57,16 @@ const nextConfig: NextConfig = {
      * compression noise in flat areas like the sky and plain garment fabric.
      */
     qualities: [75, 90],
+
+    /*
+     * `SNAPSHOT=1` turns the optimiser off for scripts/snapshot-static.mjs.
+     * The optimiser serves every image from /_next/image with the real file in
+     * a query string, and the client recomputes that URL after hydration — so
+     * a crawled copy cannot rewrite it to a flat path and have it survive.
+     * Unoptimised, <Image> emits the storage path itself, which is a file a
+     * static host can actually serve. Markup, sizes and layout are unchanged.
+     */
+    unoptimized: process.env.SNAPSHOT === '1',
   },
 
   // Surfaces accidental client-side use of server-only modules at build time.
