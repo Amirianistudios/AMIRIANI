@@ -26,6 +26,7 @@ declare global {
         'predictive-search': CustomElement
         'details-modal': CustomElement
         'localization-form': CustomElement
+        'account-icon': CustomElement
       }
     }
   }

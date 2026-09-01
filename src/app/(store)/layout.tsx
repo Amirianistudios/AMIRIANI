@@ -36,6 +36,7 @@ export default async function StoreLayout({ children }: { children: React.ReactN
         logoUrl={resolveStorageUrl(site.logoUrl)}
         shopName={site.name}
         localization={site.localization}
+        instagramUrl={site.instagramUrl}
       />
 
       {/*

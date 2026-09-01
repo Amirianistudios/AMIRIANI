@@ -13,6 +13,7 @@ export interface HeaderProps {
   shopName: string
   currentPath?: string
   localization: { country: string; currency: string; symbol: string }
+  instagramUrl?: string | null
 }
 
 /**
@@ -32,6 +33,7 @@ export function Header({
   shopName,
   currentPath = '/',
   localization,
+  instagramUrl,
 }: HeaderProps) {
   const HeadingTag = currentPath === '/' ? 'h1' : 'div'
 
@@ -39,7 +41,12 @@ export function Header({
     <div className="shopify-section shopify-section-group-header-group section-header">
       <div className="header-wrapper color-accent-2 gradient">
         <header className="header header--top-center header--mobile-center page-width header--has-menu header--has-social header--has-account header--has-localizations">
-          <HeaderDrawer navigation={navigation} currentPath={currentPath} />
+          <HeaderDrawer
+            navigation={navigation}
+            currentPath={currentPath}
+            localization={localization}
+            instagramUrl={instagramUrl}
+          />
 
           {/*
             Dawn emits the search twice and lets CSS pick one per breakpoint:
