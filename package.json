@@ -13,12 +13,15 @@
     "data:import": "tsx scripts/import-to-supabase.ts",
     "admin:grant": "tsx scripts/grant-admin.ts",
     "dev:supabase": "node scripts/local-supabase.mjs",
-    "compare": "node scripts/compare-visual.mjs"
+    "compare": "node scripts/compare-visual.mjs",
+    "commerce:verify": "./scripts/verify-commerce.sh",
+    "stripe:verify": "node scripts/verify-stripe-webhook.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.5",
     "@supabase/supabase-js": "^2.112.4",
     "next": "16.3.4",
+    "pg": "^8.23.0",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "stripe": "^22.6.0",
@@ -28,6 +31,7 @@
     "@playwright/test": "^1.62.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
+    "@types/pg": "^8.23.1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",

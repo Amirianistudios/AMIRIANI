@@ -6,11 +6,8 @@ import { getCart } from '@/lib/cart/server'
 import { rateLimit } from '@/lib/rate-limit'
 import { stripe } from '@/lib/stripe/client'
 import { createSupabaseAdminClient, createSupabaseServerClient } from '@/lib/supabase/server'
-import {
-  FREE_SHIPPING_THRESHOLD_CENTS,
-  SHIPPING_FLAT_RATE_CENTS,
-  SITE_URL,
-} from '@/lib/env'
+import { FREE_SHIPPING_THRESHOLD_CENTS, SITE_URL } from '@/lib/env'
+import { resolveShippingRate, shipsTo } from '@/lib/shipping'
 import type { Address, OrderRow } from '@/types/database'
 
 export const runtime = 'nodejs'
@@ -35,6 +32,12 @@ const checkoutSchema = z.object({
   billingAddress: addressSchema.optional().nullable(),
   discountCode: z.string().trim().max(60).optional().nullable(),
   note: z.string().trim().max(1000).optional().nullable(),
+  /*
+   * A rate *code*, never a price. The server looks the amount up in the
+   * shipping table for this destination and subtotal, so a browser cannot
+   * select a rate the cart has not earned or invent a cheaper one.
+   */
+  shippingRateCode: z.string().trim().max(40).optional().nullable(),
 })
 
 /**
@@ -62,7 +65,8 @@ export async function POST(request: Request) {
     )
   }
 
-  const { email, shippingAddress, billingAddress, discountCode, note } = parsed.data
+  const { email, shippingAddress, billingAddress, discountCode, note, shippingRateCode } =
+    parsed.data
 
   const cart = await getCart()
   if (!cart.id || cart.lines.length === 0) {
@@ -82,8 +86,28 @@ export async function POST(request: Request) {
   }
 
   // Shipping is a server-side rule, never a client input.
-  const shippingCents =
-    cart.subtotalCents >= FREE_SHIPPING_THRESHOLD_CENTS() ? 0 : SHIPPING_FLAT_RATE_CENTS()
+  if (!shipsTo(shippingAddress.country_code)) {
+    return NextResponse.json(
+      { error: 'We do not currently ship to that country.' },
+      { status: 400 },
+    )
+  }
+
+  const shippingRate = resolveShippingRate(
+    shippingAddress.country_code,
+    cart.subtotalCents,
+    shippingRateCode,
+    FREE_SHIPPING_THRESHOLD_CENTS(),
+  )
+
+  if (!shippingRate) {
+    return NextResponse.json(
+      { error: 'That delivery option is not available for your order.' },
+      { status: 400 },
+    )
+  }
+
+  const shippingCents = shippingRate.priceCents
 
   // Link the order to the signed-in customer, when there is one.
   let customerId: string | null = null
@@ -177,7 +201,7 @@ export async function POST(request: Request) {
                 {
                   shipping_rate_data: {
                     type: 'fixed_amount',
-                    display_name: 'Standard shipping',
+                    display_name: shippingRate.label,
                     fixed_amount: {
                       amount: created.shipping_cents,
                       currency: created.currency.toLowerCase(),

@@ -12,12 +12,15 @@
  *                            (default; makes the store independent of Shopify)
  *   IMAGE_STRATEGY=external  keep the source URLs, no downloads
  *   IMAGE_BASE_URL=<url>     rewrite image hosts, used by the local dev harness
- *   DEFAULT_INVENTORY=<n>    starting stock for variants the public API reports
- *                            as available (default 25). Public Shopify JSON
- *                            exposes only a boolean, so real counts must come
- *                            from an admin export — see --inventory-csv below.
- *   INVENTORY_CSV=<path>     Shopify admin product export CSV; when given, real
- *                            per-variant inventory is read from it.
+ *   SHOPIFY_CSV=<path>       Shopify admin product export CSV. Supplies
+ *                            everything the public storefront cannot: real
+ *                            per-variant inventory, barcodes, cost per item,
+ *                            per-variant weight, and SEO title/description.
+ *                            Strongly recommended before going live.
+ *                            (INVENTORY_CSV is accepted as an older alias.)
+ *   DEFAULT_INVENTORY=<n>     placeholder stock for available variants when no
+ *                            CSV is given (default 25). Placeholder only — the
+ *                            public JSON exposes just an availability boolean.
  */
 
 import { readFile } from 'node:fs/promises'
@@ -30,7 +33,11 @@ const SERVICE_KEY = requireEnv('SUPABASE_SERVICE_ROLE_KEY')
 const IMAGE_STRATEGY = (process.env.IMAGE_STRATEGY ?? 'storage') as 'storage' | 'external'
 const IMAGE_BASE_URL = process.env.IMAGE_BASE_URL ?? null
 const DEFAULT_INVENTORY = Number(process.env.DEFAULT_INVENTORY ?? 25)
-const INVENTORY_CSV = process.env.INVENTORY_CSV ?? null
+/** Force placeholder stock over existing values. Off by default; see below. */
+const OVERWRITE_INVENTORY = process.env.OVERWRITE_INVENTORY === '1'
+// SHOPIFY_CSV is the current name; INVENTORY_CSV is kept working so existing
+// commands and docs do not break.
+const SHOPIFY_CSV = process.env.SHOPIFY_CSV ?? process.env.INVENTORY_CSV ?? null
 
 const SOURCE = 'shopify'
 
@@ -105,34 +112,154 @@ function rewriteImageUrl(url: string): string {
 }
 
 /**
- * Parses a Shopify admin product export CSV into
- * `variantSku -> inventory quantity`.
+ * Everything a Shopify admin product export carries that the public storefront
+ * JSON does not. Keyed by variant SKU, which is the only identifier common to
+ * both the CSV and the public feed.
  */
-async function loadInventoryCsv(path: string): Promise<Map<string, number>> {
+interface AdminVariantFields {
+  inventoryQuantity: number | null
+  barcode: string | null
+  costCents: number | null
+  weightGrams: number | null
+  requiresShipping: boolean | null
+  taxable: boolean | null
+}
+
+/** Per-product fields from the CSV, keyed by product handle. */
+interface AdminProductFields {
+  seoTitle: string | null
+  seoDescription: string | null
+  productType: string | null
+  vendor: string | null
+  status: string | null
+}
+
+interface AdminExport {
+  variants: Map<string, AdminVariantFields>
+  products: Map<string, AdminProductFields>
+}
+
+/** Case- and spacing-insensitive column lookup, returning -1 when absent. */
+function columnIndex(header: string[], ...names: string[]): number {
+  const normalised = header.map((h) => h.trim().toLowerCase())
+  for (const name of names) {
+    const index = normalised.indexOf(name.toLowerCase())
+    if (index !== -1) return index
+  }
+  return -1
+}
+
+function cell(row: string[], index: number): string | null {
+  if (index === -1) return null
+  const value = row[index]?.trim()
+  return value ? value : null
+}
+
+/**
+ * Parses a Shopify admin product export CSV.
+ *
+ * Shopify emits one row per variant, with product-level columns filled only on
+ * the first row of each product and blank on the rest — so product fields are
+ * carried forward from the last row that had a handle.
+ *
+ * Weight needs unit conversion: the CSV reports a value plus a unit column
+ * (g/kg/lb/oz), and the database stores grams.
+ */
+async function loadAdminExport(path: string): Promise<AdminExport> {
   const text = await readFile(path, 'utf8')
   const rows = parseCsv(text)
   const header = rows.shift()
-  if (!header) return new Map()
+  if (!header) return { variants: new Map(), products: new Map() }
 
-  const skuIndex = header.findIndex((h) => h.trim().toLowerCase() === 'variant sku')
-  const qtyIndex = header.findIndex((h) =>
-    ['variant inventory qty', 'variant inventory quantity'].includes(h.trim().toLowerCase()),
-  )
+  const idx = {
+    handle: columnIndex(header, 'Handle'),
+    sku: columnIndex(header, 'Variant SKU'),
+    qty: columnIndex(header, 'Variant Inventory Qty', 'Variant Inventory Quantity'),
+    barcode: columnIndex(header, 'Variant Barcode'),
+    cost: columnIndex(header, 'Cost per item', 'Variant Cost'),
+    weight: columnIndex(header, 'Variant Grams', 'Variant Weight'),
+    weightUnit: columnIndex(header, 'Variant Weight Unit'),
+    requiresShipping: columnIndex(header, 'Variant Requires Shipping'),
+    taxable: columnIndex(header, 'Variant Taxable'),
+    seoTitle: columnIndex(header, 'SEO Title'),
+    seoDescription: columnIndex(header, 'SEO Description'),
+    productType: columnIndex(header, 'Type', 'Product Type'),
+    vendor: columnIndex(header, 'Vendor'),
+    status: columnIndex(header, 'Status'),
+  }
 
-  if (skuIndex === -1 || qtyIndex === -1) {
+  if (idx.handle === -1 || idx.sku === -1) {
     throw new Error(
-      'INVENTORY_CSV does not look like a Shopify product export ' +
-        '(expected "Variant SKU" and "Variant Inventory Qty" columns)',
+      'SHOPIFY_CSV does not look like a Shopify product export ' +
+        '(expected at least "Handle" and "Variant SKU" columns)',
     )
   }
 
-  const map = new Map<string, number>()
+  const variants = new Map<string, AdminVariantFields>()
+  const products = new Map<string, AdminProductFields>()
+  let currentHandle: string | null = null
+
   for (const row of rows) {
-    const sku = row[skuIndex]?.trim()
-    const qty = Number(row[qtyIndex])
-    if (sku && Number.isFinite(qty)) map.set(sku, Math.max(0, Math.trunc(qty)))
+    const handle = cell(row, idx.handle)
+    if (handle) currentHandle = handle
+
+    // Product-level columns appear only on a product's first row.
+    if (handle && currentHandle) {
+      products.set(currentHandle, {
+        seoTitle: cell(row, idx.seoTitle),
+        seoDescription: cell(row, idx.seoDescription),
+        productType: cell(row, idx.productType),
+        vendor: cell(row, idx.vendor),
+        status: cell(row, idx.status)?.toLowerCase() ?? null,
+      })
+    }
+
+    const sku = cell(row, idx.sku)
+    if (!sku) continue
+
+    const qtyRaw = cell(row, idx.qty)
+    const qty = qtyRaw === null ? null : Number(qtyRaw)
+
+    const costRaw = cell(row, idx.cost)
+    const cost = costRaw === null ? null : Number(costRaw)
+
+    const weightRaw = cell(row, idx.weight)
+    const weightValue = weightRaw === null ? null : Number(weightRaw)
+    const weightUnit = (cell(row, idx.weightUnit) ?? 'g').toLowerCase()
+
+    const toGrams = (value: number): number => {
+      switch (weightUnit) {
+        case 'kg':
+          return Math.round(value * 1000)
+        case 'lb':
+          return Math.round(value * 453.59237)
+        case 'oz':
+          return Math.round(value * 28.349523)
+        default:
+          return Math.round(value)
+      }
+    }
+
+    const boolOf = (index: number): boolean | null => {
+      const raw = cell(row, index)
+      if (raw === null) return null
+      return ['true', 'yes', '1'].includes(raw.toLowerCase())
+    }
+
+    variants.set(sku, {
+      inventoryQuantity:
+        qty !== null && Number.isFinite(qty) ? Math.max(0, Math.trunc(qty)) : null,
+      barcode: cell(row, idx.barcode),
+      costCents:
+        cost !== null && Number.isFinite(cost) ? Math.round(cost * 100) : null,
+      weightGrams:
+        weightValue !== null && Number.isFinite(weightValue) ? toGrams(weightValue) : null,
+      requiresShipping: boolOf(idx.requiresShipping),
+      taxable: boolOf(idx.taxable),
+    })
   }
-  return map
+
+  return { variants, products }
 }
 
 /** RFC 4180 CSV parser: handles quoted fields, embedded commas and newlines. */
@@ -213,16 +340,27 @@ async function main() {
   const raw = await readFile(resolve(process.cwd(), 'data/shopify-export.json'), 'utf8')
   const data = JSON.parse(raw) as ExportShape
 
-  const inventory = INVENTORY_CSV ? await loadInventoryCsv(INVENTORY_CSV) : new Map<string, number>()
-  if (INVENTORY_CSV) {
-    console.log(`Loaded inventory for ${inventory.size} SKUs from ${INVENTORY_CSV}`)
+  const admin: AdminExport = SHOPIFY_CSV
+    ? await loadAdminExport(SHOPIFY_CSV)
+    : { variants: new Map(), products: new Map() }
+
+  if (SHOPIFY_CSV) {
+    console.log(
+      `Admin export: ${admin.variants.size} variants and ` +
+        `${admin.products.size} products from ${SHOPIFY_CSV}`,
+    )
   }
 
   const productIdByHandle = new Map<string, string>()
+  // Counts variants whose existing stock this run deliberately left untouched.
+  let preservedStock = 0
 
   // ------------------------------------------------------------- products
   for (const product of data.products) {
     console.log(`Product: ${product.title}`)
+
+    // Fields the public storefront JSON cannot expose, when a CSV was supplied.
+    const adminProduct = admin.products.get(product.handle)
 
     const { data: upserted, error } = await supabase
       .from('products')
@@ -231,9 +369,18 @@ async function main() {
           slug: product.handle,
           title: product.title,
           description_html: product.body_html,
-          status: product.published_at ? 'active' : 'draft',
-          vendor: product.vendor,
-          product_type: product.product_type,
+          status:
+            adminProduct?.status === 'draft'
+              ? 'draft'
+              : adminProduct?.status === 'archived'
+                ? 'archived'
+                : product.published_at
+                  ? 'active'
+                  : 'draft',
+          vendor: adminProduct?.vendor ?? product.vendor,
+          product_type: adminProduct?.productType ?? product.product_type,
+          seo_title: adminProduct?.seoTitle ?? null,
+          seo_description: adminProduct?.seoDescription ?? null,
           tags: product.tags,
           currency: 'EUR',
           taxable: true,
@@ -258,22 +405,55 @@ async function main() {
     const sizeOption = product.options.find((o) => o.name.toLowerCase() === 'size')
 
     for (const variant of product.variants) {
-      const quantity =
-        (variant.sku ? inventory.get(variant.sku) : undefined) ??
-        (variant.available ? DEFAULT_INVENTORY : 0)
+      const adminVariant = variant.sku ? admin.variants.get(variant.sku) : undefined
+
+      // Does this variant already exist? Determines whether we may touch stock.
+      const { data: existingVariant } = await supabase
+        .from('product_variants')
+        .select('id, inventory_quantity')
+        .eq('external_source', SOURCE)
+        .eq('external_id', variant.external_id)
+        .maybeSingle()
+
+      /*
+       * Inventory is deliberately conservative on re-import.
+       *
+       * Re-running this script is the normal way to sync catalogue changes, and
+       * stock moves for reasons the script knows nothing about — sales,
+       * restocks, admin corrections. Blindly upserting a number would silently
+       * undo all of that, and on a store with no admin CSV it would reset live
+       * stock to a placeholder.
+       *
+       * So: set stock when creating a variant, or when the admin export states
+       * it explicitly. Otherwise leave whatever the database holds. Pass
+       * OVERWRITE_INVENTORY=1 to force the export's numbers over the top.
+       */
+      const quantity: number | undefined = (() => {
+        if (adminVariant?.inventoryQuantity !== null && adminVariant?.inventoryQuantity !== undefined) {
+          return adminVariant.inventoryQuantity
+        }
+        if (!existingVariant) return variant.available ? DEFAULT_INVENTORY : 0
+        if (OVERWRITE_INVENTORY) return variant.available ? DEFAULT_INVENTORY : 0
+        return undefined
+      })()
+
+      if (existingVariant && quantity === undefined) preservedStock += 1
 
       const { error: variantError } = await supabase.from('product_variants').upsert(
         {
           product_id: productId,
           title: variant.title,
           sku: variant.sku,
+          barcode: adminVariant?.barcode ?? null,
           size: sizeOption ? variant.option1 : null,
           price_cents: toCents(variant.price) ?? 0,
           compare_at_cents: toCents(variant.compare_at_price),
-          weight_grams: variant.grams,
+          cost_cents: adminVariant?.costCents ?? null,
+          weight_grams: adminVariant?.weightGrams ?? variant.grams,
           position: variant.position,
           active: true,
-          inventory_quantity: quantity,
+          // Omitted entirely when undefined, so the stored value survives.
+          ...(quantity === undefined ? {} : { inventory_quantity: quantity }),
           inventory_tracked: true,
           external_source: SOURCE,
           external_id: variant.external_id,
@@ -523,12 +703,33 @@ async function main() {
 
   console.log('\nImport complete.')
 
-  if (!INVENTORY_CSV) {
+  if (!SHOPIFY_CSV) {
     console.log(
-      `\nNOTE: inventory was seeded at ${DEFAULT_INVENTORY} per available variant.\n` +
-        '      The public Shopify API exposes only an availability boolean.\n' +
-        '      Re-run with INVENTORY_CSV=<shopify-products-export.csv> to load\n' +
-        '      real per-variant counts, or set them in /admin.',
+      `\nWARNING: inventory is PLACEHOLDER data — ${DEFAULT_INVENTORY} per available\n` +
+        '         variant. The public Shopify API exposes only an availability\n' +
+        '         boolean, so there is no real count to import.\n\n' +
+        '         Do not go live on these numbers. Export your products from\n' +
+        '         Shopify admin (Products -> Export -> CSV) and re-run:\n\n' +
+        '           SHOPIFY_CSV=./products_export.csv npm run data:import\n\n' +
+        '         That also fills in barcodes, cost per item, per-variant weight\n' +
+        '         and SEO title/description, none of which are public either.',
+    )
+  } else {
+    const withStock = [...admin.variants.values()].filter(
+      (v) => v.inventoryQuantity !== null,
+    ).length
+    console.log(
+      `\nInventory, barcodes, costs and SEO imported from the admin export ` +
+        `(${withStock} variants with real counts).`,
+    )
+  }
+
+  if (preservedStock > 0) {
+    console.log(
+      `\nLeft existing stock untouched on ${preservedStock} variant(s): this run ` +
+        'had no count for them,\n     and overwriting would have discarded sales ' +
+        'and admin corrections.\n     Pass OVERWRITE_INVENTORY=1 to force placeholder ' +
+        'values instead.',
     )
   }
 }

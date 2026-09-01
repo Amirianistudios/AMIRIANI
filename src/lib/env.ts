@@ -45,10 +45,13 @@ export const STRIPE_SECRET_KEY = () => requireServerEnv('STRIPE_SECRET_KEY')
 export const STRIPE_WEBHOOK_SECRET = () =>
   requireServerEnv('STRIPE_WEBHOOK_SECRET')
 
-/** Flat shipping rate in minor units, configurable without a code change. */
-export const SHIPPING_FLAT_RATE_CENTS = () =>
-  Number(process.env.SHIPPING_FLAT_RATE_CENTS ?? '495')
-
-/** Order subtotal at or above which shipping is free. */
+/**
+ * Subtotal at which the cheaper delivery option becomes available.
+ *
+ * Rates themselves live in lib/shipping.ts, transcribed from the reference
+ * store's live checkout. Only the threshold is configurable here, because it is
+ * the one value the public API could not pin exactly — see the note in that
+ * module.
+ */
 export const FREE_SHIPPING_THRESHOLD_CENTS = () =>
-  Number(process.env.FREE_SHIPPING_THRESHOLD_CENTS ?? '10000')
+  Number(process.env.FREE_SHIPPING_THRESHOLD_CENTS ?? '19990')

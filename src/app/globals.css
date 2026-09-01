@@ -96,6 +96,37 @@ a {
  * Without JS nothing gets the offscreen class, so the entire page renders.
  */
 
+/* --------------------------------------------------------------------------
+ * Checkout delivery options
+ *
+ * The reference store's checkout was Shopify-hosted, so there is nothing to
+ * reproduce here. These few rules lay the delivery choices out using the same
+ * tokens as the rest of the storefront, and touch nothing else.
+ * ------------------------------------------------------------------------ */
+
+.checkout__delivery-option {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.4rem 1.6rem;
+  margin-bottom: 0.8rem;
+  border: var(--inputs-border-width) solid rgba(var(--color-foreground), 0.55);
+  border-radius: var(--inputs-radius);
+  cursor: pointer;
+}
+
+.checkout__delivery-option:hover {
+  border-color: rgba(var(--color-foreground), 0.85);
+}
+
+.checkout__delivery-option span:nth-of-type(1) {
+  flex: 1 1 auto;
+}
+
+.checkout__delivery-option span:nth-of-type(2) {
+  font-weight: var(--font-body-weight-bold);
+}
+
 /* The admin area opts out of the storefront's grid body layout. */
 body.admin-body {
   display: block;

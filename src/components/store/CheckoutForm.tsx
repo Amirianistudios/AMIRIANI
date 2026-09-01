@@ -4,6 +4,7 @@ import { useState } from 'react'
 
 import { formatMoney } from '@/lib/money'
 import type { Cart } from '@/lib/cart/server'
+import type { ShippingRate } from '@/lib/shipping'
 
 /**
  * Checkout details form.
@@ -15,14 +16,40 @@ import type { Cart } from '@/lib/cart/server'
  */
 export function CheckoutForm({
   cart,
-  shippingCents,
+  countries,
+  initialRates,
 }: {
   cart: Cart
-  shippingCents: number
+  countries: { code: string; name: string }[]
+  initialRates: ShippingRate[]
 }) {
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [country, setCountry] = useState('BE')
+  const [rates, setRates] = useState<ShippingRate[]>(initialRates)
+  const [rateCode, setRateCode] = useState(initialRates[0]?.code ?? '')
 
+  /*
+   * Options depend on the destination and the cart total, so they are refetched
+   * when the customer picks a country — an event, not a synchronisation, so it
+   * belongs in the handler rather than an effect. The checkout route prices the
+   * order from the rate code regardless, so a stale list cannot alter the total.
+   */
+  async function onCountryChange(countryCode: string) {
+    setCountry(countryCode)
+    try {
+      const res = await fetch(`/api/shipping-rates?country=${countryCode}`)
+      if (!res.ok) return
+      const payload = (await res.json()) as { rates: ShippingRate[] }
+      setRates(payload.rates)
+      setRateCode(payload.rates[0]?.code ?? '')
+    } catch {
+      // Keep whatever is on screen; checkout re-validates the selection anyway.
+    }
+  }
+
+  const selectedRate = rates.find((rate) => rate.code === rateCode) ?? rates[0]
+  const shippingCents = selectedRate?.priceCents ?? 0
   const total = cart.subtotalCents + shippingCents
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -35,6 +62,7 @@ export function CheckoutForm({
     const form = new FormData(event.currentTarget)
     const body = {
       email: String(form.get('email') ?? ''),
+      shippingRateCode: rateCode || null,
       shippingAddress: {
         first_name: String(form.get('first_name') ?? ''),
         last_name: String(form.get('last_name') ?? ''),
@@ -194,14 +222,15 @@ export function CheckoutForm({
           className="select__select"
           id="checkout-country"
           name="country_code"
-          defaultValue="BE"
+          value={country}
+          onChange={(event) => void onCountryChange(event.target.value)}
           required
         >
-          <option value="BE">Belgium</option>
-          <option value="NL">Netherlands</option>
-          <option value="LU">Luxembourg</option>
-          <option value="FR">France</option>
-          <option value="DE">Germany</option>
+          {countries.map((entry) => (
+            <option key={entry.code} value={entry.code}>
+              {entry.name}
+            </option>
+          ))}
         </select>
         <label className="form__label" htmlFor="checkout-country">
           Country/region
@@ -235,6 +264,30 @@ export function CheckoutForm({
         </label>
       </div>
 
+      <h2 className="h4">Delivery</h2>
+      {rates.length === 0 ? (
+        <p className="form__message form__message--error" role="alert">
+          We do not currently ship to that country.
+        </p>
+      ) : (
+        <fieldset className="js product-form__input">
+          <legend className="visually-hidden">Delivery option</legend>
+          {rates.map((rate) => (
+            <label key={rate.code} className="checkout__delivery-option">
+              <input
+                type="radio"
+                name="shipping_rate"
+                value={rate.code}
+                checked={rate.code === rateCode}
+                onChange={() => setRateCode(rate.code)}
+              />
+              <span>{rate.label}</span>
+              <span>{formatMoney(rate.priceCents, cart.currency)}</span>
+            </label>
+          ))}
+        </fieldset>
+      )}
+
       <div className="totals">
         <h2 className="totals__subtotal">Subtotal</h2>
         <p className="totals__subtotal-value">
@@ -257,7 +310,11 @@ export function CheckoutForm({
       </small>
 
       <div className="cart__ctas">
-        <button type="submit" className="button button--full-width" disabled={submitting}>
+        <button
+          type="submit"
+          className="button button--full-width"
+          disabled={submitting || rates.length === 0}
+        >
           {submitting ? 'Redirecting…' : 'Continue to payment'}
         </button>
       </div>
