@@ -1,8 +1,9 @@
 'use client'
 
 import Image from 'next/image'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
+import { IconCaret } from '@/components/store/Icons'
 import type { ProductImage } from '@/lib/catalog'
 
 /**
@@ -22,10 +23,35 @@ export function ProductGallery({
   title: string
 }) {
   const [active, setActive] = useState(0)
+  const [slide, setSlide] = useState(0)
+  const listRef = useRef<HTMLUListElement>(null)
 
   if (images.length === 0) return null
 
   const activeIndex = Math.min(active, images.length - 1)
+
+  /*
+   * On mobile the media list is a horizontal scroller, so which slide is
+   * showing is a function of scrollLeft rather than of the thumbnail the
+   * customer last clicked. Dawn tracks it the same way to drive the counter.
+   */
+  const onScroll = () => {
+    const list = listRef.current
+    if (!list) return
+    const first = list.firstElementChild as HTMLElement | null
+    if (!first) return
+    const step = first.getBoundingClientRect().width + 16
+    const index = Math.round(list.scrollLeft / step)
+    setSlide(Math.max(0, Math.min(index, images.length - 1)))
+  }
+
+  const scrollTo = (index: number) => {
+    const list = listRef.current
+    const first = list?.firstElementChild as HTMLElement | null
+    if (!list || !first) return
+    const step = first.getBoundingClientRect().width + 16
+    list.scrollTo({ left: index * step, behavior: 'smooth' })
+  }
 
   return (
     <media-gallery
@@ -34,7 +60,17 @@ export function ProductGallery({
       aria-label="Gallery Viewer"
       data-desktop-layout="thumbnail"
     >
+      {/*
+        Dawn wraps the media list in a <slider-component class="slider-mobile-gutter">,
+        and `.product__media-wrapper slider-component` carries a -1.5rem gutter
+        that lets the gallery run edge to edge on mobile. Without the wrapper
+        the list stayed inside the page padding, so the photograph was 32px
+        narrower than the reference and sat 16px further in.
+      */}
+      <slider-component className="slider-mobile-gutter">
       <ul
+        ref={listRef}
+        onScroll={onScroll}
         className="product__media-list contains-media grid grid--peek list-unstyled slider slider--mobile"
         role="list"
       >
@@ -76,6 +112,48 @@ export function ProductGallery({
           </li>
         ))}
       </ul>
+
+      {/*
+        The mobile pager. CSS hides it above 749px, which is why the desktop
+        thumbnail strip below is unaffected.
+      */}
+      {images.length > 1 && (
+        <div className="slider-buttons quick-add-hidden">
+          <button
+            type="button"
+            className="slider-button slider-button--prev"
+            name="previous"
+            aria-label="Slide left"
+            disabled={slide === 0}
+            onClick={() => scrollTo(slide - 1)}
+          >
+            <span className="svg-wrapper">
+              <IconCaret className="icon icon-caret" />
+            </span>
+          </button>
+
+          <div className="slider-counter caption">
+            <span className="slider-counter--current">{slide + 1}</span>
+            <span aria-hidden="true"> / </span>
+            <span className="visually-hidden">of</span>{' '}
+            <span className="slider-counter--total">{images.length}</span>
+          </div>
+
+          <button
+            type="button"
+            className="slider-button slider-button--next"
+            name="next"
+            aria-label="Slide right"
+            disabled={slide === images.length - 1}
+            onClick={() => scrollTo(slide + 1)}
+          >
+            <span className="svg-wrapper">
+              <IconCaret className="icon icon-caret" />
+            </span>
+          </button>
+        </div>
+      )}
+      </slider-component>
 
       {images.length > 1 && (
         <slider-component className="thumbnail-slider slider-mobile-gutter quick-add-hidden small-hide thumbnail-slider--no-slide">
