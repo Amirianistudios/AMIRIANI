@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
-import { clearCartCookie } from '@/lib/cart/server'
 import { createSupabaseAdminClient } from '@/lib/supabase/server'
 import { formatMoney } from '@/lib/money'
 
@@ -27,9 +26,18 @@ export default async function CheckoutSuccessPage({
 }) {
   const { order: orderNumber } = await searchParams
 
-  // The cart was closed by the checkout transaction; drop the cookie so the
-  // header count resets.
-  await clearCartCookie()
+  /*
+   * Deliberately does not touch the cart cookie.
+   *
+   * A Server Component may not write cookies — attempting it throws, and this
+   * page then 500s for every customer returning from Stripe, at the one moment
+   * they most need to see that their order went through.
+   *
+   * Clearing it was never necessary anyway: the checkout transaction sets
+   * `carts.completed_at`, and both `loadCartByToken` and `getOrCreateCart`
+   * filter on `completed_at is null`. So the stale token already reads as an
+   * empty cart, and the next add-to-cart replaces it.
+   */
 
   if (!orderNumber) {
     return (

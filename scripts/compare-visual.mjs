@@ -124,7 +124,15 @@ async function capture(browser, base, path, viewport, file) {
 }
 
 function diff(refMetrics, newMetrics) {
-  if (!refMetrics || !newMetrics) return []
+  /*
+   * A page that failed to load is NOT a match. Returning an empty diff here
+   * would report "matches" for a reference the browser never reached, which is
+   * the most misleading possible outcome for a fidelity check — it says the
+   * rebuild is pixel-perfect precisely when nothing was compared.
+   */
+  if (!refMetrics && !newMetrics) return ['      both sides failed to load — NOT COMPARED']
+  if (!refMetrics) return ['      reference failed to load — NOT COMPARED']
+  if (!newMetrics) return ['      rebuild failed to load — NOT COMPARED']
 
   const rows = []
   for (const selector of PROBES) {
@@ -153,9 +161,19 @@ function diff(refMetrics, newMetrics) {
 async function main() {
   await mkdir(OUT_DIR, { recursive: true })
 
-  const browser = await chromium.launch(
-    process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {},
-  )
+  /*
+   * Chromium does not read HTTPS_PROXY, so behind a proxy it fails to reach the
+   * reference store while the local rebuild still loads — which used to look
+   * like a clean run. Pass the proxy through explicitly, and keep localhost
+   * direct so the rebuild is not tunnelled.
+   */
+  const proxyServer = process.env.HTTPS_PROXY ?? process.env.https_proxy
+  const browser = await chromium.launch({
+    ...(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {}),
+    ...(proxyServer
+      ? { proxy: { server: proxyServer, bypass: 'localhost,127.0.0.1,::1' } }
+      : {}),
+  })
   let differences = 0
 
   for (const viewport of VIEWPORTS) {
@@ -182,6 +200,9 @@ async function main() {
     `\n${differences === 0 ? 'No differences above threshold.' : `${differences} difference(s) to review.`}`,
   )
   console.log(`Screenshots in ${OUT_DIR}/ — compare them in pairs.`)
+
+  // Non-zero so this can gate a release rather than just print.
+  if (differences > 0) process.exitCode = 1
 }
 
 main().catch((error) => {

@@ -204,10 +204,15 @@ export async function getOrCreateCart(): Promise<{ id: string; token: string }> 
   return data
 }
 
-/** Clears the cart cookie, e.g. after a completed checkout. */
-export async function clearCartCookie(): Promise<void> {
-  ;(await cookies()).set(CART_COOKIE, '', { ...COOKIE_OPTIONS, maxAge: 0 })
-}
+/*
+ * There is deliberately no `clearCartCookie` helper.
+ *
+ * Nothing needs one: checkout sets `carts.completed_at`, and every read here
+ * filters on `completed_at is null`, so a leftover token already behaves as an
+ * empty cart and `getOrCreateCart` replaces it on the next add. Offering the
+ * helper only tempted callers to invoke it from the confirmation page — a
+ * Server Component, where writing a cookie throws and takes the page down.
+ */
 
 /**
  * Attaches an anonymous cart to a customer once they sign in, so the items

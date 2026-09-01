@@ -30,7 +30,7 @@ import { createHmac, randomUUID, scryptSync, timingSafeEqual } from 'node:crypto
 import { Client } from 'pg'
 import { createServer } from 'node:http'
 import { createReadStream } from 'node:fs'
-import { mkdir, stat, writeFile } from 'node:fs/promises'
+import { mkdir, rm, stat, writeFile } from 'node:fs/promises'
 import { dirname, join, normalize, resolve } from 'node:path'
 
 const PORT = Number(process.env.LOCAL_SUPABASE_PORT ?? 54321)
@@ -81,6 +81,24 @@ const MIME = {
   '.svg': 'image/svg+xml',
 }
 
+/**
+ * The local stand-in for the `media_admin_write` policy: only the service role
+ * or a signed-in admin may write. Everyone else gets the 403 that RLS would
+ * produce on hosted Supabase.
+ */
+async function canWriteStorage(req) {
+  const token = req.headers.authorization?.replace(/^Bearer /, '')
+  if (!token || token === ANON_KEY) return false
+  if (token === SERVICE_KEY) return true
+
+  const claims = decodeJwt(token)
+  if (claims?.role === 'service_role') return true
+  if (!claims?.sub) return false
+
+  const { rows } = await db.query('select 1 from admin_users where user_id = $1', [claims.sub])
+  return rows.length > 0
+}
+
 async function handleStorage(req, res, url) {
   // /storage/v1/object/public/<bucket>/<path>  (read)
   // /storage/v1/object/<bucket>/<path>         (write)
@@ -113,6 +131,24 @@ async function handleStorage(req, res, url) {
       'Cache-Control': 'public, max-age=3600',
     })
     createReadStream(filePath).pipe(res)
+    return
+  }
+
+  if (req.method === 'POST' || req.method === 'PUT' || req.method === 'DELETE') {
+    // Mirror the `media_admin_write` storage policy. Without this the harness
+    // would accept anonymous uploads that hosted Supabase refuses, and local
+    // verification would give a false pass on the one thing that matters here.
+    if (!(await canWriteStorage(req))) {
+      res.writeHead(403, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({ statusCode: '403', error: 'Unauthorized', message: 'new row violates row-level security policy' }))
+      return
+    }
+  }
+
+  if (req.method === 'DELETE') {
+    await rm(filePath, { force: true })
+    res.writeHead(200, { 'Content-Type': 'application/json' })
+    res.end(JSON.stringify({ message: 'Successfully deleted' }))
     return
   }
 
