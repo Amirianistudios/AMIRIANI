@@ -108,7 +108,15 @@ async function capture(browser, base, path, viewport, file) {
           y: Math.round(r.y),
           w: Math.round(r.width),
           h: Math.round(r.height),
-          font: `${cs.fontSize} ${cs.fontWeight}`,
+          /*
+           * Font size to two decimals. Dawn sizes headings with calc() on
+           * viewport units, so the two sites can land on 36px and 36.0001px
+           * for the same rule — a difference no display can render, which
+           * would otherwise be reported on every run and train the reader to
+           * ignore the font column. Two decimals is still far finer than
+           * anything visible.
+           */
+          font: `${Number(parseFloat(cs.fontSize).toFixed(2))}px ${cs.fontWeight}`,
         }
       }
       return out

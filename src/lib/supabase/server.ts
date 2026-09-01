@@ -1,3 +1,12 @@
+/*
+ * This module holds the service-role client, which bypasses RLS entirely.
+ * `lib/env.ts` throws if that key is read in the browser, but that is a runtime
+ * backstop; `server-only` turns an accidental import from a Client Component
+ * into a build failure instead, which is the point at which you want to find
+ * out.
+ */
+import 'server-only'
+
 import { cookies } from 'next/headers'
 import { createServerClient } from '@supabase/ssr'
 import { createClient, type SupabaseClient } from '@supabase/supabase-js'

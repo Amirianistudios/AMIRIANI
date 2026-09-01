@@ -476,6 +476,59 @@ async function main() {
       !Array.isArray(adminRows) || adminRows.length === 0,
       'a customer cannot read the admin table',
     )
+
+    // Session persistence: the refresh token must mint a fresh session, which
+    // is what keeps someone signed in across days rather than minutes.
+    if (session.refresh_token) {
+      const refreshed = await fetch(`${SUPABASE_URL}/auth/v1/token?grant_type=refresh_token`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', apikey: ANON_KEY },
+        body: JSON.stringify({ refresh_token: session.refresh_token }),
+      })
+      const next = await refreshed.json().catch(() => ({}))
+      check(refreshed.ok && Boolean(next.access_token), 'the session can be refreshed',
+        `status ${refreshed.status}`)
+    } else {
+      fail('login returned a refresh token', 'sessions could not outlive the access token')
+    }
+
+    // Password reset. The mail itself is Supabase's to send; what must hold
+    // here is that asking for one never reveals whether the address exists.
+    const resetKnown = await fetch(`${SUPABASE_URL}/auth/v1/recover`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', apikey: ANON_KEY },
+      body: JSON.stringify({ email: EMAIL }),
+    })
+    check(resetKnown.ok, 'password reset accepted for a real address', `status ${resetKnown.status}`)
+
+    const resetUnknown = await fetch(`${SUPABASE_URL}/auth/v1/recover`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', apikey: ANON_KEY },
+      body: JSON.stringify({ email: `nobody-${RUN}@example.com` }),
+    })
+    check(
+      resetUnknown.status === resetKnown.status,
+      'and answers identically for an unknown one',
+      'otherwise the form enumerates who has an account',
+    )
+
+    // Sign out must actually end the session server-side, not just drop the
+    // cookie: a token that still works after logout is not logged out.
+    const logout = await fetch(`${SUPABASE_URL}/auth/v1/logout`, {
+      method: 'POST',
+      headers: { apikey: ANON_KEY, Authorization: `Bearer ${accessToken}` },
+    })
+    check(logout.ok || logout.status === 204, 'sign out accepted', `status ${logout.status}`)
+
+    const afterLogout = await fetch(`${SUPABASE_URL}/rest/v1/orders?select=id`, {
+      headers: { apikey: ANON_KEY, Authorization: `Bearer ${accessToken}` },
+    })
+    const afterRows = await afterLogout.json().catch(() => [])
+    check(
+      !Array.isArray(afterRows) || afterRows.length === 0,
+      'and the old token can no longer read the customer\'s orders',
+      `${Array.isArray(afterRows) ? afterRows.length : '?'} row(s)`,
+    )
   }
 
   // --------------------------------------------------------------- the admin

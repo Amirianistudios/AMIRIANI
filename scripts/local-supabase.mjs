@@ -36,6 +36,9 @@ import { dirname, join, normalize, resolve } from 'node:path'
 const PORT = Number(process.env.LOCAL_SUPABASE_PORT ?? 54321)
 const POSTGREST = process.env.POSTGREST_URL ?? 'http://127.0.0.1:3001'
 const ANON_KEY = process.env.LOCAL_ANON_KEY ?? 'local-anon-key'
+
+/** Access tokens surrendered at /logout. See the logout handler for why. */
+const REVOKED = new Set()
 const SERVICE_KEY = process.env.LOCAL_SERVICE_KEY ?? 'local-service-key'
 const JWT_SECRET =
   process.env.LOCAL_JWT_SECRET ?? 'local-development-jwt-secret-at-least-32-chars'
@@ -356,7 +359,15 @@ async function handleAuth(req, res, url) {
   }
 
   if (path === '/logout' && req.method === 'POST') {
-    // Tokens are stateless here; the client discards them.
+    /*
+     * GoTrue revokes the session, so a token presented after sign-out stops
+     * working. Simply discarding it client-side would look identical in a
+     * browser but pass a test that production would fail — "logged out" has to
+     * mean the server refuses the token, not that the client forgot it. These
+     * are JWTs with no server-side session, so the harness keeps the revoked
+     * ones and treats them as anonymous.
+     */
+    if (bearer) REVOKED.add(bearer)
     res.writeHead(204).end()
     return
   }
@@ -382,7 +393,9 @@ async function handleRest(req, res, url) {
    */
   const bearer = req.headers.authorization?.replace(/^Bearer /, '')
   const userClaims =
-    bearer && bearer !== ANON_KEY && bearer !== SERVICE_KEY ? decodeJwt(bearer) : null
+    bearer && bearer !== ANON_KEY && bearer !== SERVICE_KEY && !REVOKED.has(bearer)
+      ? decodeJwt(bearer)
+      : null
 
   const target = POSTGREST + url.pathname.replace(/^\/rest\/v1/, '') + url.search
 
