@@ -36,6 +36,11 @@ If the generator supports reference images, also feed it the flat mockup
 (Midjourney `--cref` or omni-reference; Flux Kontext; Firefly structure
 reference). That holds colour, fit and pocket. Still composite the text.
 
+To skip the compositing and have the print come out of the generator in one
+pass — every product, front and back, with its mockup attached as the
+reference — use `AD-PROMPTS-MOCKUPS.md` instead. It trades some reliability
+for zero post-work, and says what to check on each image.
+
 ## 3. The hero crop
 
 The hero source is portrait, 4:5 (1600×2000). The site crops it with
